@@ -3,12 +3,58 @@
 
 
     <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/categories"
+            android:title="Categories">
+
+        </item>
+    </group>
+        <group android:checkableBehavior="single">
+
        <item
            android:id="@+id/Technology"
            android:icon="@drawable/ic_laptop_chromebook_black_24dp"
            android:title="Technology">
 
        </item>
+            <item
+                android:id="@+id/sports"
+                android:title="Sports"
+                android:icon="@drawable/ic_fitness_center_black_24dp">
+
+            </item>
+
+            <item
+                android:id="@+id/travel"
+                android:title="Travel"
+                android:icon="@drawable/ic_flight_black_24dp">
+
+            </item>
+            <item
+                android:id="@+id/arts"
+                android:title="Arts"
+                android:icon="@drawable/ic_palette_black_24dp">
+
+            </item>
+            <item
+                android:id="@+id/politics"
+                android:title="Politics"
+                android:icon="@drawable/ic_group_black_24dp">
+
+            </item>
+            <item
+                android:id="@+id/science"
+                android:title="Science"
+                android:icon="@drawable/ic_lightbulb_outline_black_24dp">
+
+            </item>
+ <item
+                android:id="@+id/movies"
+                android:title="Movies"
+                android:icon="@drawable/ic_local_movies_black_24dp">
+
+            </item>
+
 
 
     </group>

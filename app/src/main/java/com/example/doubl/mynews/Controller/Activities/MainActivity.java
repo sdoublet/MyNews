@@ -1,10 +1,14 @@
 package com.example.doubl.mynews.Controller.Activities;
 
 import android.content.Intent;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -12,16 +16,20 @@ import android.view.MenuItem;
 import com.example.doubl.mynews.Controller.Views.ViewPager.PageAdapter;
 import com.example.doubl.mynews.R;
 
-import butterknife.BindView;
+
 
 public class MainActivity extends AppCompatActivity {
 
-    @Override
+ private Toolbar toolbar;
+ private DrawerLayout drawerLayout;
+ private NavigationView navigationView;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.configureToolbar();
         this.configureViewPager();
+        this.configureDrawerLayout();
 
     }
 
@@ -53,8 +61,9 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+
     private void configureToolbar(){
-        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        this.toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
     }
 
@@ -64,5 +73,12 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
+    }
+
+    private void configureDrawerLayout(){
+         this.drawerLayout = findViewById(R.id.drawer_layout_activity_main);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
     }
 }
