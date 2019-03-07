@@ -33,4 +33,6 @@ public class RecyclerviewHolder extends RecyclerView.ViewHolder {
         this.textViewBody.setText(updateAllFragmentItem.setBodyText(article));
         this.textViewDate.setText(updateAllFragmentItem.setPublisheddate(article));
     }
+
+
 }
