@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.RequestManager;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.doubl.mynews.Controller.Models.ResultMostPopular;
 import com.example.doubl.mynews.R;
 
@@ -32,7 +33,18 @@ public class RecyclerviewHolder extends RecyclerView.ViewHolder {
         this.textViewSection.setText(updateAllFragmentItem.setSection(article));
         this.textViewBody.setText(updateAllFragmentItem.setBodyText(article));
         this.textViewDate.setText(updateAllFragmentItem.setPublisheddate(article));
+        this.setImageMostPopular(article, glide);
     }
 
-
+private void setImageMostPopular(ResultMostPopular article, RequestManager glide)
+{
+    if (article.getMedia()!=null){
+        String urlImage = article.getMedia().get(0).getMediaMetadata().get(0).getUrl();
+        if (urlImage.startsWith("images")){
+            urlImage = "https://www.nytimes.com/" + urlImage;
+        }
+        glide.load(urlImage).apply(new RequestOptions().fallback(R.drawable.capitaine_flam)).into(imageView);
+    }else
+        imageView.setImageResource(R.drawable.albator);
+    }
 }

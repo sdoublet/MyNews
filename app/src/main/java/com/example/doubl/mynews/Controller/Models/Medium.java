@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-class Medium {
+public class Medium {
     @SerializedName("media-metadata")
     @Expose
     private List<MediaMetadatum> mediaMetadata = null;

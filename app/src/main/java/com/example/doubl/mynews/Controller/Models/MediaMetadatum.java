@@ -3,7 +3,7 @@ package com.example.doubl.mynews.Controller.Models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-class MediaMetadatum {
+public class MediaMetadatum {
     @SerializedName("url")
     @Expose
     private String url;
