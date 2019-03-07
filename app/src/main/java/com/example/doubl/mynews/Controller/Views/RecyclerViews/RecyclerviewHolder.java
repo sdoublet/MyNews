@@ -24,7 +24,7 @@ public class RecyclerviewHolder extends RecyclerView.ViewHolder {
 
     public RecyclerviewHolder(@NonNull View itemView) {
         super(itemView);
-        ButterKnife.bind(itemView);
+        ButterKnife.bind(this, itemView);
     }
 
     public void updateRecyclerViewWithMostPopularArticle(ResultMostPopular article, RequestManager glide) {

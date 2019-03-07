@@ -45,7 +45,7 @@ public class MostPopularFragment extends Fragment {
     // FOR DATA
     //----------------
 
-    private Disposable disposable;
+     Disposable disposable;
     private List<ResultMostPopular> resultMostPopularList;
     private MostPopularAdapter adapter;
 
@@ -59,14 +59,14 @@ public class MostPopularFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view;
         view = inflater.inflate(R.layout.fragment_most_pouplar, container, false);
-        ButterKnife.bind(view);
+        ButterKnife.bind(this, view);
         this.configureRecyclerView();
         this.executeHttpRequestWithRetrofit();
         this.configureSwipeRefreshLayout();
         return view;
     }
 
-    private void configureRecyclerView() {
+    public void configureRecyclerView() {
         resultMostPopularList = new ArrayList<>();
         adapter = new MostPopularAdapter(resultMostPopularList, getContext(), Glide.with(this));
         recyclerView.setAdapter(this.adapter);
@@ -96,7 +96,7 @@ public class MostPopularFragment extends Fragment {
 
             @Override
             public void onError(Throwable e) {
-                Log.e("TAG", "On Error...");
+                Log.e("TAG", "On Error..."+Log.getStackTraceString(e));
             }
 
             @Override

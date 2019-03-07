@@ -10,7 +10,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public interface NewYorkTimesServices {
-    @GET("{period}.json?api-key"+ApiKey.API_KEY)
+    @GET("{period}.json?api-key="+ApiKey.API_KEY)
     Observable<MostPopular>getNYTMostPopular(@Path("period")int period);
 
     Retrofit retrofitMostPopular = new Retrofit.Builder()
