@@ -5,14 +5,13 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class MostPopular {
-
-    @SerializedName("results")
+class Medium {
+    @SerializedName("media-metadata")
     @Expose
-    private List<ResultMostPopular> results = null;
+    private List<MediaMetadatum> mediaMetadata = null;
 
 
-    public List<ResultMostPopular> getResults() {
-        return results;
+    public List<MediaMetadatum> getMediaMetadata() {
+        return mediaMetadata;
     }
 }
