@@ -34,12 +34,12 @@ public class MostPopularAdapter extends RecyclerView.Adapter<RecyclerviewHolder>
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerviewHolder recyclerviewHolder, int i) {
-
+    public void onBindViewHolder(@NonNull RecyclerviewHolder recyclerviewHolder, int position) {
+recyclerviewHolder.updateRecyclerViewWithMostPopularArticle(this.resultMostPopularList.get(position), glide);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return resultMostPopularList.size();
     }
 }
