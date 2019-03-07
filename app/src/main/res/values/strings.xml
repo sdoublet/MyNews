@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MyNews</string>
+    <string name="nav_header_desc">nav_header_desc</string>
 </resources>
