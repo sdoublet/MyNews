@@ -22,6 +22,6 @@ public class RecyclerviewHolder extends RecyclerView.ViewHolder {
     }
 
     private void updateRecyclerViewWithMostPopularArticle(){
-
+UpdateAllFragmentItem
     }
 }
