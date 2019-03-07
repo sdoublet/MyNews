@@ -1,13 +1,18 @@
 package com.example.doubl.mynews.Controller.Activities;
 
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 
+import com.example.doubl.mynews.Controller.Views.ViewPager.PageAdapter;
 import com.example.doubl.mynews.R;
+
+import butterknife.BindView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.configureToolbar();
+        this.configureViewPager();
+
     }
 
     @Override
@@ -49,5 +56,13 @@ public class MainActivity extends AppCompatActivity {
     private void configureToolbar(){
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+    }
+
+    private void configureViewPager(){
+        ViewPager viewPager = findViewById(R.id.view_pager);
+        viewPager.setAdapter(new PageAdapter(getSupportFragmentManager()));
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
+        tabLayout.setupWithViewPager(viewPager);
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
     }
 }

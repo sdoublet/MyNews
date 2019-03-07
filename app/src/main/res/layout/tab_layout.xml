@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.TabLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tab_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimary"
+    app:tabSelectedTextColor="#FFFF00"
+    app:tabTextColor="@color/colorTitle">
+
+    <android.support.design.widget.TabItem
+        android:id="@+id/tab_item_most_popular"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+
+        <android.support.design.widget.TabItem
+        android:id="@+id/tab_item_top_stories"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+        <android.support.design.widget.TabItem
+        android:id="@+id/tab_item_technology"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+
+</android.support.design.widget.TabLayout>
