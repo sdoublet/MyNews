@@ -4,21 +4,17 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
-
-
-public class MostPopularAdapter  extends RecyclerView.Adapter<MostPopularViewHolder> {
+public class MostPopularAdapter extends RecyclerView.Adapter<RecyclerviewHolder> {
     @NonNull
     @Override
-    public MostPopularViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public RecyclerviewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         return null;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MostPopularViewHolder mostPopularViewHolder, int i) {
+    public void onBindViewHolder(@NonNull RecyclerviewHolder recyclerviewHolder, int i) {
 
     }
-
-
 
     @Override
     public int getItemCount() {
