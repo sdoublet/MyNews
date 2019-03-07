@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">MyNews</string>
     <string name="nav_header_desc">nav_header_desc</string>
+    <string name="about_context">MyNews est une application réalisée dans le cadre de la formation développeur Android dispensée par OpenClassroom. Il représente le 4ème projet et permet d\'acquérir les compétences en matière d\'éxécution de taches en arrière plan, d\'écriture de test unitaire, de production de rapport de tests, de mise en place de test unitaires et d\'intégrations.</string>
 </resources>
