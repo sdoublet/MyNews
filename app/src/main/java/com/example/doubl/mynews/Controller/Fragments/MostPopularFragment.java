@@ -12,10 +12,10 @@ import com.example.doubl.mynews.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TopStories extends Fragment {
+public class MostPopularFragment extends Fragment {
 
 
-    public TopStories() {
+    public MostPopularFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class TopStories extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_top_stories, container, false);
+        return inflater.inflate(R.layout.fragment_most_pouplar, container, false);
     }
 
 }
