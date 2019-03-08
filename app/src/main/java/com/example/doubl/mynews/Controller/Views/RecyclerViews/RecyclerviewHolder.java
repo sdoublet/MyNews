@@ -22,7 +22,8 @@ public class RecyclerviewHolder extends RecyclerView.ViewHolder {
     TextView textViewSection;
     @BindView(R.id.text_view_body)
     TextView textViewBody;
-    @BindView(R.id.text_view_date)TextView textViewDate;
+    @BindView(R.id.text_view_date)
+    TextView textViewDate;
 
     public RecyclerviewHolder(@NonNull View itemView) {
         super(itemView);
@@ -37,7 +38,7 @@ public class RecyclerviewHolder extends RecyclerView.ViewHolder {
         this.setImageMostPopular(article, glide);
     }
 
-    public void updateRecyclerViewWithTopStories(ResultTopStories  articleTopStories, RequestManager glide) {
+    public void updateRecyclerViewWithTopStories(ResultTopStories articleTopStories, RequestManager glide) {
         UpdateAllFragmentItem updateAllFragmentItem = new UpdateAllFragmentItem();
         this.textViewSection.setText(updateAllFragmentItem.setSection(articleTopStories));
         this.textViewBody.setText(updateAllFragmentItem.setBodyText(articleTopStories));
@@ -46,24 +47,24 @@ public class RecyclerviewHolder extends RecyclerView.ViewHolder {
     }
 
 
-private void setImageMostPopular(ResultMostPopular article, RequestManager glide)
-{
-    if (article.getMedia()!=null){
-        String urlImage = article.getMedia().get(0).getMediaMetadata().get(0).getUrl();
-        glide.load(urlImage).apply(new RequestOptions().fallback(R.drawable.capitaine_flam)).into(imageView);
-    }else
-        imageView.setImageResource(R.drawable.albator);
+    private void setImageMostPopular(ResultMostPopular article, RequestManager glide) {
+        if (article.getMedia() != null) {
+            String urlImage = article.getMedia().get(0).getMediaMetadata().get(0).getUrl();
+            glide.load(urlImage).apply(new RequestOptions().fallback(R.drawable.capitaine_flam)).into(imageView);
+        } else
+            imageView.setImageResource(R.drawable.logo);
     }
 
-    private void setImageTopStories(ResultTopStories articleTopStories, RequestManager glide)
-{
-    if (articleTopStories.getMultimedia()!=null){
-        String urlImage = articleTopStories.getMultimedia().get(0).getUrl();
-        if (urlImage.startsWith("images")){
-            urlImage = "https://www.nytimes.com/" + urlImage;
+    private void setImageTopStories(ResultTopStories articleTopStories, RequestManager glide) {
+        if (articleTopStories.getMultimedia() != null) {
+            if (articleTopStories.getMultimedia().size() > 0) {
+                String urlImage = articleTopStories.getMultimedia().get(0).getUrl();
+                if (urlImage.startsWith("images")) {
+                    urlImage = "https://www.nytimes.com/" + urlImage;
+                }
+                glide.load(urlImage).apply(new RequestOptions().fallback(R.drawable.logo)).into(imageView);
+            } else
+                imageView.setImageResource(R.drawable.logo);
         }
-        glide.load(urlImage).apply(new RequestOptions().fallback(R.drawable.capitaine_flam)).into(imageView);
-    }else
-        imageView.setImageResource(R.drawable.albator);
     }
 }
