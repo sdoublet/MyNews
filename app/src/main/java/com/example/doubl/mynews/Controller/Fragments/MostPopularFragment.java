@@ -50,7 +50,6 @@ public class MostPopularFragment extends Fragment {
     private MostPopularAdapter adapter;
 
     public MostPopularFragment() {
-        // Required empty public constructor
     }
 
 

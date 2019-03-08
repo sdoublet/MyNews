@@ -18,6 +18,13 @@ public class TopStoriesAdapter extends RecyclerView.Adapter<RecyclerviewHolder> 
     private List<ResultTopStories> resultTopStoriesList;
     private Context context;
     private RequestManager glide;
+
+    public TopStoriesAdapter(List<ResultTopStories> resultTopStoriesList, Context context, RequestManager glide) {
+        this.resultTopStoriesList = resultTopStoriesList;
+        this.context = context;
+        this.glide = glide;
+    }
+
     @NonNull
     @Override
     public RecyclerviewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
