@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.doubl.mynews.Controller.Models.ResultMostPopular;
+import com.example.doubl.mynews.Controller.Models.ResultTopStories;
 import com.example.doubl.mynews.R;
 
 import butterknife.BindView;
@@ -35,6 +36,15 @@ public class RecyclerviewHolder extends RecyclerView.ViewHolder {
         this.textViewDate.setText(updateAllFragmentItem.setPublisheddate(article));
         this.setImageMostPopular(article, glide);
     }
+
+    public void updateRecyclerViewWithTopStories(ResultTopStories , RequestManager glide) {
+        UpdateAllFragmentItem updateAllFragmentItem = new UpdateAllFragmentItem();
+        this.textViewSection.setText(updateAllFragmentItem.setSection());
+        this.textViewBody.setText(updateAllFragmentItem.setBodyText());
+        this.textViewDate.setText(updateAllFragmentItem.setPublisheddate());
+        this.setImageMostPopular(, glide);
+    }
+
 
 private void setImageMostPopular(ResultMostPopular article, RequestManager glide)
 {

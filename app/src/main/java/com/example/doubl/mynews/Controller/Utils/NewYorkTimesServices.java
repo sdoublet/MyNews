@@ -1,6 +1,7 @@
 package com.example.doubl.mynews.Controller.Utils;
 
 import com.example.doubl.mynews.Controller.Models.MostPopular;
+import com.example.doubl.mynews.Controller.Models.TopStories;
 
 import io.reactivex.Observable;
 import retrofit2.Retrofit;
@@ -18,4 +19,14 @@ public interface NewYorkTimesServices {
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build();
+
+    @GET("{section}.json?api-key="+ApiKey.API_KEY)
+    Observable<TopStories>getNYTTopStories(@Path("section")String section);
+
+    Retrofit retrofitTopStories = new Retrofit.Builder()
+            .baseUrl("https://api.nytimes.com/svc/topstories/v2/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build();
+
 }
