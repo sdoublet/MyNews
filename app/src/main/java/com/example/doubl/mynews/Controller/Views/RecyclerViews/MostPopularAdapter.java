@@ -15,6 +15,10 @@ import java.util.List;
 
 public class MostPopularAdapter extends RecyclerView.Adapter<RecyclerviewHolder> {
 
+
+
+
+
     private List<ResultMostPopular> resultMostPopularList;
     private Context context;
     private RequestManager glide;
@@ -23,6 +27,7 @@ public class MostPopularAdapter extends RecyclerView.Adapter<RecyclerviewHolder>
         this.resultMostPopularList = resultMostPopularList;
         this.context = context;
         this.glide = glide;
+
     }
 
     @NonNull
@@ -41,5 +46,12 @@ recyclerviewHolder.updateRecyclerViewWithMostPopularArticle(this.resultMostPopul
     @Override
     public int getItemCount() {
         return resultMostPopularList.size();
+    }
+
+    public ResultMostPopular resultMostPopular (int position){
+        return resultMostPopularList.get(position);
+    }
+    public String getUrl (int position){
+        return resultMostPopularList.get(position).getUrl();
     }
 }

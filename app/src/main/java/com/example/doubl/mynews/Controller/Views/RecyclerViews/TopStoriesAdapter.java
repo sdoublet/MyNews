@@ -42,4 +42,8 @@ recyclerviewHolder.updateRecyclerViewWithTopStories(this.resultTopStoriesList.ge
     public int getItemCount() {
         return resultTopStoriesList.size();
     }
+
+    public String getUrl (int position){
+        return resultTopStoriesList.get(position).getUrl();
+    }
 }

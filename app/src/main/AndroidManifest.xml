@@ -47,7 +47,6 @@
                 android:value=".Controller.Activities.MainActivity" />
         </activity>
         <activity android:name=".Controller.Activities.WebViewActivity"
-            android:label="Your Article"
             android:parentActivityName=".Controller.Activities.MainActivity">
 
         </activity>

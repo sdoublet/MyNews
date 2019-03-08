@@ -1,6 +1,7 @@
 package com.example.doubl.mynews.Controller.Fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -11,8 +12,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.doubl.mynews.Controller.Activities.WebViewActivity;
 import com.example.doubl.mynews.Controller.Models.MostPopular;
 import com.example.doubl.mynews.Controller.Models.ResultMostPopular;
 import com.example.doubl.mynews.Controller.Utils.ItemClickSupport;
@@ -33,7 +37,7 @@ import io.reactivex.observers.DisposableObserver;
  */
 public class MostPopularFragment extends Fragment {
 
-
+public static final String BUNDLE_URL= "BUNDLE_URL";
     //----------------
     // FOR DESIGN
     //----------------
@@ -46,7 +50,7 @@ public class MostPopularFragment extends Fragment {
     // FOR DATA
     //----------------
 
-     Disposable disposable;
+    Disposable disposable;
     private List<ResultMostPopular> resultMostPopularList;
     private MostPopularAdapter adapter;
 
@@ -69,7 +73,7 @@ public class MostPopularFragment extends Fragment {
 
     public void configureRecyclerView() {
         resultMostPopularList = new ArrayList<>();
-        adapter = new MostPopularAdapter(resultMostPopularList, getContext(), Glide.with(this));
+        adapter = new MostPopularAdapter(resultMostPopularList, getContext(), Glide.with(this) );
         recyclerView.setAdapter(this.adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
@@ -79,12 +83,19 @@ public class MostPopularFragment extends Fragment {
     //-----------------
 
     // Configure item click on RecyclerView
-    private void configureOnClickRecyclerView(){
+    private void configureOnClickRecyclerView() {
         ItemClickSupport.addTo(recyclerView, R.layout.all_fragment_item)
                 .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
                     @Override
                     public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                        Log.e("TAG", "Position: "+position);
+                        // Get ResultMostPopular from adapter
+                        String articleMostPopular;
+                        articleMostPopular = adapter.getUrl(position);
+                        Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                        intent.putExtra(BUNDLE_URL, articleMostPopular);
+                        startActivity(intent);
+
+
                     }
                 });
     }
@@ -113,7 +124,7 @@ public class MostPopularFragment extends Fragment {
 
             @Override
             public void onError(Throwable e) {
-                Log.e("TAG", "On Error..."+Log.getStackTraceString(e));
+                Log.e("TAG", "On Error..." + Log.getStackTraceString(e));
             }
 
             @Override
@@ -123,7 +134,7 @@ public class MostPopularFragment extends Fragment {
         });
     }
 
-    private void configureSwipeRefreshLayout(){
+    private void configureSwipeRefreshLayout() {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

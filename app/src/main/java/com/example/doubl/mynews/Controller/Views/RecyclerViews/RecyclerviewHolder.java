@@ -12,10 +12,12 @@ import com.example.doubl.mynews.Controller.Models.ResultMostPopular;
 import com.example.doubl.mynews.Controller.Models.ResultTopStories;
 import com.example.doubl.mynews.R;
 
+import java.lang.ref.WeakReference;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class RecyclerviewHolder extends RecyclerView.ViewHolder {
+public class RecyclerviewHolder extends RecyclerView.ViewHolder  {
     @BindView(R.id.image_view_all_fragment_item)
     ImageView imageView;
     @BindView(R.id.text_view_section)
@@ -25,6 +27,8 @@ public class RecyclerviewHolder extends RecyclerView.ViewHolder {
     @BindView(R.id.text_view_date)
     TextView textViewDate;
 
+
+
     public RecyclerviewHolder(@NonNull View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
@@ -33,6 +37,7 @@ public class RecyclerviewHolder extends RecyclerView.ViewHolder {
     public void updateRecyclerViewWithMostPopularArticle(ResultMostPopular article, RequestManager glide) {
         UpdateAllFragmentItem updateAllFragmentItem = new UpdateAllFragmentItem();
         this.textViewSection.setText(updateAllFragmentItem.setSection(article));
+
         this.textViewBody.setText(updateAllFragmentItem.setBodyText(article));
         this.textViewDate.setText(updateAllFragmentItem.setPublisheddate(article));
         this.setImageMostPopular(article, glide);
@@ -67,4 +72,6 @@ public class RecyclerviewHolder extends RecyclerView.ViewHolder {
                 imageView.setImageResource(R.drawable.logo);
         }
     }
+
+
 }
