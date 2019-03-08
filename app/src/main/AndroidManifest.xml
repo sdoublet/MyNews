@@ -2,9 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.doubl.mynews">
-<uses-permission android:name="android.permission.INTERNET">
 
-</uses-permission>
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Controller.Activities.MainActivity"
+        <activity
+            android:name=".Controller.Activities.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,29 +22,34 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-
-        <activity android:name=".Controller.Activities.SearchActivity"
+        <activity
+            android:name=".Controller.Activities.SearchActivity"
             android:label="Search"
             android:parentActivityName=".Controller.Activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Controller.Activities.MainActivity"/>
+                android:value=".Controller.Activities.MainActivity" />
         </activity>
-        <activity android:name=".Controller.Activities.NotificationActivity"
+        <activity
+            android:name=".Controller.Activities.NotificationActivity"
             android:label="Notification"
             android:parentActivityName=".Controller.Activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Controller.Activities.MainActivity"/>
+                android:value=".Controller.Activities.MainActivity" />
         </activity>
-        <activity android:name=".Controller.Activities.AboutActivity"
+        <activity
+            android:name=".Controller.Activities.AboutActivity"
             android:label="About"
             android:parentActivityName=".Controller.Activities.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".Controller.Activities.MainActivity"/>
+                android:value=".Controller.Activities.MainActivity" />
+        </activity>
+        <activity android:name=".Controller.Activities.WebViewActivity"
+            android:label="Your Article"
+            android:parentActivityName=".Controller.Activities.MainActivity">
+
         </activity>
     </application>
 
