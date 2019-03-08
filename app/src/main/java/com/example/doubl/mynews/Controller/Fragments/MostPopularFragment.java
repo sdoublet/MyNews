@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.bumptech.glide.Glide;
 import com.example.doubl.mynews.Controller.Models.MostPopular;
 import com.example.doubl.mynews.Controller.Models.ResultMostPopular;
+import com.example.doubl.mynews.Controller.Utils.ItemClickSupport;
 import com.example.doubl.mynews.Controller.Utils.NewYorkTimesStream;
 import com.example.doubl.mynews.Controller.Views.RecyclerViews.MostPopularAdapter;
 import com.example.doubl.mynews.R;
@@ -62,6 +63,7 @@ public class MostPopularFragment extends Fragment {
         this.configureRecyclerView();
         this.executeHttpRequestWithRetrofit();
         this.configureSwipeRefreshLayout();
+        this.configureOnClickRecyclerView();
         return view;
     }
 
@@ -71,6 +73,22 @@ public class MostPopularFragment extends Fragment {
         recyclerView.setAdapter(this.adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
+
+    //-----------------
+    // ACTION
+    //-----------------
+
+    // Configure item click on RecyclerView
+    private void configureOnClickRecyclerView(){
+        ItemClickSupport.addTo(recyclerView, R.layout.all_fragment_item)
+                .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+                    @Override
+                    public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                        Log.e("TAG", "Position: "+position);
+                    }
+                });
+    }
+
 
     //------------------
     // UPDATE UI

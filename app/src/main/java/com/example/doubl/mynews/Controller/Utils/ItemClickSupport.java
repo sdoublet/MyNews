@@ -9,7 +9,7 @@ import com.example.doubl.mynews.R;
 public class ItemClickSupport {
 
     // HUGO VISSER SOLUTION TO GET CLICK ON RECYCLER VIEW
-    
+
     private final RecyclerView mRecyclerView;
     private OnItemClickListener mOnItemClickListener;
     private OnItemLongClickListener mOnItemLongClickListener;
@@ -56,7 +56,7 @@ public class ItemClickSupport {
         mRecyclerView.addOnChildAttachStateChangeListener(mAttachListener);
     }
 
-    public static ItemClickSupport addTo(RecyclerView view) {
+    public static ItemClickSupport addTo(RecyclerView view, int all_fragment_item) {
         ItemClickSupport support = (ItemClickSupport) view.getTag(R.id.item_click_support);
         if (support == null) {
             support = new ItemClickSupport(view);
