@@ -29,4 +29,6 @@ public interface NewYorkTimesServices {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build();
 
+
+
 }
