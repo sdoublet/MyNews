@@ -55,7 +55,7 @@ public class ResultTopStories {
     private List<String> perFacet = null;
     @SerializedName("geo_facet")
     @Expose
-    private List<Object> geoFacet = null;
+    private List<String> geoFacet = null;
     @SerializedName("multimedia")
     @Expose
     private List<Multimedium> multimedia = null;
@@ -183,11 +183,11 @@ public class ResultTopStories {
         this.perFacet = perFacet;
     }
 
-    public List<Object> getGeoFacet() {
+    public List<String> getGeoFacet() {
         return geoFacet;
     }
 
-    public void setGeoFacet(List<Object> geoFacet) {
+    public void setGeoFacet(List<String> geoFacet) {
         this.geoFacet = geoFacet;
     }
 
@@ -206,7 +206,6 @@ public class ResultTopStories {
     public void setShortUrl(String shortUrl) {
         this.shortUrl = shortUrl;
     }
-
 }
 
 

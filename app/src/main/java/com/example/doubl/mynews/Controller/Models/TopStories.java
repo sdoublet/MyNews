@@ -9,10 +9,10 @@ public class TopStories {
 
     @SerializedName("results")
     @Expose
-    private List<ResultMostPopular> results = null;
+    private List<ResultTopStories> results = null;
 
 
-    public List<ResultMostPopular> getResults() {
+    public List<ResultTopStories> getResults() {
         return results;
     }
 }

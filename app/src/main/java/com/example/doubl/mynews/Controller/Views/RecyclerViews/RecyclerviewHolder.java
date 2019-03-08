@@ -37,12 +37,12 @@ public class RecyclerviewHolder extends RecyclerView.ViewHolder {
         this.setImageMostPopular(article, glide);
     }
 
-    public void updateRecyclerViewWithTopStories(ResultTopStories , RequestManager glide) {
+    public void updateRecyclerViewWithTopStories(ResultTopStories  articleTopStories, RequestManager glide) {
         UpdateAllFragmentItem updateAllFragmentItem = new UpdateAllFragmentItem();
-        this.textViewSection.setText(updateAllFragmentItem.setSection());
-        this.textViewBody.setText(updateAllFragmentItem.setBodyText());
-        this.textViewDate.setText(updateAllFragmentItem.setPublisheddate());
-        this.setImageMostPopular(, glide);
+        this.textViewSection.setText(updateAllFragmentItem.setSection(articleTopStories));
+        this.textViewBody.setText(updateAllFragmentItem.setBodyText(articleTopStories));
+        this.textViewDate.setText(updateAllFragmentItem.setPublisheddate(articleTopStories));
+        this.setImageTopStories(articleTopStories, glide);
     }
 
 
@@ -50,6 +50,15 @@ private void setImageMostPopular(ResultMostPopular article, RequestManager glide
 {
     if (article.getMedia()!=null){
         String urlImage = article.getMedia().get(0).getMediaMetadata().get(0).getUrl();
+        glide.load(urlImage).apply(new RequestOptions().fallback(R.drawable.capitaine_flam)).into(imageView);
+    }else
+        imageView.setImageResource(R.drawable.albator);
+    }
+
+    private void setImageTopStories(ResultTopStories articleTopStories, RequestManager glide)
+{
+    if (articleTopStories.getMultimedia()!=null){
+        String urlImage = articleTopStories.getMultimedia().get(0).getUrl();
         if (urlImage.startsWith("images")){
             urlImage = "https://www.nytimes.com/" + urlImage;
         }
