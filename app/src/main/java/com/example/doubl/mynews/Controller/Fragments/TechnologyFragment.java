@@ -1,6 +1,7 @@
 package com.example.doubl.mynews.Controller.Fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -12,8 +13,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
+import com.example.doubl.mynews.Controller.Activities.WebViewActivity;
 import com.example.doubl.mynews.Controller.Models.ResultTopStories;
 import com.example.doubl.mynews.Controller.Models.TopStories;
+import com.example.doubl.mynews.Controller.Utils.ItemClickSupport;
 import com.example.doubl.mynews.Controller.Utils.NewYorkTimesStream;
 import com.example.doubl.mynews.Controller.Views.RecyclerViews.TopStoriesAdapter;
 import com.example.doubl.mynews.R;
@@ -31,7 +34,7 @@ import io.reactivex.observers.DisposableObserver;
  */
 public class TechnologyFragment extends Fragment {
 
-
+    public static final String BUNDLE_URL= "BUNDLE_URL";
     //-------------------
     //FOR DESIGN
     //-------------------
@@ -59,6 +62,7 @@ public class TechnologyFragment extends Fragment {
         this.configureRecyclerView();
         this.executeHttpRequestWithRetrofit();
         this.configureSwipeRefreshLayout();
+        this.configureOnClickRecyclerView();
         return view;
     }
 
@@ -67,6 +71,27 @@ public class TechnologyFragment extends Fragment {
         adapter = new TopStoriesAdapter(resultTopStoriesList, getContext(), Glide.with(this));
         recyclerView.setAdapter(this.adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+    }
+    //-----------------
+    // ACTION
+    //-----------------
+
+    // Configure item click on RecyclerView
+    private void configureOnClickRecyclerView() {
+        ItemClickSupport.addTo(recyclerView, R.layout.all_fragment_item)
+                .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+                    @Override
+                    public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                        // Get ResultMostPopular from adapter
+                        String articleTopStories;
+                        articleTopStories = adapter.getUrl(position);
+                        Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                        intent.putExtra(BUNDLE_URL, articleTopStories);
+                        startActivity(intent);
+
+
+                    }
+                });
     }
 
     //----------------------------
