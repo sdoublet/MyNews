@@ -53,9 +53,6 @@ public class ResultMostPopular {
     @SerializedName("updated")
     @Expose
     private String updated;
-    @SerializedName("des_facet")
-    @Expose
-    private List<String> desFacet = null;
     @SerializedName("media")
     @Expose
     private List<Medium> media = null;
@@ -182,14 +179,6 @@ public class ResultMostPopular {
 
     public void setUpdated(String updated) {
         this.updated = updated;
-    }
-
-    public List<String> getDesFacet() {
-        return desFacet;
-    }
-
-    public void setDesFacet(List<String> desFacet) {
-        this.desFacet = desFacet;
     }
 
     public List<Medium> getMedia() {

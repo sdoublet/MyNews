@@ -32,7 +32,7 @@ import io.reactivex.observers.DisposableObserver;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TechnologyFragment extends Fragment {
+public class OtherFragment extends Fragment {
 
     public static final String BUNDLE_URL= "BUNDLE_URL";
     //-------------------
@@ -43,13 +43,13 @@ public class TechnologyFragment extends Fragment {
     @BindView(R.id.swipe_refresh_technology)
     SwipeRefreshLayout swipeRefreshLayout;
 
-
+public String sectionOtherFragment = "arts";
     //-------------------
     //FOR DATA
     //-------------------
 
     Disposable disposable;
-    private List<ResultTopStories> resultTopStoriesList;
+    public List<ResultTopStories> resultTopStoriesList;
     private TopStoriesAdapter adapter;
 
 
@@ -99,7 +99,7 @@ public class TechnologyFragment extends Fragment {
     //----------------------------
 
     private void executeHttpRequestWithRetrofit() {
-        this.disposable = NewYorkTimesStream.streamFetchTopStories("technology").subscribeWith(new DisposableObserver<TopStories>() {
+        this.disposable = NewYorkTimesStream.streamFetchTopStories(sectionOtherFragment).subscribeWith(new DisposableObserver<TopStories>() {
             @Override
             public void onNext(TopStories topStories) {
                 updateUI(topStories.getResults());

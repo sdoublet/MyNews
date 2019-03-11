@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Controller.Fragments.TechnologyFragment">
+    tools:context=".Controller.Fragments.OtherFragment">
 
    <android.support.v7.widget.RecyclerView
        android:id="@+id/recycler_view_technology"

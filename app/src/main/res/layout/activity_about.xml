@@ -19,6 +19,7 @@
             android:text="Context"
             android:textSize="25sp"
             android:textStyle="bold"
+            android:textColor="#ffffff"
             android:gravity="center"
             android:background="@color/colorAccent"/>
     </LinearLayout>
@@ -44,6 +45,7 @@ d'acquérir les compétences en matière d'éxécution de taches en arrière pla
             android:gravity="center"
             android:background="@color/colorAccent"
             android:text="TEAM"
+            android:textColor="#ffffff"
             android:textSize="25sp"
             android:textStyle="bold"/>
     </LinearLayout>
@@ -85,6 +87,7 @@ d'acquérir les compétences en matière d'éxécution de taches en arrière pla
             android:text="Licenses"
             android:gravity="center"
             android:textSize="25sp"
+            android:textColor="#ffffff"
             android:background="@color/colorAccent"
             android:textStyle="bold"/>
     </LinearLayout>

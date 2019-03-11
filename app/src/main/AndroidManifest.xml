@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.doubl.mynews">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -46,10 +46,17 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".Controller.Activities.MainActivity" />
         </activity>
-        <activity android:name=".Controller.Activities.WebViewActivity"
-            android:parentActivityName=".Controller.Activities.MainActivity">
-
-        </activity>
+        <activity
+            android:name=".Controller.Activities.WebViewActivity"
+            android:parentActivityName=".Controller.Activities.MainActivity" />
+        <activity
+            android:name=".Controller.Activities.SportsActivity"
+            android:parentActivityName=".Controller.Activities.MainActivity" />
+        <activity
+            android:name=".Controller.Activities.TechnologyActivity"
+            android:parentActivityName=".Controller.Activities.MainActivity" />
+        <activity android:name=".Controller.Activities.TravelActivity"
+            android:parentActivityName=".Controller.Activities.MainActivity"></activity>
     </application>
 
 </manifest>

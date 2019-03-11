@@ -12,8 +12,6 @@ import com.example.doubl.mynews.Controller.Models.ResultMostPopular;
 import com.example.doubl.mynews.Controller.Models.ResultTopStories;
 import com.example.doubl.mynews.R;
 
-import java.lang.ref.WeakReference;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -72,6 +70,8 @@ public class RecyclerviewHolder extends RecyclerView.ViewHolder  {
                 imageView.setImageResource(R.drawable.logo);
         }
     }
+
+   //todo set multimedium method
 
 
 }

@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.example.doubl.mynews.Controller.Fragments.MostPopularFragment;
-import com.example.doubl.mynews.Controller.Fragments.TechnologyFragment;
+import com.example.doubl.mynews.Controller.Fragments.OtherFragment;
 import com.example.doubl.mynews.Controller.Fragments.TopStoriesFragment;
 
 public class PageAdapter extends FragmentPagerAdapter {
@@ -19,13 +19,14 @@ public class PageAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
+
         switch (position) {
             case 0:
                 return new MostPopularFragment();
             case 1:
                 return new TopStoriesFragment();
             case 2:
-                return new TechnologyFragment();
+                return new OtherFragment();
             default:
                 return null;
         }
@@ -39,13 +40,14 @@ public class PageAdapter extends FragmentPagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
+        OtherFragment otherFragment = new OtherFragment();
         switch (position) {
             case 0:
                 return "Most Popular";
             case 1:
                 return "Top Stories";
             case 2:
-                return "Technology";
+                return otherFragment.sectionOtherFragment;
             default:
                 return null;
         }

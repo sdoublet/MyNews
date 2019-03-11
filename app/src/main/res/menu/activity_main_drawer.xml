@@ -14,7 +14,7 @@
        <item
            android:id="@+id/Technology"
            android:icon="@drawable/ic_laptop_chromebook_black_24dp"
-           android:title="Technology">
+           android:title="@string/technology">
 
        </item>
             <item
