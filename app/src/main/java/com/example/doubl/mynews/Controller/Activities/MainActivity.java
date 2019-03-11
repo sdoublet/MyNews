@@ -131,21 +131,29 @@ startActivity(intentTechnology);
                 Intent intentTravel = new Intent(this, TravelActivity.class);
                 startActivity(intentTravel);
                 break;
-            case R.id.arts:
-                otherFragment.sectionOtherFragment = "arts";
+            case R.id.health:
+                otherFragment.sectionOtherFragment = "health";
                 Toast.makeText(this, otherFragment.sectionOtherFragment, Toast.LENGTH_SHORT).show();
+                Intent intentHealth = new Intent(this, HealthActivity.class);
+                startActivity(intentHealth);
                 break;
             case R.id.politics:
                 otherFragment.sectionOtherFragment = "politics";
                 Toast.makeText(this, otherFragment.sectionOtherFragment, Toast.LENGTH_SHORT).show();
+                Intent intentPolitics = new Intent(this, PoliticsActivity.class);
+                startActivity(intentPolitics);
                 break;
             case R.id.science:
                 otherFragment.sectionOtherFragment = "science";
                 Toast.makeText(this, otherFragment.sectionOtherFragment, Toast.LENGTH_SHORT).show();
+                Intent intentScience = new Intent(this, ScienceActivity.class);
+                startActivity(intentScience);
                 break;
             case R.id.movies:
                 otherFragment.sectionOtherFragment = "movies";
                 Toast.makeText(this, otherFragment.sectionOtherFragment, Toast.LENGTH_SHORT).show();
+                Intent intentMovies = new Intent(this, MoviesActivity.class);
+                startActivity(intentMovies);
                 break;
 
 

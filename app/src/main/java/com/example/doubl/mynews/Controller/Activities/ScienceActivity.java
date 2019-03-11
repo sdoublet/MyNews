@@ -1,19 +1,14 @@
-package com.example.doubl.mynews.Controller.Fragments;
-
+package com.example.doubl.mynews.Controller.Activities;
 
 import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
-import com.example.doubl.mynews.Controller.Activities.WebViewActivity;
 import com.example.doubl.mynews.Controller.Models.ResultTopStories;
 import com.example.doubl.mynews.Controller.Models.TopStories;
 import com.example.doubl.mynews.Controller.Utils.ItemClickSupport;
@@ -29,21 +24,17 @@ import butterknife.ButterKnife;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class OtherFragment extends Fragment {
+public class ScienceActivity extends AppCompatActivity {
 
     public static final String BUNDLE_URL= "BUNDLE_URL";
     //-------------------
     //FOR DESIGN
     //-------------------
-    @BindView(R.id.recycler_view_technology)
+    @BindView(R.id.recycler_view_science)
     RecyclerView recyclerView;
-    @BindView(R.id.swipe_refresh_technology)
-    SwipeRefreshLayout swipeRefreshLayout;
 
-public String sectionOtherFragment = "opinion";
+
+    public String sectionOtherFragment = "science";
     //-------------------
     //FOR DATA
     //-------------------
@@ -51,27 +42,24 @@ public String sectionOtherFragment = "opinion";
     Disposable disposable;
     public List<ResultTopStories> resultTopStoriesList;
     private TopStoriesAdapter adapter;
-
-
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view;
-        view = inflater.inflate(R.layout.fragment_technology, container, false);
-        ButterKnife.bind(this, view);
-        this.configureRecyclerView();
-        this.executeHttpRequestWithRetrofit();
-        this.configureSwipeRefreshLayout();
-        this.configureOnClickRecyclerView();
-        return view;
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_science);
+        ButterKnife.bind(this);
+        this.configureToolbar();
+        configureRecyclerView();
+        configureOnClickRecyclerView();
+        executeHttpRequestWithRetrofit();
     }
 
     public void configureRecyclerView() {
         resultTopStoriesList = new ArrayList<>();
-        adapter = new TopStoriesAdapter(resultTopStoriesList, getContext(), Glide.with(this));
+        adapter = new TopStoriesAdapter(resultTopStoriesList, this, Glide.with(this));
         recyclerView.setAdapter(this.adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
+
     //-----------------
     // ACTION
     //-----------------
@@ -85,7 +73,7 @@ public String sectionOtherFragment = "opinion";
                         // Get ResultMostPopular from adapter
                         String articleTopStories;
                         articleTopStories = adapter.getUrl(position);
-                        Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), WebViewActivity.class);
                         intent.putExtra(BUNDLE_URL, articleTopStories);
                         startActivity(intent);
 
@@ -121,22 +109,19 @@ public String sectionOtherFragment = "opinion";
     // UPDATE UI
     //------------------
     public void updateUI(List<ResultTopStories> articleTopStrories) {
-        swipeRefreshLayout.setRefreshing(false);
+
         resultTopStoriesList.clear();
         resultTopStoriesList.addAll(articleTopStrories);
         adapter.notifyDataSetChanged();
     }
 
-    private void configureSwipeRefreshLayout() {
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                executeHttpRequestWithRetrofit();
-            }
-        });
+
+
+    private void configureToolbar(){
+        android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
     }
-
 }
-
-
-

@@ -31,9 +31,9 @@
 
             </item>
             <item
-                android:id="@+id/arts"
-                android:title="Arts"
-                android:icon="@drawable/ic_palette_black_24dp">
+                android:id="@+id/health"
+                android:title="Health"
+                android:icon="@drawable/ic_local_pharmacy_black_24dp">
 
             </item>
             <item
