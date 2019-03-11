@@ -16,6 +16,8 @@ public class SearchActivity extends AppCompatActivity {
         this.configureToolbar();
     }
 
+
+
     private void configureToolbar(){
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

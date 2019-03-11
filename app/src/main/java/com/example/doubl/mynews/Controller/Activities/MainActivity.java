@@ -1,13 +1,10 @@
 package com.example.doubl.mynews.Controller.Activities;
 
-import android.content.ComponentName;
+ 
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.annotation.StringRes;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -15,14 +12,8 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.Layout;
-import android.text.SpannableString;
-import android.text.style.AlignmentSpan;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.SubMenu;
 import android.widget.Toast;
 
 
@@ -37,7 +28,7 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-
+    private ViewPager viewPager;
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
     @BindView(R.id.nav_view)
@@ -91,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void configureViewPager() {
-        ViewPager viewPager = findViewById(R.id.view_pager);
+        viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(new PageAdapter(getSupportFragmentManager()));
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);
@@ -114,10 +105,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         OtherFragment otherFragment = new OtherFragment();
         switch (id) {
             case R.id.Technology:
+
                 otherFragment.sectionOtherFragment = "technology";
+
+
+                //otherFragment.executeHttpRequestWithRetrofit();
                 Toast.makeText(this, otherFragment.sectionOtherFragment, Toast.LENGTH_SHORT).show();
-Intent intentTechnology = new Intent(this, TechnologyActivity.class);
-startActivity(intentTechnology);
+                // viewPager.setCurrentItem(2);
+
+                Intent intentTechnology = new Intent(this, TechnologyActivity.class);
+                startActivity(intentTechnology);
                 break;
             case R.id.sports:
                 otherFragment.sectionOtherFragment = "sports";

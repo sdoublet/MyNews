@@ -122,6 +122,7 @@ public class SportsActivity extends AppCompatActivity {
     private void configureToolbar(){
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(sectionOtherFragment);
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 

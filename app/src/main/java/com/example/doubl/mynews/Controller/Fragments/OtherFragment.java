@@ -98,7 +98,7 @@ public String sectionOtherFragment = "opinion";
     //HTTP REQUEST WITH RETROFIT
     //----------------------------
 
-    private void executeHttpRequestWithRetrofit() {
+    public void executeHttpRequestWithRetrofit() {
         this.disposable = NewYorkTimesStream.streamFetchTopStories(sectionOtherFragment).subscribeWith(new DisposableObserver<TopStories>() {
             @Override
             public void onNext(TopStories topStories) {
@@ -121,13 +121,15 @@ public String sectionOtherFragment = "opinion";
     // UPDATE UI
     //------------------
     public void updateUI(List<ResultTopStories> articleTopStrories) {
-        swipeRefreshLayout.setRefreshing(false);
+       if (swipeRefreshLayout!=null){
+        swipeRefreshLayout.setRefreshing(false);}
         resultTopStoriesList.clear();
         resultTopStoriesList.addAll(articleTopStrories);
         adapter.notifyDataSetChanged();
     }
 
     private void configureSwipeRefreshLayout() {
+
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
