@@ -70,7 +70,8 @@
         <activity
             android:name=".Controller.Activities.HealthActivity"
             android:parentActivityName=".Controller.Activities.MainActivity" />
-        <activity android:name=".Controller.Activities.SearchActivity"></activity>
+        <activity android:name=".Controller.Activities.SearchActivity"
+            android:parentActivityName=".Controller.Activities.MainActivity"></activity>
     </application>
 
 </manifest>

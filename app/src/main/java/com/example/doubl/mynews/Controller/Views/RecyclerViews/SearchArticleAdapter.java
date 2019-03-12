@@ -15,12 +15,12 @@ import java.util.List;
 
 public class SearchArticleAdapter extends RecyclerView.Adapter<RecyclerviewHolder> {
 
-    private List<ResultSearchApi> resultSearchApis;
+    private List<ResultSearchApi> resultSearchApiList;
     private Context context;
     private RequestManager glide;
 
     public SearchArticleAdapter(List<ResultSearchApi> resultSearchApis, Context context, RequestManager glide) {
-        this.resultSearchApis = resultSearchApis;
+        this.resultSearchApiList = resultSearchApis;
         this.context = context;
         this.glide = glide;
     }
@@ -35,15 +35,15 @@ public class SearchArticleAdapter extends RecyclerView.Adapter<RecyclerviewHolde
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerviewHolder recyclerviewHolder, int position) {
-        recyclerviewHolder.updateRecyclerViewWithSearchArticle(this.resultSearchApis.get(position), glide);
+        recyclerviewHolder.updateRecyclerViewWithSearchArticle(this.resultSearchApiList.get(position), glide);
     }
 
     @Override
     public int getItemCount() {
-        return resultSearchApis.size();
+        return resultSearchApiList.size();
     }
 
-    public String getUrl(int position){
-        return resultSearchApis.get(position).getWebUrl();
+    public String getUrl(int position) {
+        return resultSearchApiList.get(position).getWebUrl();
     }
 }

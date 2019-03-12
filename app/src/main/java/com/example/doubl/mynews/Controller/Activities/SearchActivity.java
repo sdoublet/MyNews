@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 import com.example.doubl.mynews.Controller.Models.ResultSearchApi;
 import com.example.doubl.mynews.Controller.Models.ResultTopStories;
 import com.example.doubl.mynews.Controller.Models.SearchApi;
+
 import com.example.doubl.mynews.Controller.Models.TopStories;
 import com.example.doubl.mynews.Controller.Utils.ItemClickSupport;
 import com.example.doubl.mynews.Controller.Utils.NewYorkTimesStream;
@@ -38,6 +39,7 @@ public class SearchActivity extends AppCompatActivity {
     List<ResultSearchApi> resultSearchApiList;
     private SearchArticleAdapter adapter;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +57,7 @@ public class SearchActivity extends AppCompatActivity {
         adapter = new SearchArticleAdapter(resultSearchApiList, this, Glide.with(this));
         recyclerView.setAdapter(this.adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
     }
 
     //-----------------
@@ -68,10 +71,10 @@ public class SearchActivity extends AppCompatActivity {
                     @Override
                     public void onItemClicked(RecyclerView recyclerView, int position, View v) {
                         // Get ResultMostPopular from adapter
-                        String articleTopStories;
-                        articleTopStories = adapter.getUrl(position);
+                        String articleSearch;
+                        articleSearch = adapter.getUrl(position);
                         Intent intent = new Intent(getApplicationContext(), WebViewActivity.class);
-                        intent.putExtra(BUNDLE_URL, articleTopStories);
+                        intent.putExtra(BUNDLE_URL, articleSearch);
                         startActivity(intent);
 
 
@@ -87,7 +90,7 @@ public class SearchActivity extends AppCompatActivity {
 
 
 
-        this.disposable = NewYorkTimesStream.streamFetchSearchArticle("20190101","20190301", "false","day_of_week","false", "politics","macron",5,"newest" ).subscribeWith(new DisposableObserver<SearchApi>() {
+        this.disposable = NewYorkTimesStream.streamFetchSearchArticle("20190101","20190301",5,"Trump", "newest" ).subscribeWith(new DisposableObserver<SearchApi>() {
             @Override
             public void onNext(SearchApi searchApi) {
                 updateUI(searchApi.getResponse().getDocs());

@@ -4,6 +4,11 @@ import com.example.doubl.mynews.Controller.Models.ResultMostPopular;
 import com.example.doubl.mynews.Controller.Models.ResultSearchApi;
 import com.example.doubl.mynews.Controller.Models.ResultTopStories;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class UpdateAllFragmentItem {
 
     private String string;
@@ -43,7 +48,7 @@ public class UpdateAllFragmentItem {
 
     public String setBodyText(ResultSearchApi artilcleSearchApi) {
         if (!artilcleSearchApi.getHeadline().getPrintHeadline().equals("")) {
-            string = artilcleSearchApi.getHeadline().getPrintHeadline();
+            string = artilcleSearchApi.getSectionName();
         }
         return string;
     }
@@ -62,5 +67,31 @@ public class UpdateAllFragmentItem {
         string = articleSearchApi.getPubDate();
         return string;
     }
-
+    public String setParseDate(ResultMostPopular resultMostPopular){
+        String string="";
+        try {
+            String dateParse = resultMostPopular.getPublishedDate();
+            DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+            Date date1 = date.parse(dateParse);
+            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            dateParse = dateFormat.format(date1);
+            string = dateParse;
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
+        return string;
+    }  public String setParseDateTopStories(ResultTopStories resultMostTopStories){
+        String string="";
+        try {
+            String dateParse = resultMostTopStories.getPublishedDate();
+            DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+            Date date1 = date.parse(dateParse);
+            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            dateParse = dateFormat.format(date1);
+            string = dateParse;
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
+        return string;
+    }
 }

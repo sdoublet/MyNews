@@ -31,15 +31,11 @@ public interface NewYorkTimesServices {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build();
 
-    @GET("articlesearch.json")
+    @GET("articlesearch.json?api-key="+ ApiKey.API_KEY)
     Observable<SearchApi> getNYTSearchArticles(@Query("begin_date") String beginDate,
                                                @Query("end_date") String endDate,
-                                               @Query("facet") String facet,
-                                               @Query("facet_fields") String facetFields,
-                                               @Query("facet_filter") String facetFilter,
-                                               @Query("fl") String fieldList,
-                                               @Query("fq") String filterQuery,
                                                @Query("page") int page,
+                                               @Query("query") String query,
                                                @Query("sort") String sortOrder);
 
 

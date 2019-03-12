@@ -13,6 +13,11 @@ import com.example.doubl.mynews.Controller.Models.ResultSearchApi;
 import com.example.doubl.mynews.Controller.Models.ResultTopStories;
 import com.example.doubl.mynews.R;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -38,7 +43,7 @@ public class RecyclerviewHolder extends RecyclerView.ViewHolder  {
         this.textViewSection.setText(updateAllFragmentItem.setSection(article));
 
         this.textViewBody.setText(updateAllFragmentItem.setBodyText(article));
-        this.textViewDate.setText(updateAllFragmentItem.setPublisheddate(article));
+        this.textViewDate.setText(updateAllFragmentItem.setParseDate(article));
         this.setImageMostPopular(article, glide);
     }
 
@@ -46,7 +51,7 @@ public class RecyclerviewHolder extends RecyclerView.ViewHolder  {
         UpdateAllFragmentItem updateAllFragmentItem = new UpdateAllFragmentItem();
         this.textViewSection.setText(updateAllFragmentItem.setSection(articleTopStories));
         this.textViewBody.setText(updateAllFragmentItem.setBodyText(articleTopStories));
-        this.textViewDate.setText(updateAllFragmentItem.setPublisheddate(articleTopStories));
+        this.textViewDate.setText(updateAllFragmentItem.setParseDateTopStories(articleTopStories));
         this.setImageTopStories(articleTopStories, glide);
     }
     public void updateRecyclerViewWithSearchArticle(ResultSearchApi articleSearchApi, RequestManager glide){
