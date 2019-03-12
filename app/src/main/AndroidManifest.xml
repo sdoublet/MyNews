@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Controller.Activities.SearchActivity"
+            android:name=".Controller.Activities.SearchToolbarActivity"
             android:label="Search"
             android:parentActivityName=".Controller.Activities.MainActivity">
             <meta-data
@@ -67,8 +67,10 @@
         <activity
             android:name=".Controller.Activities.MoviesActivity"
             android:parentActivityName=".Controller.Activities.MainActivity" />
-        <activity android:name=".Controller.Activities.HealthActivity"
-            android:parentActivityName=".Controller.Activities.MainActivity"></activity>
+        <activity
+            android:name=".Controller.Activities.HealthActivity"
+            android:parentActivityName=".Controller.Activities.MainActivity" />
+        <activity android:name=".Controller.Activities.SearchActivity"></activity>
     </application>
 
 </manifest>

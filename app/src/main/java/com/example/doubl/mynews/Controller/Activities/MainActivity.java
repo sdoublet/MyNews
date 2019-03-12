@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intentAbout);
                 break;
             case R.id.search_button:
-                Intent intentSearch = new Intent(this, SearchActivity.class);
+                Intent intentSearch = new Intent(this, SearchToolbarActivity.class);
                 startActivity(intentSearch);
                 break;
         }
