@@ -9,6 +9,7 @@ import android.widget.TextView;
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.doubl.mynews.Controller.Models.ResultMostPopular;
+import com.example.doubl.mynews.Controller.Models.ResultSearchApi;
 import com.example.doubl.mynews.Controller.Models.ResultTopStories;
 import com.example.doubl.mynews.R;
 
@@ -48,6 +49,14 @@ public class RecyclerviewHolder extends RecyclerView.ViewHolder  {
         this.textViewDate.setText(updateAllFragmentItem.setPublisheddate(articleTopStories));
         this.setImageTopStories(articleTopStories, glide);
     }
+    public void updateRecyclerViewWithSearchArticle(ResultSearchApi articleSearchApi, RequestManager glide){
+        UpdateAllFragmentItem updateAllFragmentItem = new UpdateAllFragmentItem();
+        this.textViewSection.setText(updateAllFragmentItem.setSection(articleSearchApi));
+        this.textViewBody.setText(updateAllFragmentItem.setBodyText(articleSearchApi));
+        this.textViewDate.setText(updateAllFragmentItem.setPublisheddate(articleSearchApi));
+        this.setImageSearchArticle(articleSearchApi, glide);
+
+    }
 
 
     private void setImageMostPopular(ResultMostPopular article, RequestManager glide) {
@@ -62,6 +71,18 @@ public class RecyclerviewHolder extends RecyclerView.ViewHolder  {
         if (articleTopStories.getMultimedia() != null) {
             if (articleTopStories.getMultimedia().size() > 0) {
                 String urlImage = articleTopStories.getMultimedia().get(0).getUrl();
+                if (urlImage.startsWith("images")) {
+                    urlImage = "https://www.nytimes.com/" + urlImage;
+                }
+                glide.load(urlImage).apply(new RequestOptions().fallback(R.drawable.logo)).into(imageView);
+            } else
+                imageView.setImageResource(R.drawable.logo);
+        }
+    }
+    private void setImageSearchArticle(ResultSearchApi articleSearchApi, RequestManager glide) {
+        if (articleSearchApi.getMultimedia() != null) {
+            if (articleSearchApi.getMultimedia().size() > 0) {
+                String urlImage = articleSearchApi.getMultimedia().get(0).getUrl();
                 if (urlImage.startsWith("images")) {
                     urlImage = "https://www.nytimes.com/" + urlImage;
                 }

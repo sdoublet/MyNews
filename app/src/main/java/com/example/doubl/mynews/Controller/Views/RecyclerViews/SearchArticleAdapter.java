@@ -8,19 +8,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.RequestManager;
-import com.example.doubl.mynews.Controller.Models.ResultTopStories;
+import com.example.doubl.mynews.Controller.Models.ResultSearchApi;
 import com.example.doubl.mynews.R;
 
 import java.util.List;
 
-public class TopStoriesAdapter extends RecyclerView.Adapter<RecyclerviewHolder> {
+public class SearchArticleAdapter extends RecyclerView.Adapter<RecyclerviewHolder> {
 
-    private List<ResultTopStories> resultTopStoriesList;
+    private List<ResultSearchApi> resultSearchApis;
     private Context context;
     private RequestManager glide;
 
-    public TopStoriesAdapter(List<ResultTopStories> resultTopStoriesList, Context context, RequestManager glide) {
-        this.resultTopStoriesList = resultTopStoriesList;
+    public SearchArticleAdapter(List<ResultSearchApi> resultSearchApis, Context context, RequestManager glide) {
+        this.resultSearchApis = resultSearchApis;
         this.context = context;
         this.glide = glide;
     }
@@ -35,15 +35,15 @@ public class TopStoriesAdapter extends RecyclerView.Adapter<RecyclerviewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerviewHolder recyclerviewHolder, int position) {
-        recyclerviewHolder.updateRecyclerViewWithTopStories(this.resultTopStoriesList.get(position), glide);
+        recyclerviewHolder.updateRecyclerViewWithSearchArticle(this.resultSearchApis.get(position), glide);
     }
 
     @Override
     public int getItemCount() {
-        return resultTopStoriesList.size();
+        return resultSearchApis.size();
     }
 
-    public String getUrl(int position) {
-        return resultTopStoriesList.get(position).getUrl();
+    public String getUrl(int position){
+        return resultSearchApis.get(position).getWebUrl();
     }
 }
