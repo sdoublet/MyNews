@@ -116,5 +116,6 @@
         android:layout_marginEnd="15dp"
         android:background="@color/colorPrimary"
         android:text="SEARCH"
+        android:onClick="onClick"
         android:textColor="@color/colorTitle"/>
 </LinearLayout>
