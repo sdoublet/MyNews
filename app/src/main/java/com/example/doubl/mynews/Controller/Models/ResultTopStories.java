@@ -63,6 +63,7 @@ public class ResultTopStories {
     @Expose
     private String shortUrl;
 
+
     public String getSection() {
         return section;
     }

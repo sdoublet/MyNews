@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 
-public class TechnologyActivity extends AppCompatActivity {
+public class TopStoriesCategoriesActivity extends AppCompatActivity {
 
 
 
@@ -47,7 +47,7 @@ public class TechnologyActivity extends AppCompatActivity {
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_technology);
+            setContentView(R.layout.activity_top_stories_categories);
             ButterKnife.bind(this);
             this.configureToolbar();
             configureRecyclerView();
@@ -89,7 +89,7 @@ public class TechnologyActivity extends AppCompatActivity {
         //----------------------------
 
         private void executeHttpRequestWithRetrofit() {
-            this.disposable = NewYorkTimesStream.streamFetchTopStories(sectionOtherFragment).subscribeWith(new DisposableObserver<TopStories>() {
+            this.disposable = NewYorkTimesStream.streamFetchTopStories(MainActivity.categories).subscribeWith(new DisposableObserver<TopStories>() {
                 @Override
                 public void onNext(TopStories topStories) {
                     updateUI(topStories.getResults());
@@ -122,7 +122,9 @@ public class TechnologyActivity extends AppCompatActivity {
         private void configureToolbar(){
             android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
-            getSupportActionBar().setTitle(sectionOtherFragment);
+            String capitalizedCategories = MainActivity.categories;
+            capitalizedCategories = capitalizedCategories.substring(0,1).toUpperCase()+capitalizedCategories.substring(1).toLowerCase();
+            getSupportActionBar().setTitle(capitalizedCategories);
             android.support.v7.app.ActionBar actionBar = getSupportActionBar();
             actionBar.setDisplayHomeAsUpEnabled(true);
 

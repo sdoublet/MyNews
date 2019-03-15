@@ -14,10 +14,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-
-import com.example.doubl.mynews.Controller.Fragments.OtherFragment;
 
 import com.example.doubl.mynews.Controller.Views.ViewPager.PageAdapter;
 import com.example.doubl.mynews.R;
@@ -33,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DrawerLayout drawerLayout;
     @BindView(R.id.nav_view)
     NavigationView navigationView;
-
+public static String categories;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,70 +99,49 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
-        OtherFragment otherFragment = new OtherFragment();
+
+
         switch (id) {
             case R.id.Technology:
-
-                otherFragment.sectionOtherFragment = "technology";
-
-
-                //otherFragment.executeHttpRequestWithRetrofit();
-                Toast.makeText(this, otherFragment.sectionOtherFragment, Toast.LENGTH_SHORT).show();
-                // viewPager.setCurrentItem(2);
-
-                Intent intentTechnology = new Intent(this, TechnologyActivity.class);
+                categories= "technology";
+                Intent intentTechnology = new Intent(this, TopStoriesCategoriesActivity.class);
                 startActivity(intentTechnology);
                 break;
             case R.id.sports:
-                otherFragment.sectionOtherFragment = "sports";
-                Toast.makeText(this, otherFragment.sectionOtherFragment, Toast.LENGTH_SHORT).show();
-                Intent intentSports = new Intent(this, SportsActivity.class);
+                categories="sports";
+                Intent intentSports = new Intent(this, TopStoriesCategoriesActivity.class);
                 startActivity(intentSports);
                 break;
             case R.id.travel:
-                otherFragment.sectionOtherFragment = "travel";
-                Toast.makeText(this, otherFragment.sectionOtherFragment, Toast.LENGTH_SHORT).show();
-                Intent intentTravel = new Intent(this, TravelActivity.class);
+                categories= "travel";
+                Intent intentTravel = new Intent(this, TopStoriesCategoriesActivity.class);
                 startActivity(intentTravel);
                 break;
             case R.id.health:
-                otherFragment.sectionOtherFragment = "health";
-                Toast.makeText(this, otherFragment.sectionOtherFragment, Toast.LENGTH_SHORT).show();
-                Intent intentHealth = new Intent(this, HealthActivity.class);
+                categories = "health";
+                Intent intentHealth = new Intent(this, TopStoriesCategoriesActivity.class);
                 startActivity(intentHealth);
                 break;
             case R.id.politics:
-                otherFragment.sectionOtherFragment = "politics";
-                Toast.makeText(this, otherFragment.sectionOtherFragment, Toast.LENGTH_SHORT).show();
-                Intent intentPolitics = new Intent(this, PoliticsActivity.class);
+                categories = "politics";
+                Intent intentPolitics = new Intent(this, TopStoriesCategoriesActivity.class);
                 startActivity(intentPolitics);
                 break;
             case R.id.science:
-                otherFragment.sectionOtherFragment = "science";
-                Toast.makeText(this, otherFragment.sectionOtherFragment, Toast.LENGTH_SHORT).show();
-                Intent intentScience = new Intent(this, ScienceActivity.class);
+                categories = "science";
+                Intent intentScience = new Intent(this, TopStoriesCategoriesActivity.class);
                 startActivity(intentScience);
                 break;
             case R.id.movies:
-                otherFragment.sectionOtherFragment = "movies";
-                Toast.makeText(this, otherFragment.sectionOtherFragment, Toast.LENGTH_SHORT).show();
-                Intent intentMovies = new Intent(this, MoviesActivity.class);
+                categories = "movies";
+                Intent intentMovies = new Intent(this, TopStoriesCategoriesActivity.class);
                 startActivity(intentMovies);
                 break;
-
-
         }
         this.drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
-//    private void showOtherFrag(){
 
-//        Fragment visibleFragment = getSupportFragmentManager().findFragmentById(R.id.drawer_layout_activity_main);
-//        if (visibleFragment==null){
-//            getSupportFragmentManager().beginTransaction().replace(R.id.drawer_layout_activity_main, )
-//        }
-//        navigationView.getMenu().getItem(2).setChecked(true);
-//    }
 
 
 }

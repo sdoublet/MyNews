@@ -49,27 +49,11 @@
         <activity
             android:name=".Controller.Activities.WebViewActivity"
             android:parentActivityName=".Controller.Activities.MainActivity" />
+
         <activity
-            android:name=".Controller.Activities.SportsActivity"
+            android:name=".Controller.Activities.TopStoriesCategoriesActivity"
             android:parentActivityName=".Controller.Activities.MainActivity" />
-        <activity
-            android:name=".Controller.Activities.TechnologyActivity"
-            android:parentActivityName=".Controller.Activities.MainActivity" />
-        <activity
-            android:name=".Controller.Activities.TravelActivity"
-            android:parentActivityName=".Controller.Activities.MainActivity" />
-        <activity
-            android:name=".Controller.Activities.PoliticsActivity"
-            android:parentActivityName=".Controller.Activities.MainActivity" />
-        <activity
-            android:name=".Controller.Activities.ScienceActivity"
-            android:parentActivityName=".Controller.Activities.MainActivity" />
-        <activity
-            android:name=".Controller.Activities.MoviesActivity"
-            android:parentActivityName=".Controller.Activities.MainActivity" />
-        <activity
-            android:name=".Controller.Activities.HealthActivity"
-            android:parentActivityName=".Controller.Activities.MainActivity" />
+
         <activity android:name=".Controller.Activities.SearchActivity"
             android:parentActivityName=".Controller.Activities.MainActivity"></activity>
     </application>
