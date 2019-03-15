@@ -47,21 +47,12 @@ public class UpdateAllFragmentItem {
     }
 
     public String setBodyText(ResultSearchApi artilcleSearchApi) {
-        if (!artilcleSearchApi.getHeadline().getPrintHeadline().equals("")) {
+        if (!artilcleSearchApi.getSnippet().equals("")) {
             string = artilcleSearchApi.getSectionName();
         }
         return string;
     }
 
-    public String setPublisheddate(ResultMostPopular article) {
-        string = article.getPublishedDate();
-        return string;
-    }
-
-    public String setPublisheddate(ResultTopStories articletopStories) {
-        string = articletopStories.getPublishedDate();
-        return string;
-    }
 
     public String setPublisheddate(ResultSearchApi articleSearchApi) {
         string = articleSearchApi.getPubDate();

@@ -120,6 +120,7 @@ public static final String BUNDLE_URL= "BUNDLE_URL";
             @Override
             public void onNext(MostPopular mostPopular) {
                 updateUI(mostPopular.getResults());
+                System.out.println(mostPopular.getResults().size());
             }
 
             @Override

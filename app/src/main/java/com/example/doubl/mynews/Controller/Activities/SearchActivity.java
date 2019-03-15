@@ -1,5 +1,6 @@
 package com.example.doubl.mynews.Controller.Activities;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,21 +8,22 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.doubl.mynews.Controller.Models.ResultSearchApi;
-import com.example.doubl.mynews.Controller.Models.ResultTopStories;
 import com.example.doubl.mynews.Controller.Models.SearchApi;
-
-import com.example.doubl.mynews.Controller.Models.TopStories;
 import com.example.doubl.mynews.Controller.Utils.ItemClickSupport;
 import com.example.doubl.mynews.Controller.Utils.NewYorkTimesStream;
 import com.example.doubl.mynews.Controller.Views.RecyclerViews.SearchArticleAdapter;
-import com.example.doubl.mynews.Controller.Views.RecyclerViews.TopStoriesAdapter;
 import com.example.doubl.mynews.R;
-
 import java.util.ArrayList;
+
+import java.util.Calendar;
 import java.util.List;
+
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -35,8 +37,10 @@ public class SearchActivity extends AppCompatActivity {
     @BindView(R.id.recycler_view_search)
     RecyclerView recyclerView;
 
+
     Disposable disposable;
     List<ResultSearchApi> resultSearchApiList;
+
     private SearchArticleAdapter adapter;
 
 
@@ -49,6 +53,7 @@ public class SearchActivity extends AppCompatActivity {
         this.configureRecyclerView();
         this.configureOnClickRecyclerView();
         this.executeHttpRequestWithRetrofit();
+
     }
 
 
@@ -64,7 +69,7 @@ public class SearchActivity extends AppCompatActivity {
     // ACTION
     //-----------------
 
-    // Configure item click on RecyclerView
+    //Configure itemClickOnRecyclerView
     private void configureOnClickRecyclerView() {
         ItemClickSupport.addTo(recyclerView, R.layout.all_fragment_item)
                 .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
@@ -88,17 +93,25 @@ public class SearchActivity extends AppCompatActivity {
 
     private void executeHttpRequestWithRetrofit() {
 
+        String beginDate = null;
+        String endDate = null;
 
 
-        this.disposable = NewYorkTimesStream.streamFetchSearchArticle("20190101","20190301",5,"Trump", "newest" ).subscribeWith(new DisposableObserver<SearchApi>() {
+        this.disposable = NewYorkTimesStream.streamFetchSearchArticle(null, null, 30, null, "TRUMP", "newest").subscribeWith(new DisposableObserver<SearchApi>() {
             @Override
             public void onNext(SearchApi searchApi) {
                 updateUI(searchApi.getResponse().getDocs());
+                int size = searchApi.getResponse().getDocs().size();
+                if (size == 0) {
+                    Toast.makeText(getApplicationContext(), "no result", Toast.LENGTH_SHORT).show();
+                }
+                System.out.println(size);
             }
 
             @Override
             public void onError(Throwable e) {
                 Log.e("TAG", "On Error..." + Log.getStackTraceString(e));
+
             }
 
             @Override
@@ -126,4 +139,8 @@ public class SearchActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
     }
+
+
+
+
 }

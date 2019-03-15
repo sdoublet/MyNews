@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
 import com.bumptech.glide.RequestManager;
 import com.example.doubl.mynews.Controller.Models.ResultSearchApi;
 import com.example.doubl.mynews.R;
@@ -19,11 +20,13 @@ public class SearchArticleAdapter extends RecyclerView.Adapter<RecyclerviewHolde
     private Context context;
     private RequestManager glide;
 
+
     public SearchArticleAdapter(List<ResultSearchApi> resultSearchApis, Context context, RequestManager glide) {
         this.resultSearchApiList = resultSearchApis;
         this.context = context;
         this.glide = glide;
     }
+
 
     @NonNull
     @Override

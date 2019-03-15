@@ -34,8 +34,9 @@ public interface NewYorkTimesServices {
     @GET("articlesearch.json?api-key="+ ApiKey.API_KEY)
     Observable<SearchApi> getNYTSearchArticles(@Query("begin_date") String beginDate,
                                                @Query("end_date") String endDate,
+                                               @Query("fq") String filter,
+                                               @Query("q")String query,
                                                @Query("page") int page,
-                                               @Query("query") String query,
                                                @Query("sort") String sortOrder);
 
 

@@ -29,10 +29,12 @@ public class NewYorkTimesStream {
                 .timeout(20, TimeUnit.SECONDS);
     }
 
+
+
     public static Observable<SearchApi> streamFetchSearchArticle(String beginDate, String endDate,
-                                                                  int page, String query, String sortOrder) {
+                                                                  int page,String filter,String query,   String sortOrder) {
         NewYorkTimesServices newYorkTimesServices = NewYorkTimesServices.retrofitSearchArticles.create(NewYorkTimesServices.class);
-        return newYorkTimesServices.getNYTSearchArticles(beginDate, endDate,20,"trump","newest" )
+        return newYorkTimesServices.getNYTSearchArticles(beginDate, endDate,filter,query,page, sortOrder )
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .timeout(20, TimeUnit.SECONDS);

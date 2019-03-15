@@ -5,19 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.bumptech.glide.RequestManager;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.doubl.mynews.Controller.Models.ResultMostPopular;
 import com.example.doubl.mynews.Controller.Models.ResultSearchApi;
 import com.example.doubl.mynews.Controller.Models.ResultTopStories;
 import com.example.doubl.mynews.R;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -96,6 +89,7 @@ public class RecyclerviewHolder extends RecyclerView.ViewHolder  {
                 imageView.setImageResource(R.drawable.logo);
         }
     }
+
 
    //todo set multimedium method
 
