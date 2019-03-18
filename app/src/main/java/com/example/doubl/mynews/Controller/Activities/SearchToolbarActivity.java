@@ -15,11 +15,13 @@ import com.example.doubl.mynews.R;
 import java.util.Calendar;
 
 
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SearchToolbarActivity extends AppCompatActivity {
-
+    @BindView(R.id.query_text)
+    EditText queryText;
     @BindView(R.id.search_articles_button)
     Button searchArticleButton;
     @BindView(R.id.begin_date)
@@ -38,6 +40,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
         onButtonSearchArticleClicked();
         onBeginDateClicked();
         onEndDateClicked();
+
     }
 
 
@@ -54,6 +57,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
         searchArticleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SearchActivity.queryInputText= queryText.getText().toString();
                 Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
                 startActivity(intent);
             }
@@ -79,6 +83,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 configureDatePickerEndDate();
+
             }
         });
     }
@@ -95,6 +100,10 @@ public class SearchToolbarActivity extends AppCompatActivity {
                 String date = dayOfMonth + "/" + (month + 1) + "/" + year;
                 beginDatetext.setText(date);
 
+
+// set beginDate for httpRequest
+                SearchActivity.beginDate = year + "" + (month + 1) + "" + dayOfMonth;
+
             }
         }, year, month, day);
         datePickerDialog.show();
@@ -106,16 +115,22 @@ public class SearchToolbarActivity extends AppCompatActivity {
         int month = calendar.get(Calendar.MONTH);
         int year = calendar.get(Calendar.YEAR);
 
+
         datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 String date = dayOfMonth + "/" + (month + 1) + "/" + year;
                 endDateText.setText(date);
+                SearchActivity.endDate = year+""+ (month+1)+""+dayOfMonth;
 
             }
         }, year, month, day);
         datePickerDialog.show();
+
     }
+
+
+
 
 }
 

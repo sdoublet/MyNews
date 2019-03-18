@@ -1,6 +1,6 @@
 package com.example.doubl.mynews.Controller.Activities;
 
-import android.app.DatePickerDialog;
+
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,7 +8,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -20,8 +19,6 @@ import com.example.doubl.mynews.Controller.Utils.NewYorkTimesStream;
 import com.example.doubl.mynews.Controller.Views.RecyclerViews.SearchArticleAdapter;
 import com.example.doubl.mynews.R;
 import java.util.ArrayList;
-
-import java.util.Calendar;
 import java.util.List;
 
 
@@ -33,7 +30,9 @@ import io.reactivex.observers.DisposableObserver;
 public class SearchActivity extends AppCompatActivity {
 
     public static final String BUNDLE_URL = "BUNDLE_URL";
-
+    public static String beginDate = null;
+    public static String endDate = null;
+    public static String queryInputText = null;
     @BindView(R.id.recycler_view_search)
     RecyclerView recyclerView;
 
@@ -93,11 +92,8 @@ public class SearchActivity extends AppCompatActivity {
 
     private void executeHttpRequestWithRetrofit() {
 
-        String beginDate = null;
-        String endDate = null;
 
-
-        this.disposable = NewYorkTimesStream.streamFetchSearchArticle(null, null, 30, null, "TRUMP", "newest").subscribeWith(new DisposableObserver<SearchApi>() {
+        this.disposable = NewYorkTimesStream.streamFetchSearchArticle(beginDate, endDate, 30, null, queryInputText, "newest").subscribeWith(new DisposableObserver<SearchApi>() {
             @Override
             public void onNext(SearchApi searchApi) {
                 updateUI(searchApi.getResponse().getDocs());
@@ -105,7 +101,12 @@ public class SearchActivity extends AppCompatActivity {
                 if (size == 0) {
                     Toast.makeText(getApplicationContext(), "no result", Toast.LENGTH_SHORT).show();
                 }
-                System.out.println(size);
+              // System.out.println(size);
+                Log.e("TAG", "SearchApi size: "+ Integer.toString(size));
+                Log.e("TAG", "beginDate: "+beginDate);
+                Log.e("TAG", "endDate: "+endDate);
+                Log.e("TAG", "queryInput: "+queryInputText);
+
             }
 
             @Override
@@ -139,8 +140,6 @@ public class SearchActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
     }
-
-
 
 
 }
