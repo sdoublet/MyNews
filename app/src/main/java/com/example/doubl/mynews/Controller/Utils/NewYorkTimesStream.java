@@ -32,11 +32,11 @@ public class NewYorkTimesStream {
 
 
     public static Observable<SearchApi> streamFetchSearchArticle(String beginDate, String endDate,
-                                                                  int page,String filter,String query,   String sortOrder) {
+                                                                  int page,String filter,String query,   String sortOrder, String apiKey) {
         NewYorkTimesServices newYorkTimesServices = NewYorkTimesServices.retrofitSearchArticles.create(NewYorkTimesServices.class);
-        return newYorkTimesServices.getNYTSearchArticles(beginDate, endDate,filter,query,page, sortOrder )
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
+        return newYorkTimesServices.getNYTSearchArticles(beginDate, endDate,filter,query,page, sortOrder, apiKey )
+                .subscribeOn(Schedulers.io())//thread dédié
+                .observeOn(AndroidSchedulers.mainThread())//tous les subscriber doivent écouter
                 .timeout(20, TimeUnit.SECONDS);
     }
 }

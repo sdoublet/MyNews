@@ -31,13 +31,14 @@ public interface NewYorkTimesServices {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build();
 
-    @GET("articlesearch.json?api-key="+ ApiKey.API_KEY)
+    @GET("articlesearch.json")
     Observable<SearchApi> getNYTSearchArticles(@Query("begin_date") String beginDate,
                                                @Query("end_date") String endDate,
                                                @Query("fq") String filter,
-                                               @Query("q")String query,
+                                               @Query("q") String query,
                                                @Query("page") int page,
-                                               @Query("sort") String sortOrder);
+                                               @Query("sort") String sortOrder,
+                                               @Query("api-key") String apiKey);
 
 
     Retrofit retrofitSearchArticles = new Retrofit.Builder()

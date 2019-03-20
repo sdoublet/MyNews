@@ -3,6 +3,7 @@ package com.example.doubl.mynews.Controller.Views.RecyclerViews;
 import com.example.doubl.mynews.Controller.Models.ResultMostPopular;
 import com.example.doubl.mynews.Controller.Models.ResultSearchApi;
 import com.example.doubl.mynews.Controller.Models.ResultTopStories;
+import com.example.doubl.mynews.Controller.Models.SearchApi;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -16,8 +17,10 @@ public class UpdateAllFragmentItem {
     public UpdateAllFragmentItem() {
     }
 
+
     public String setSection(ResultMostPopular article) {
         string = article.getSection();
+
         return string;
     }
 
@@ -28,13 +31,14 @@ public class UpdateAllFragmentItem {
 
     public String setSection(ResultSearchApi articleSearchApi) {
         string = articleSearchApi.getSectionName();
+
         return string;
     }
 
     public String setBodyText(ResultMostPopular article) {
-        if (!article.getTitle().equals("")) {
+
             string = article.getTitle();
-        }
+
         return string;
 
     }
@@ -47,9 +51,9 @@ public class UpdateAllFragmentItem {
     }
 
     public String setBodyText(ResultSearchApi artilcleSearchApi) {
-        if (!artilcleSearchApi.getSnippet().equals("")) {
-            string = artilcleSearchApi.getSectionName();
-        }
+      //  if (!artilcleSearchApi.getSnippet().equals("")) {
+            string = artilcleSearchApi.getHeadline().getMain();
+       // }
         return string;
     }
 
@@ -75,6 +79,20 @@ public class UpdateAllFragmentItem {
         String string="";
         try {
             String dateParse = resultMostTopStories.getPublishedDate();
+            DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+            Date date1 = date.parse(dateParse);
+            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            dateParse = dateFormat.format(date1);
+            string = dateParse;
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
+        return string;
+    }
+    public String setParseDateSearchArticle(ResultSearchApi resultSearchApi){
+        String string="";
+        try {
+            String dateParse = resultSearchApi.getPubDate();
             DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
             Date date1 = date.parse(dateParse);
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");

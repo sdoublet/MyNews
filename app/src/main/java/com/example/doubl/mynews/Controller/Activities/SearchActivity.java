@@ -14,10 +14,12 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.doubl.mynews.Controller.Models.ResultSearchApi;
 import com.example.doubl.mynews.Controller.Models.SearchApi;
+import com.example.doubl.mynews.Controller.Utils.ApiKey;
 import com.example.doubl.mynews.Controller.Utils.ItemClickSupport;
 import com.example.doubl.mynews.Controller.Utils.NewYorkTimesStream;
 import com.example.doubl.mynews.Controller.Views.RecyclerViews.SearchArticleAdapter;
 import com.example.doubl.mynews.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,8 +40,8 @@ public class SearchActivity extends AppCompatActivity {
 
 
     Disposable disposable;
-    List<ResultSearchApi> resultSearchApiList;
-
+    //List<ResultSearchApi> resultSearchApiList;
+    private List <ResultSearchApi>mResult;
     private SearchArticleAdapter adapter;
 
 
@@ -49,16 +51,15 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         ButterKnife.bind(this);
         this.configureToolbar();
+        this.executeHttpRequestWithRetrofit();
         this.configureRecyclerView();
         this.configureOnClickRecyclerView();
-        this.executeHttpRequestWithRetrofit();
-
     }
 
 
     public void configureRecyclerView() {
-        resultSearchApiList = new ArrayList<>();
-        adapter = new SearchArticleAdapter(resultSearchApiList, this, Glide.with(this));
+        mResult = new ArrayList<>();
+        adapter = new SearchArticleAdapter(mResult, this, Glide.with(this));
         recyclerView.setAdapter(this.adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -93,19 +94,23 @@ public class SearchActivity extends AppCompatActivity {
     private void executeHttpRequestWithRetrofit() {
 
 
-        this.disposable = NewYorkTimesStream.streamFetchSearchArticle(beginDate, endDate, 30, null, queryInputText, "newest").subscribeWith(new DisposableObserver<SearchApi>() {
+        this.disposable = NewYorkTimesStream.streamFetchSearchArticle(beginDate, endDate, 30, null, queryInputText, "newest", ApiKey.API_KEY).subscribeWith(new DisposableObserver<SearchApi>() {
             @Override
             public void onNext(SearchApi searchApi) {
                 updateUI(searchApi.getResponse().getDocs());
                 int size = searchApi.getResponse().getDocs().size();
                 if (size == 0) {
                     Toast.makeText(getApplicationContext(), "no result", Toast.LENGTH_SHORT).show();
+
+
                 }
-              // System.out.println(size);
-                Log.e("TAG", "SearchApi size: "+ Integer.toString(size));
-                Log.e("TAG", "beginDate: "+beginDate);
-                Log.e("TAG", "endDate: "+endDate);
-                Log.e("TAG", "queryInput: "+queryInputText);
+                Log.e("TAG", searchApi.getStatus());
+                Log.e("TAG", searchApi.getResponse().toString());
+                Log.e("TAG", "SearchApi size: " + Integer.toString(size));
+                Log.e("TAG", "beginDate: " + beginDate);
+                Log.e("TAG", "endDate: " + endDate);
+                Log.e("TAG", "queryInput: " + queryInputText);
+
 
             }
 
@@ -125,10 +130,15 @@ public class SearchActivity extends AppCompatActivity {
     //------------------
     // UPDATE UI
     //------------------
-    public void updateUI(List<ResultSearchApi> articleSearchApiList) {
-
-        articleSearchApiList.clear();
-        articleSearchApiList.addAll(resultSearchApiList);
+    public void updateUI(List<ResultSearchApi> resultSearchApis) {
+   //     mResult.clear();
+   //     if (article.getResponse().getDocs().isEmpty()) {
+   //         Toast.makeText(this, "no result", Toast.LENGTH_SHORT).show();
+//
+   //     } else
+   //         mResult.addAll(article.getResponse().getDocs());
+        mResult.clear();
+        mResult.addAll(resultSearchApis);
         adapter.notifyDataSetChanged();
     }
 
@@ -141,5 +151,6 @@ public class SearchActivity extends AppCompatActivity {
 
     }
 
-
 }
+
+

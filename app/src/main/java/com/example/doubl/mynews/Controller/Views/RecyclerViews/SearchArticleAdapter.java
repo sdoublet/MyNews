@@ -3,6 +3,7 @@ package com.example.doubl.mynews.Controller.Views.RecyclerViews;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.RequestManager;
 import com.example.doubl.mynews.Controller.Models.ResultSearchApi;
+import com.example.doubl.mynews.Controller.Models.SearchApi;
 import com.example.doubl.mynews.R;
 
 import java.util.List;
@@ -43,9 +45,12 @@ public class SearchArticleAdapter extends RecyclerView.Adapter<RecyclerviewHolde
 
     @Override
     public int getItemCount() {
+        Log.e("itemCount", Integer.toString(resultSearchApiList.size()));
         return resultSearchApiList.size();
+
     }
 
+    //ti configure itemClick
     public String getUrl(int position) {
         return resultSearchApiList.get(position).getWebUrl();
     }

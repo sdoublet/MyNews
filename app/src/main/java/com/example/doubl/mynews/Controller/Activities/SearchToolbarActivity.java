@@ -102,7 +102,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
 
 
 // set beginDate for httpRequest
-                SearchActivity.beginDate = year + "" + (month + 1) + "" + dayOfMonth;
+                SearchActivity.beginDate = year+""+ (month<10?("0"+(month+1)):(month+1))+""+(dayOfMonth<10?("0"+dayOfMonth):(dayOfMonth));
 
             }
         }, year, month, day);
@@ -121,7 +121,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 String date = dayOfMonth + "/" + (month + 1) + "/" + year;
                 endDateText.setText(date);
-                SearchActivity.endDate = year+""+ (month+1)+""+dayOfMonth;
+                SearchActivity.endDate = year+""+ (month<10?("0"+(month+1)):(month+1))+""+(dayOfMonth<10?("0"+dayOfMonth):(dayOfMonth));
 
             }
         }, year, month, day);

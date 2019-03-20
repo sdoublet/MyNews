@@ -3,6 +3,7 @@ package com.example.doubl.mynews.Controller.Views.RecyclerViews;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,7 @@ public class TopStoriesAdapter extends RecyclerView.Adapter<RecyclerviewHolder> 
 
     @Override
     public int getItemCount() {
+        Log.e("adapter2", Integer.toString(resultTopStoriesList.size()));
         return resultTopStoriesList.size();
     }
 

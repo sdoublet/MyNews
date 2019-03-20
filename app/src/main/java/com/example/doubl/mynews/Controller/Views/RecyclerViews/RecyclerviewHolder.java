@@ -10,6 +10,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.doubl.mynews.Controller.Models.ResultMostPopular;
 import com.example.doubl.mynews.Controller.Models.ResultSearchApi;
 import com.example.doubl.mynews.Controller.Models.ResultTopStories;
+import com.example.doubl.mynews.Controller.Models.SearchApi;
 import com.example.doubl.mynews.R;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -51,7 +52,7 @@ public class RecyclerviewHolder extends RecyclerView.ViewHolder  {
         UpdateAllFragmentItem updateAllFragmentItem = new UpdateAllFragmentItem();
         this.textViewSection.setText(updateAllFragmentItem.setSection(articleSearchApi));
         this.textViewBody.setText(updateAllFragmentItem.setBodyText(articleSearchApi));
-        this.textViewDate.setText(updateAllFragmentItem.setPublisheddate(articleSearchApi));
+        this.textViewDate.setText(updateAllFragmentItem.setParseDateSearchArticle(articleSearchApi));
         this.setImageSearchArticle(articleSearchApi, glide);
 
     }
