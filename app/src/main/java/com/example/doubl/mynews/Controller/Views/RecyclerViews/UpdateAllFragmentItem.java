@@ -25,7 +25,17 @@ public class UpdateAllFragmentItem {
     }
 
     public String setSection(ResultTopStories articleTopStories) {
+
+        if (!articleTopStories.getSubsection().equals("")) {
+            String myString = " > " + articleTopStories.getSubsection();
+            string = articleTopStories.getSection() + myString;
+        } else string = articleTopStories.getSection();
+        return string;
+    }
+
+    public String setSectionOpinion(ResultTopStories articleTopStories) {
         string = articleTopStories.getSection();
+
         return string;
     }
 
@@ -37,23 +47,20 @@ public class UpdateAllFragmentItem {
 
     public String setBodyText(ResultMostPopular article) {
 
-            string = article.getTitle();
+        string = article.getTitle();
 
         return string;
 
     }
 
     public String setBodyText(ResultTopStories articleTopStories) {
-        if (!articleTopStories.getTitle().equals("")) {
-            string = articleTopStories.getTitle();
-        }
+        string = articleTopStories.getTitle();
+
         return string;
     }
 
     public String setBodyText(ResultSearchApi artilcleSearchApi) {
-      //  if (!artilcleSearchApi.getSnippet().equals("")) {
-            string = artilcleSearchApi.getHeadline().getMain();
-       // }
+        string = artilcleSearchApi.getHeadline().getMain();
         return string;
     }
 
@@ -62,8 +69,9 @@ public class UpdateAllFragmentItem {
         string = articleSearchApi.getPubDate();
         return string;
     }
-    public String setParseDate(ResultMostPopular resultMostPopular){
-        String string="";
+
+    public String setParseDate(ResultMostPopular resultMostPopular) {
+        String string = "";
         try {
             String dateParse = resultMostPopular.getPublishedDate();
             DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
@@ -71,12 +79,14 @@ public class UpdateAllFragmentItem {
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             dateParse = dateFormat.format(date1);
             string = dateParse;
-        }catch (ParseException e){
+        } catch (ParseException e) {
             e.printStackTrace();
         }
         return string;
-    }  public String setParseDateTopStories(ResultTopStories resultMostTopStories){
-        String string="";
+    }
+
+    public String setParseDateTopStories(ResultTopStories resultMostTopStories) {
+        String string = "";
         try {
             String dateParse = resultMostTopStories.getPublishedDate();
             DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
@@ -84,13 +94,14 @@ public class UpdateAllFragmentItem {
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             dateParse = dateFormat.format(date1);
             string = dateParse;
-        }catch (ParseException e){
+        } catch (ParseException e) {
             e.printStackTrace();
         }
         return string;
     }
-    public String setParseDateSearchArticle(ResultSearchApi resultSearchApi){
-        String string="";
+
+    public String setParseDateSearchArticle(ResultSearchApi resultSearchApi) {
+        String string = "";
         try {
             String dateParse = resultSearchApi.getPubDate();
             DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
@@ -98,7 +109,7 @@ public class UpdateAllFragmentItem {
             DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             dateParse = dateFormat.format(date1);
             string = dateParse;
-        }catch (ParseException e){
+        } catch (ParseException e) {
             e.printStackTrace();
         }
         return string;
