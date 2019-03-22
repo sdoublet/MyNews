@@ -6,12 +6,16 @@
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
     app:tabSelectedTextColor="@color/textColorTabLayout"
-    app:tabTextColor="@color/colorTitle">
+    app:tabTextColor="@color/colorTitle"
+    app:tabPaddingStart="-1dp"
+    app:tabPaddingEnd="-1dp"
+    >
 
     <android.support.design.widget.TabItem
         android:id="@+id/tab_item_most_popular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         />
 
         <android.support.design.widget.TabItem
