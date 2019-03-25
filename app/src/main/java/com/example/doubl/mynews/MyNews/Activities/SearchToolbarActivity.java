@@ -2,20 +2,20 @@ package com.example.doubl.mynews.MyNews.Activities;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.doubl.mynews.MyNews.Utils.HideKeyboard;
 import com.example.doubl.mynews.R;
 
 import java.util.Calendar;
-
-
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,6 +29,13 @@ public class SearchToolbarActivity extends AppCompatActivity {
     TextView beginDatetext;
     @BindView(R.id.end_date)
     EditText endDateText;
+    @BindView(R.id.checkbox_arts)
+    CheckBox checkBoxArts;
+    @BindView(R.id.checkbox_entrepreneurs)CheckBox checkBoxEntrepreneurs;
+    @BindView(R.id.checkbox_politics)CheckBox checkBoxPolitics;
+    @BindView(R.id.checkbox_sports)CheckBox checkBoxSports;
+    @BindView(R.id.checkbox_business)CheckBox checkBoxBusiness;
+    @BindView(R.id.checkbox_travel)CheckBox checkBoxTravel;
     Calendar calendar;
     private DatePickerDialog datePickerDialog;
 
@@ -41,6 +48,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
         onButtonSearchArticleClicked();
         onBeginDateClicked();
         onEndDateClicked();
+
 
     }
 
@@ -58,7 +66,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
         searchArticleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SearchActivity.queryInputText= queryText.getText().toString();
+                SearchActivity.queryInputText = queryText.getText().toString();
                 Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
                 startActivity(intent);
             }
@@ -103,7 +111,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
 
 
 // set beginDate for httpRequest
-                SearchActivity.beginDate = year+""+ (month<10?("0"+(month+1)):(month+1))+""+(dayOfMonth<10?("0"+dayOfMonth):(dayOfMonth));
+                SearchActivity.beginDate = year + "" + (month < 10 ? ("0" + (month + 1)) : (month + 1)) + "" + (dayOfMonth < 10 ? ("0" + dayOfMonth) : (dayOfMonth));
 
             }
         }, year, month, day);
@@ -122,7 +130,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 String date = dayOfMonth + "/" + (month + 1) + "/" + year;
                 endDateText.setText(date);
-                SearchActivity.endDate = year+""+ (month<10?("0"+(month+1)):(month+1))+""+(dayOfMonth<10?("0"+dayOfMonth):(dayOfMonth));
+                SearchActivity.endDate = year + "" + (month < 10 ? ("0" + (month + 1)) : (month + 1)) + "" + (dayOfMonth < 10 ? ("0" + dayOfMonth) : (dayOfMonth));
 
             }
         }, year, month, day);
@@ -130,9 +138,46 @@ public class SearchToolbarActivity extends AppCompatActivity {
 
     }
 
+    public void setKeyboard(View view) {
+        if (!(view instanceof EditText)) {
+            view.setOnTouchListener(new View.OnTouchListener() {
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    HideKeyboard.hideSoftKeyboard(getParent());
+                    return false;
+                }
+            });
+        }
+    }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        queryText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (!hasFocus) {
+                    HideKeyboard.hideSoftKeyboard(getParent());
+                }
+            }
+        });
+
         return super.onTouchEvent(event);
+    }
+    private void nullifyEndDate() {
+        SearchActivity.endDate = null;
+    }
+
+    private void nullifyBeginDate() {
+        SearchActivity.beginDate=null;
+    }
+
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        nullifyBeginDate();
+        nullifyEndDate();
     }
 }
 

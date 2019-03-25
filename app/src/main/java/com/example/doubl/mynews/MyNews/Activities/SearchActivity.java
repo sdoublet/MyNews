@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -25,6 +27,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnTouch;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 
@@ -49,11 +52,16 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         ButterKnife.bind(this);
+
         this.configureToolbar();
         this.executeHttpRequestWithRetrofit();
         this.configureRecyclerView();
         this.configureOnClickRecyclerView();
+       // this.nullifyBeginDate();
+       // this.nullifyEndDate();
     }
+
+
 
 
     public void configureRecyclerView() {
@@ -93,6 +101,7 @@ public class SearchActivity extends AppCompatActivity {
     private void executeHttpRequestWithRetrofit() {
 
 
+
         this.disposable = NewYorkTimesStream.streamFetchSearchArticle(beginDate, endDate, 30, null, queryInputText, "newest", ApiKey.API_KEY).subscribeWith(new DisposableObserver<SearchApi>() {
             @Override
             public void onNext(SearchApi searchApi) {
@@ -130,12 +139,6 @@ public class SearchActivity extends AppCompatActivity {
     // UPDATE UI
     //------------------
     public void updateUI(List<ResultSearchApi> resultSearchApis) {
-   //     mResult.clear();
-   //     if (article.getResponse().getDocs().isEmpty()) {
-   //         Toast.makeText(this, "no result", Toast.LENGTH_SHORT).show();
-//
-   //     } else
-   //         mResult.addAll(article.getResponse().getDocs());
         mResult.clear();
         mResult.addAll(resultSearchApis);
         adapter.notifyDataSetChanged();
@@ -149,6 +152,7 @@ public class SearchActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
 
     }
+
 
 }
 

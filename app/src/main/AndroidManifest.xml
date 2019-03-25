@@ -4,7 +4,7 @@
     package="com.example.doubl.mynews">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.SET_ALARM" />
 
     <application
         android:allowBackup="true"
@@ -14,6 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
+
         <activity
             android:name=".MyNews.Activities.MainActivity"
             android:screenOrientation="portrait">
@@ -50,19 +52,15 @@
         <activity
             android:name=".MyNews.Activities.WebViewActivity"
             android:parentActivityName=".MyNews.Activities.MainActivity" />
-
         <activity
             android:name=".MyNews.Activities.TopStoriesCategoriesActivity"
             android:parentActivityName=".MyNews.Activities.MainActivity" />
+        <activity
+            android:name=".MyNews.Activities.SearchActivity"
+            android:parentActivityName=".MyNews.Activities.MainActivity" />
 
-        <activity android:name=".MyNews.Activities.SearchActivity"
-            android:parentActivityName=".MyNews.Activities.MainActivity"></activity>
-        <service android:name=".MyFirebaseMessagingService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
 
+        <receiver android:name=".MyNews.Utils.AlertReceiver" />
 
 
     </application>
