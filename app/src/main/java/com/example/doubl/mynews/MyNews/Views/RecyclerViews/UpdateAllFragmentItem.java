@@ -63,6 +63,11 @@ public class UpdateAllFragmentItem {
         return string;
     }
 
+    public String setNewsDesk(ResultSearchApi resultSearchApi){
+        string = resultSearchApi.getNewsDesk();
+        return string;
+    }
+
 
     public String setPublisheddate(ResultSearchApi articleSearchApi) {
         string = articleSearchApi.getPubDate();
@@ -113,4 +118,5 @@ public class UpdateAllFragmentItem {
         }
         return string;
     }
+
 }

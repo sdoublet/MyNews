@@ -87,14 +87,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:text="Arts" />
+                android:text="Arts"
+                android:checked="false"/>
 
             <CheckBox
                 android:id="@+id/checkbox_business"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="Business" />
+                android:text="Business"
+                android:checked="false"/>
 
             />
 
@@ -103,7 +105,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
-                android:text="Entrepreneurs" />
+                android:text="Entrepreneurs"
+                android:checked="false"/>
         </LinearLayout>
 
         <LinearLayout
@@ -146,21 +149,24 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
-                android:text="Politics" />
+                android:text="Politics"
+                android:checked="false"/>
 
             <CheckBox
                 android:id="@+id/checkbox_sports"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="Sports" />
+                android:text="Sports"
+                android:checked="false"/>
 
             <CheckBox
                 android:id="@+id/checkbox_travel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:text="Travel" />
+                android:text="Travel"
+                android:checked="false"/>
         </LinearLayout>
 
 

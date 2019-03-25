@@ -53,6 +53,7 @@ public class TopStoriesCategoriesActivity extends AppCompatActivity {
             configureRecyclerView();
             configureOnClickRecyclerView();
             executeHttpRequestWithRetrofit();
+
         }
 
         public void configureRecyclerView() {
@@ -129,6 +130,11 @@ public class TopStoriesCategoriesActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
 
         }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
+}
 
 

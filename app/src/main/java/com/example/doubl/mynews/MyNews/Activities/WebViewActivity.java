@@ -1,7 +1,7 @@
 package com.example.doubl.mynews.MyNews.Activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -39,14 +39,17 @@ public class WebViewActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
-    private void configureWebViewMostPopular(){
+    private void configureWebViewMostPopular() {
         String url = getIntent().getStringExtra(MostPopularFragment.BUNDLE_URL);
         webView.loadUrl(url);
         webView.setWebViewClient(new WebViewClient());
     }
-    private void configureWebViewTopStories(){
+
+    private void configureWebViewTopStories() {
         String url = getIntent().getStringExtra(TopStoriesFragment.BUNDLE_URL);
         webView.loadUrl(url);
         webView.setWebViewClient(new WebViewClient());
     }
+
+
 }

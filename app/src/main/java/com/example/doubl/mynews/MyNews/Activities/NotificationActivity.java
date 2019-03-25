@@ -65,7 +65,7 @@ public class NotificationActivity extends AppCompatActivity {
 
                     sharedPreferences.edit().putBoolean("isChecked", true).apply();
                     Toast.makeText(getApplicationContext(), "You will receive one notification by day ", Toast.LENGTH_SHORT).show();
-                    sendNotification(getApplicationContext());
+                    //sendNotification(getApplicationContext());
                     //send daily notification
                     setCalendarTime();
                 } else
@@ -114,10 +114,10 @@ public class NotificationActivity extends AppCompatActivity {
 
     public void setCalendarTime() {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 11);
+        calendar.set(Calendar.HOUR_OF_DAY, 16);
         calendar.set(Calendar.MINUTE, 1);
         calendar.set(Calendar.SECOND, 30);
-
+        //calendar.add(Calendar.DAY_OF_YEAR, 1);
 
         startAlarm(calendar);
     }

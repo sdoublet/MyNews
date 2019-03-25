@@ -51,12 +51,12 @@
         </activity>
         <activity
             android:name=".MyNews.Activities.WebViewActivity"
-            android:parentActivityName=".MyNews.Activities.MainActivity" />
+            android:parentActivityName=".MyNews.Activities.WebViewActivity" />
         <activity
             android:name=".MyNews.Activities.TopStoriesCategoriesActivity"
             android:parentActivityName=".MyNews.Activities.MainActivity" />
         <activity
-            android:name=".MyNews.Activities.SearchActivity"
+            android:name=".MyNews.Activities.ResultSearchActivity"
             android:parentActivityName=".MyNews.Activities.MainActivity" />
 
 

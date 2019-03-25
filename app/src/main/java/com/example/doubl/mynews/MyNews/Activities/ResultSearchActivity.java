@@ -27,16 +27,16 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnTouch;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 
-public class SearchActivity extends AppCompatActivity {
+public class ResultSearchActivity extends AppCompatActivity {
 
     public static final String BUNDLE_URL = "BUNDLE_URL";
     public static String beginDate = null;
     public static String endDate = null;
     public static String queryInputText = null;
+    public static String filter = null;
     @BindView(R.id.recycler_view_search)
     RecyclerView recyclerView;
 
@@ -57,8 +57,7 @@ public class SearchActivity extends AppCompatActivity {
         this.executeHttpRequestWithRetrofit();
         this.configureRecyclerView();
         this.configureOnClickRecyclerView();
-       // this.nullifyBeginDate();
-       // this.nullifyEndDate();
+//getIntent recupere les valeur de searchtool avec get extra
     }
 
 
@@ -102,7 +101,7 @@ public class SearchActivity extends AppCompatActivity {
 
 
 
-        this.disposable = NewYorkTimesStream.streamFetchSearchArticle(beginDate, endDate, 30, null, queryInputText, "newest", ApiKey.API_KEY).subscribeWith(new DisposableObserver<SearchApi>() {
+        this.disposable = NewYorkTimesStream.streamFetchSearchArticle(beginDate, endDate, 30,filter, queryInputText, "newest", ApiKey.API_KEY).subscribeWith(new DisposableObserver<SearchApi>() {
             @Override
             public void onNext(SearchApi searchApi) {
                 updateUI(searchApi.getResponse().getDocs());
@@ -112,12 +111,14 @@ public class SearchActivity extends AppCompatActivity {
 
 
                 }
+
                 Log.e("TAG", searchApi.getStatus());
                 Log.e("TAG", searchApi.getResponse().toString());
                 Log.e("TAG", "SearchApi size: " + Integer.toString(size));
                 Log.e("TAG", "beginDate: " + beginDate);
                 Log.e("TAG", "endDate: " + endDate);
                 Log.e("TAG", "queryInput: " + queryInputText);
+                Log.e("TAG", "filter "+ filter);
 
 
             }

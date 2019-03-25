@@ -8,9 +8,11 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.doubl.mynews.MyNews.Utils.HideKeyboard;
 import com.example.doubl.mynews.R;
@@ -31,11 +33,16 @@ public class SearchToolbarActivity extends AppCompatActivity {
     EditText endDateText;
     @BindView(R.id.checkbox_arts)
     CheckBox checkBoxArts;
-    @BindView(R.id.checkbox_entrepreneurs)CheckBox checkBoxEntrepreneurs;
-    @BindView(R.id.checkbox_politics)CheckBox checkBoxPolitics;
-    @BindView(R.id.checkbox_sports)CheckBox checkBoxSports;
-    @BindView(R.id.checkbox_business)CheckBox checkBoxBusiness;
-    @BindView(R.id.checkbox_travel)CheckBox checkBoxTravel;
+    @BindView(R.id.checkbox_entrepreneurs)
+    CheckBox checkBoxEntrepreneurs;
+    @BindView(R.id.checkbox_politics)
+    CheckBox checkBoxPolitics;
+    @BindView(R.id.checkbox_sports)
+    CheckBox checkBoxSports;
+    @BindView(R.id.checkbox_business)
+    CheckBox checkBoxBusiness;
+    @BindView(R.id.checkbox_travel)
+    CheckBox checkBoxTravel;
     Calendar calendar;
     private DatePickerDialog datePickerDialog;
 
@@ -48,6 +55,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
         onButtonSearchArticleClicked();
         onBeginDateClicked();
         onEndDateClicked();
+        configureCheckBox();
 
 
     }
@@ -66,12 +74,16 @@ public class SearchToolbarActivity extends AppCompatActivity {
         searchArticleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SearchActivity.queryInputText = queryText.getText().toString();
-                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                ResultSearchActivity.queryInputText = queryText.getText().toString();
+                Intent intent = new Intent(getApplicationContext(), ResultSearchActivity.class);
                 startActivity(intent);
+
             }
         });
-
+        if (ResultSearchActivity.filter == null) {
+            searchArticleButton.setVisibility(View.GONE);
+            Toast.makeText(getApplicationContext(), "you must check a box", Toast.LENGTH_SHORT).show();
+        }
     }
 
     //----------------------------
@@ -111,7 +123,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
 
 
 // set beginDate for httpRequest
-                SearchActivity.beginDate = year + "" + (month < 10 ? ("0" + (month + 1)) : (month + 1)) + "" + (dayOfMonth < 10 ? ("0" + dayOfMonth) : (dayOfMonth));
+                ResultSearchActivity.beginDate = year + "" + (month < 10 ? ("0" + (month + 1)) : (month + 1)) + "" + (dayOfMonth < 10 ? ("0" + dayOfMonth) : (dayOfMonth));
 
             }
         }, year, month, day);
@@ -130,11 +142,64 @@ public class SearchToolbarActivity extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 String date = dayOfMonth + "/" + (month + 1) + "/" + year;
                 endDateText.setText(date);
-                SearchActivity.endDate = year + "" + (month < 10 ? ("0" + (month + 1)) : (month + 1)) + "" + (dayOfMonth < 10 ? ("0" + dayOfMonth) : (dayOfMonth));
+                ResultSearchActivity.endDate = year + "" + (month < 10 ? ("0" + (month + 1)) : (month + 1)) + "" + (dayOfMonth < 10 ? ("0" + dayOfMonth) : (dayOfMonth));
 
             }
         }, year, month, day);
         datePickerDialog.show();
+
+    }
+
+    public void configureCheckBox() {
+
+        checkBoxArts.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                ResultSearchActivity.filter = "arts";
+                searchArticleButton.setVisibility(View.VISIBLE);
+
+            }
+        });
+        checkBoxBusiness.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                ResultSearchActivity.filter = "business";
+                searchArticleButton.setVisibility(View.VISIBLE);
+
+            }
+        });
+        checkBoxEntrepreneurs.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                ResultSearchActivity.filter = "entrepreneurs";
+                searchArticleButton.setVisibility(View.VISIBLE);
+
+            }
+        });
+        checkBoxPolitics.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                ResultSearchActivity.filter = "politics";
+                searchArticleButton.setVisibility(View.VISIBLE);
+
+            }
+        });
+        checkBoxSports.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                ResultSearchActivity.filter = "sports";
+                searchArticleButton.setVisibility(View.VISIBLE);
+
+            }
+        });
+        checkBoxTravel.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                ResultSearchActivity.filter = "travel";
+                searchArticleButton.setVisibility(View.VISIBLE);
+
+            }
+        });
 
     }
 
@@ -163,14 +228,18 @@ public class SearchToolbarActivity extends AppCompatActivity {
 
         return super.onTouchEvent(event);
     }
+
     private void nullifyEndDate() {
-        SearchActivity.endDate = null;
+        ResultSearchActivity.endDate = null;
     }
 
     private void nullifyBeginDate() {
-        SearchActivity.beginDate=null;
+        ResultSearchActivity.beginDate = null;
     }
 
+    private void nullifyFilter() {
+        ResultSearchActivity.filter = null;
+    }
 
 
     @Override
@@ -178,6 +247,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
         super.onDestroy();
         nullifyBeginDate();
         nullifyEndDate();
+        nullifyFilter();
     }
 }
 
