@@ -1,19 +1,20 @@
 package com.example.doubl.mynews.MyNews.Activities;
 
 import android.app.AlarmManager;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.KeyEvent;
+import android.view.inputmethod.EditorInfo;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.doubl.mynews.MyNews.Utils.AlertReceiver;
@@ -21,24 +22,45 @@ import com.example.doubl.mynews.R;
 
 import java.util.Calendar;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 public class NotificationActivity extends AppCompatActivity {
 
     private static final String CHANNEL_ID = "CHANNEL_ID";
     Switch mySwitch = null;
-
-    public static final int NOTIFICATION_ID = 0;
-
+    @BindView(R.id.notification_query)
+    EditText notificationQuery;
+    @BindView(R.id.notification_arts)
+    CheckBox notificatonCheckBoxArts;
+    @BindView(R.id.notification_business)
+    CheckBox notificatonCheckBoxBusinesss;
+    @BindView(R.id.notification_entrepreneurs)
+    CheckBox notificatonCheckEntrepreneurss;
+    @BindView(R.id.notification_politics)
+    CheckBox notificatonCheckBoxPolitics;
+    @BindView(R.id.notification_sports)
+    CheckBox notificatonCheckBoxSports;
+    @BindView(R.id.notification_travel)
+    CheckBox notificatonCheckBoxTravel;
+    public static final String SHARE_PREFERENCES_QUERY_NOTIFICATION = "SHARE_PREFERENCES_QUERY_NOTIFICATION";
+    private String query;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
+        ButterKnife.bind(this);
         mySwitch = findViewById(R.id.switch_notification);
 
 
         this.configureToolbar();
         this.setSwitchNotification();
+        // setCalendarTime();
+
+        saveNotificationQuery();
+        requiredQuery();
 
     }
 
@@ -49,7 +71,9 @@ public class NotificationActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
-
+    //------------------------
+    // SWITCH NOTIFICATION
+    //------------------------
     private void setSwitchNotification() {
 
         final SharedPreferences sharedPreferences = getSharedPreferences("isChecked", 0);
@@ -62,64 +86,42 @@ public class NotificationActivity extends AppCompatActivity {
 
 
                 if (isChecked) {
-
-                    sharedPreferences.edit().putBoolean("isChecked", true).apply();
-                    Toast.makeText(getApplicationContext(), "You will receive one notification by day ", Toast.LENGTH_SHORT).show();
-                    //sendNotification(getApplicationContext());
-                    //send daily notification
+                    requiredQuery();
                     setCalendarTime();
-                } else
-                    sharedPreferences.edit().putBoolean("isChecked", false).apply();
-                Toast.makeText(getApplicationContext(), "Notification disable", Toast.LENGTH_SHORT).show();
-                cancelAlarm();
+                    sharedPreferences.edit().putBoolean("isChecked", true).apply();
+                    if (query!=null)
+                    Toast.makeText(getApplicationContext(), "You will receive one notification by day ", Toast.LENGTH_SHORT).show();
 
+
+                } else {
+
+                    sharedPreferences.edit().putBoolean("isChecked", false).apply();
+                    Toast.makeText(getApplicationContext(), "Notification disable", Toast.LENGTH_SHORT).show();
+                    cancelAlarm();
+                    Log.e("alarm", "alarm cancelled");
+
+                }
             }
         });
 
     }
 
-    public void sendNotification(Context context) {
-
-        //set notification's tap action
-        Intent contentIntent = new Intent(context, MainActivity.class);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, NOTIFICATION_ID, contentIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        //set notification content
-        NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, CHANNEL_ID);
-        notificationBuilder.setContentTitle("MyNews")
-                .setContentText("hello every body")
-                .setSmallIcon(R.drawable.ic_stat_name)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setContentIntent(pendingIntent)
-                .setAutoCancel(true);
-
-        createNotificationChannel();
-
-        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
-        notificationManagerCompat.notify(NOTIFICATION_ID, notificationBuilder.build());
-
-    }
-
-    public void createNotificationChannel() {
-        //only for Oreo version and sup
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = getString(R.string.channel_name);
-            String description = getString(R.string.channel_description);
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
-            channel.setDescription(description);
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
-    }
+    //---------------------------
+    //      ALARM MANAGER
+    // --------------------------
 
     public void setCalendarTime() {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 16);
-        calendar.set(Calendar.MINUTE, 1);
+        calendar.set(Calendar.HOUR_OF_DAY, 11);
+        calendar.set(Calendar.MINUTE, 34);
         calendar.set(Calendar.SECOND, 30);
-        //calendar.add(Calendar.DAY_OF_YEAR, 1);
+
+        if (calendar.getTimeInMillis() < System.currentTimeMillis()) {
+            calendar.add(Calendar.DAY_OF_YEAR, 1);
+        }
 
         startAlarm(calendar);
+        Log.e("alarm", "alarm set" + calendar.getTimeInMillis());
     }
 
     private void startAlarm(Calendar calendar) {
@@ -127,7 +129,8 @@ public class NotificationActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), AlertReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+        Log.e("alarm", "start alarm");
     }
 
     private void cancelAlarm() {
@@ -136,6 +139,45 @@ public class NotificationActivity extends AppCompatActivity {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, 0);
 
         alarmManager.cancel(pendingIntent);
+    }
+
+    private void configureNotificationCheckBox() {
+        notificatonCheckBoxArts.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+            }
+        });
+    }
+
+    private void saveNotificationQuery() {
+
+
+        notificationQuery.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    // notificationQuery.setSingleLine(true);
+
+                    query = notificationQuery.getText().toString();
+                    //sharepref and return true
+
+                    Log.e("query", query);
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        });
+
+        Log.e("notification", notificationQuery.toString());
+    }
+
+    private void requiredQuery() {
+        if (query == null ) {
+            mySwitch.setChecked(false);
+            Toast.makeText(this, "you must enter query term", Toast.LENGTH_SHORT).show();
+        }
     }
 
 

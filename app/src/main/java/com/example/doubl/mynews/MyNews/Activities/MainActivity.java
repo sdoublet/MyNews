@@ -96,10 +96,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)){
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
             drawerLayout.closeDrawer(GravityCompat.START);
-        }else
-        super.onBackPressed();
+        } else
+            super.onBackPressed();
     }
 
     @Override
@@ -143,6 +143,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent intentMovies = new Intent(this, TopStoriesCategoriesActivity.class);
                 startActivity(intentMovies);
                 break;
+            case R.id.auto:
+                categories = "automobiles";
+                Intent intentAuto = new Intent(this, TopStoriesCategoriesActivity.class);
+                startActivity(intentAuto);
+                break;
+            case R.id.fashion:
+                categories = "fashion";
+                Intent intentFashion = new Intent(this, TopStoriesCategoriesActivity.class);
+                startActivity(intentFashion);
+                break;
+
         }
         this.drawerLayout.closeDrawer(GravityCompat.START);
         return true;

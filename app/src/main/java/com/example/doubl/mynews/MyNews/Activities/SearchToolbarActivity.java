@@ -52,10 +52,10 @@ public class SearchToolbarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search_toolbar);
         ButterKnife.bind(this);
         this.configureToolbar();
-        onButtonSearchArticleClicked();
-        onBeginDateClicked();
-        onEndDateClicked();
-        configureCheckBox();
+        this.onButtonSearchArticleClicked();
+        this.onBeginDateClicked();
+        this.onEndDateClicked();
+        this.configureCheckBox();
 
 
     }
@@ -65,6 +65,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
 
     }

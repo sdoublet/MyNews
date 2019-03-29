@@ -131,10 +131,7 @@ public class TopStoriesCategoriesActivity extends AppCompatActivity {
 
         }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
+
 }
 
 

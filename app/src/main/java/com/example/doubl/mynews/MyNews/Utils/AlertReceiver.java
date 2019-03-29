@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
+import android.util.Log;
 
 import com.example.doubl.mynews.MyNews.Activities.MainActivity;
 import com.example.doubl.mynews.R;
@@ -22,7 +23,7 @@ public class AlertReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         sendNotification(context);
-//Log
+        Log.e("notification", "notification send");
     }
     public void sendNotification(Context context) {
 

@@ -10,7 +10,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher_my_news_1"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
@@ -57,10 +57,11 @@
             android:parentActivityName=".MyNews.Activities.MainActivity" />
         <activity
             android:name=".MyNews.Activities.ResultSearchActivity"
-            android:parentActivityName=".MyNews.Activities.MainActivity" />
+            android:parentActivityName=".MyNews.Activities.SearchToolbarActivity" />
 
 
-        <receiver android:name=".MyNews.Utils.AlertReceiver" />
+        <receiver android:name=".MyNews.Utils.AlertReceiver"
+            android:enabled="true"/>
 
 
     </application>

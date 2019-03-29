@@ -48,14 +48,25 @@
                 android:icon="@drawable/ic_lightbulb_outline_black_24dp">
 
             </item>
- <item
+            <item
                 android:id="@+id/movies"
                 android:title="Movies"
                 android:icon="@drawable/ic_local_movies_black_24dp">
 
             </item>
+            <item
+                android:id="@+id/auto"
+                android:title="Auto"
+                android:icon="@drawable/ic_action_car">
+
+            </item>
+            <item
+                android:id="@+id/fashion"
+                android:icon="@drawable/ic_action_name"
+                android:title="Fashion">
+
+            </item>
 
 
-
-    </group>
+        </group>
 </menu>
