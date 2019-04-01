@@ -4,6 +4,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -48,6 +49,10 @@ public class SearchToolbarActivity extends AppCompatActivity {
     LinearLayout switchLayout;
     Calendar calendar;
     private DatePickerDialog datePickerDialog;
+    private String beginDate;
+    private String endDate;
+    private String query;
+    private String filterQuery;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,13 +84,18 @@ public class SearchToolbarActivity extends AppCompatActivity {
         searchArticleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ResultSearchActivity.queryInputText = queryText.getText().toString();
+                query = queryText.getText().toString();
                 Intent intent = new Intent(getApplicationContext(), ResultSearchActivity.class);
+                intent.putExtra("beginDate", beginDate);
+                intent.putExtra("endDate", endDate);
+                intent.putExtra("query", query);
+                intent.putExtra("filterQuery", filterQuery);
                 startActivity(intent);
+                Log.e("putExtra", beginDate);
 
             }
         });
-        if (ResultSearchActivity.filter == null) {
+        if (filterQuery == null) {
             searchArticleButton.setVisibility(View.GONE);
             Toast.makeText(getApplicationContext(), "you must check a box", Toast.LENGTH_SHORT).show();
         }
@@ -128,7 +138,8 @@ public class SearchToolbarActivity extends AppCompatActivity {
 
 
 // set beginDate for httpRequest
-                ResultSearchActivity.beginDate = year + "" + (month < 10 ? ("0" + (month + 1)) : (month + 1)) + "" + (dayOfMonth < 10 ? ("0" + dayOfMonth) : (dayOfMonth));
+                //ResultSearchActivity.beginDate = year + "" + (month < 10 ? ("0" + (month + 1)) : (month + 1)) + "" + (dayOfMonth < 10 ? ("0" + dayOfMonth) : (dayOfMonth));
+                beginDate = year + "" + (month < 10 ? ("0" + (month + 1)) : (month + 1)) + "" + (dayOfMonth < 10 ? ("0" + dayOfMonth) : (dayOfMonth));
 
             }
         }, year, month, day);
@@ -147,7 +158,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 String date = dayOfMonth + "/" + (month + 1) + "/" + year;
                 endDateText.setText(date);
-                ResultSearchActivity.endDate = year + "" + (month < 10 ? ("0" + (month + 1)) : (month + 1)) + "" + (dayOfMonth < 10 ? ("0" + dayOfMonth) : (dayOfMonth));
+                endDate = year + "" + (month < 10 ? ("0" + (month + 1)) : (month + 1)) + "" + (dayOfMonth < 10 ? ("0" + dayOfMonth) : (dayOfMonth));
 
             }
         }, year, month, day);
@@ -160,7 +171,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
         checkBoxArts.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                ResultSearchActivity.filter = "arts";
+                filterQuery = "arts";
                 searchArticleButton.setVisibility(View.VISIBLE);
 
             }
@@ -168,7 +179,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
         checkBoxBusiness.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                ResultSearchActivity.filter = "business";
+                filterQuery = "business";
                 searchArticleButton.setVisibility(View.VISIBLE);
 
             }
@@ -176,7 +187,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
         checkBoxEntrepreneurs.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                ResultSearchActivity.filter = "entrepreneurs";
+                filterQuery = "entrepreneurs";
                 searchArticleButton.setVisibility(View.VISIBLE);
 
             }
@@ -184,7 +195,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
         checkBoxPolitics.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                ResultSearchActivity.filter = "politics";
+                filterQuery = "politics";
                 searchArticleButton.setVisibility(View.VISIBLE);
 
             }
@@ -192,7 +203,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
         checkBoxSports.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                ResultSearchActivity.filter = "sports";
+               filterQuery = "sports";
                 searchArticleButton.setVisibility(View.VISIBLE);
 
             }
@@ -200,7 +211,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
         checkBoxTravel.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                ResultSearchActivity.filter = "travel";
+                filterQuery = "travel";
                 searchArticleButton.setVisibility(View.VISIBLE);
 
             }
@@ -235,15 +246,15 @@ public class SearchToolbarActivity extends AppCompatActivity {
     }
 
     private void nullifyEndDate() {
-        ResultSearchActivity.endDate = null;
+        endDate = null;
     }
 
     private void nullifyBeginDate() {
-        ResultSearchActivity.beginDate = null;
+        beginDate = null;
     }
 
     private void nullifyFilter() {
-        ResultSearchActivity.filter = null;
+        filterQuery = null;
     }
 
 

@@ -64,8 +64,8 @@ public class NotificationActivity extends AppCompatActivity {
     @BindView(R.id.to_textView)
     TextView toTextView;
     //    public static final String SHARE_PREFERENCES_QUERY_NOTIFICATION = "SHARE_PREFERENCES_QUERY_NOTIFICATION";
-    public static String query ;
-    public static String filterQuery ;
+    public static String query;
+    public static String filterQuery;
 
 
     private DisposableObserver<SearchApi> disposable;
@@ -76,29 +76,35 @@ public class NotificationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search_toolbar);
         ButterKnife.bind(this);
         mySwitch = findViewById(R.id.switch_notification);
-        toTextView.setVisibility(View.GONE);
-        sinceTextView.setVisibility(View.GONE);
-        endDateText.setVisibility(View.GONE);
-        beginDatetext.setVisibility(View.GONE);
-        notificationQuery.setSingleLine(true);
-        //searchButton.setVisibility(View.GONE);//perhaps put in a method
+        this.setVisibility();
         this.configureToolbar();
         this.setSwitchNotification();
         this.configureCheckBox();
-        requiredFields();
-        this.onButtonSearchArticleClicked();
-        // saveNotificationQuery();
+        this.requiredFields();
+        this.saveNotificationQuery();
 
     }
 
+
     //------------------------
-    //       TOOLBAR
+    //      FOR DESIGN
     //------------------------
+
+    //ToolBar
     private void configureToolbar() {
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    // Set visibility to hide elements we don't need in the layout
+    private void setVisibility() {
+        toTextView.setVisibility(View.GONE);
+        sinceTextView.setVisibility(View.GONE);
+        endDateText.setVisibility(View.GONE);
+        beginDatetext.setVisibility(View.GONE);
+        searchButton.setVisibility(View.GONE);
     }
 
     //------------------------
@@ -115,26 +121,16 @@ public class NotificationActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
                 if (isChecked) {
-
                     requiredFields();
                     setCalendarTime();
-                    //query = notificationQuery.getText().toString();
 
-                    // sharedPreferences.edit().putBoolean("isChecked", true).apply();
                     if (query != null && filterQuery != null)
                         Toast.makeText(getApplicationContext(), "You will receive one notification by day with " + query + " as filter", Toast.LENGTH_LONG).show();
-
-                    // sharedPreferences.edit().putBoolean("isChecked", true).apply();
                 } else {
-
-
-                    // sharedPreferences.edit().putBoolean("isChecked", false).apply();
                     Toast.makeText(getApplicationContext(), "Notification disable", Toast.LENGTH_SHORT).show();
                     cancelAlarm();
                     Log.e("alarm", "alarm cancelled");
-
                 }
             }
         });
@@ -148,8 +144,8 @@ public class NotificationActivity extends AppCompatActivity {
 
     public void setCalendarTime() {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 17);
-        calendar.set(Calendar.MINUTE, 24);
+        calendar.set(Calendar.HOUR_OF_DAY, 9);
+        calendar.set(Calendar.MINUTE, 35);
         calendar.set(Calendar.SECOND, 30);
 
         if (calendar.getTimeInMillis() < System.currentTimeMillis()) {
@@ -168,8 +164,8 @@ public class NotificationActivity extends AppCompatActivity {
 
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
         Log.e("alarm", "start alarm");
-        Log.e("filter" , "fq: " +filterQuery);
-        Log.e("query", "query" +query);
+        Log.e("filter", "fq: " + filterQuery);
+        Log.e("query", "query" + query);
     }
 
     private void cancelAlarm() {
@@ -190,59 +186,73 @@ public class NotificationActivity extends AppCompatActivity {
         notificatonCheckBoxArts.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-               if (isChecked){
-                filterQuery = "arts";
-                notificatonCheckBoxArts.setChecked(true);}
-                else{
-                    notificationQuery=null;
-                    notificatonCheckBoxArts.setChecked(false);}
+                if (isChecked) {
+                    filterQuery = "arts";
+                    notificatonCheckBoxArts.setChecked(true);
+                } else {
+                    notificationQuery = null;
+                    notificatonCheckBoxArts.setChecked(false);
+                }
             }
         });
         notificatonCheckBoxBusinesss.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-               if (isChecked){
-                filterQuery = "business";
-                notificatonCheckBoxBusinesss.setChecked(true);}
-               else{
-                   notificationQuery=null;
-                   notificatonCheckBoxBusinesss.setChecked(false);}
+                if (isChecked) {
+                    filterQuery = "business";
+                    notificatonCheckBoxBusinesss.setChecked(true);
+                } else {
+                    notificationQuery = null;
+                    notificatonCheckBoxBusinesss.setChecked(false);
+                }
             }
         });
         notificatonCheckEntrepreneurss.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                filterQuery = "entrepreneurs";
-                notificatonCheckEntrepreneurss.setChecked(true);}
-                else{
-                    notificationQuery=null;
-                    notificatonCheckEntrepreneurss.setChecked(false);}
+                if (isChecked) {
+                    filterQuery = "entrepreneurs";
+                    notificatonCheckEntrepreneurss.setChecked(true);
+                } else {
+                    notificationQuery = null;
+                    notificatonCheckEntrepreneurss.setChecked(false);
+                }
             }
         });
         notificatonCheckBoxPolitics.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                filterQuery = "politics";
-                notificatonCheckBoxPolitics.setChecked(true);}
-                else{
-                    filterQuery=null;
-                    notificatonCheckBoxPolitics.setChecked(false);}
+                if (isChecked) {
+                    filterQuery = "politics";
+                    notificatonCheckBoxPolitics.setChecked(true);
+                } else {
+                    filterQuery = null;
+                    notificatonCheckBoxPolitics.setChecked(false);
+                }
             }
         });
         notificatonCheckBoxSports.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                filterQuery = "sports";
-                notificatonCheckBoxSports.setChecked(true);
+                if (isChecked) {
+                    filterQuery = "sports";
+                    notificatonCheckBoxSports.setChecked(true);
+                } else {
+                    filterQuery = null;
+                    notificatonCheckBoxSports.setChecked(false);
+                }
             }
         });
         notificatonCheckBoxTravel.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                filterQuery = "travel";
-                notificatonCheckBoxTravel.setChecked(true);
+                if (isChecked) {
+                    filterQuery = "travel";
+                    notificatonCheckBoxTravel.setChecked(true);
+                } else {
+                    filterQuery = null;
+                    notificatonCheckBoxTravel.setChecked(false);
+                }
             }
         });
 
@@ -255,9 +265,8 @@ public class NotificationActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    //notificationQuery.setSingleLine(true);
                     query = notificationQuery.getText().toString();
-                    Log.e("query", query);
+                    Log.e("query ", query);
 
                     return true;
                 } else {
@@ -280,26 +289,17 @@ public class NotificationActivity extends AppCompatActivity {
         }
     }
 
-    private void onButtonSearchArticleClicked() {
-        searchButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                query = notificationQuery.getText().toString();
-            }
-        });
-
-        }
-
+    // TODO: 01/04/2019 change this
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        filterQuery=null;
+        filterQuery = null;
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        query=null;
+        query = null;
     }
 }
 

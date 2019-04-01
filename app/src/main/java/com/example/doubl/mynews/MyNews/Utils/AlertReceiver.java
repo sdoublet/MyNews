@@ -98,7 +98,7 @@ public class AlertReceiver extends BroadcastReceiver {
         //set notification content
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, CHANNEL_ID);
         notificationBuilder.setContentTitle("MyNews")
-                .setContentText("you have" + articleFound + " new article could interest you")
+                .setContentText("you have " + articleFound + " new article could interest you")
                 .setSmallIcon(R.drawable.ic_stat_name)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setContentIntent(pendingIntent)

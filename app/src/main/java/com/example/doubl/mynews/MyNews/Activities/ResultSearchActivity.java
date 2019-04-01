@@ -2,14 +2,12 @@ package com.example.doubl.mynews.MyNews.Activities;
 
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -24,7 +22,6 @@ import com.example.doubl.mynews.R;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.reactivex.disposables.Disposable;
@@ -33,17 +30,14 @@ import io.reactivex.observers.DisposableObserver;
 public class ResultSearchActivity extends AppCompatActivity {
 
     public static final String BUNDLE_URL = "BUNDLE_URL";
-    public static String beginDate = null;
-    public static String endDate = null;
-    public static String queryInputText = null;
-    public static String filter = null;
+
     @BindView(R.id.recycler_view_search)
     RecyclerView recyclerView;
 
 
     Disposable disposable;
     //List<ResultSearchApi> resultSearchApiList;
-    private List <ResultSearchApi>mResult;
+    private List<ResultSearchApi> mResult;
     private SearchArticleAdapter adapter;
 
 
@@ -57,10 +51,8 @@ public class ResultSearchActivity extends AppCompatActivity {
         this.executeHttpRequestWithRetrofit();
         this.configureRecyclerView();
         this.configureOnClickRecyclerView();
-//getIntent recupere les valeur de searchtool avec get extra
+
     }
-
-
 
 
     public void configureRecyclerView() {
@@ -99,9 +91,14 @@ public class ResultSearchActivity extends AppCompatActivity {
 
     private void executeHttpRequestWithRetrofit() {
 
+        Intent intent = getIntent();
+        final String beginDate = intent.getStringExtra("beginDate");
+        final String endDate = intent.getStringExtra("endDate");
+        final String query = intent.getStringExtra("query");
+        final String filterQuery = intent.getStringExtra("filterQuery");
 
 
-        this.disposable = NewYorkTimesStream.streamFetchSearchArticle(beginDate, endDate, 30,filter, queryInputText, "newest", ApiKey.API_KEY).subscribeWith(new DisposableObserver<SearchApi>() {
+        this.disposable = NewYorkTimesStream.streamFetchSearchArticle(beginDate, endDate, 30, filterQuery, query, "newest", ApiKey.API_KEY).subscribeWith(new DisposableObserver<SearchApi>() {
             @Override
             public void onNext(SearchApi searchApi) {
                 updateUI(searchApi.getResponse().getDocs());
@@ -117,8 +114,8 @@ public class ResultSearchActivity extends AppCompatActivity {
                 Log.e("TAG", "SearchApi size: " + Integer.toString(size));
                 Log.e("TAG", "beginDate: " + beginDate);
                 Log.e("TAG", "endDate: " + endDate);
-                Log.e("TAG", "queryInput: " + queryInputText);
-                Log.e("TAG", "filter "+ filter);
+                Log.e("TAG", "queryInput: " + query);
+                Log.e("TAG", "filter " + filterQuery);
 
 
             }
