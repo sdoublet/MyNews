@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -63,12 +64,10 @@ public class NotificationActivity extends AppCompatActivity {
     TextView sinceTextView;
     @BindView(R.id.to_textView)
     TextView toTextView;
-    //    public static final String SHARE_PREFERENCES_QUERY_NOTIFICATION = "SHARE_PREFERENCES_QUERY_NOTIFICATION";
     public static String query;
     public static String filterQuery;
 
-
-    private DisposableObserver<SearchApi> disposable;
+// Sharepref pour alertReceiver
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,11 +124,13 @@ public class NotificationActivity extends AppCompatActivity {
                     requiredFields();
                     setCalendarTime();
 
+
                     if (query != null && filterQuery != null)
                         Toast.makeText(getApplicationContext(), "You will receive one notification by day with " + query + " as filter", Toast.LENGTH_LONG).show();
                 } else {
                     Toast.makeText(getApplicationContext(), "Notification disable", Toast.LENGTH_SHORT).show();
                     cancelAlarm();
+
                     Log.e("alarm", "alarm cancelled");
                 }
             }
@@ -144,8 +145,8 @@ public class NotificationActivity extends AppCompatActivity {
 
     public void setCalendarTime() {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 9);
-        calendar.set(Calendar.MINUTE, 35);
+        calendar.set(Calendar.HOUR_OF_DAY, 17);
+        calendar.set(Calendar.MINUTE, 15);
         calendar.set(Calendar.SECOND, 30);
 
         if (calendar.getTimeInMillis() < System.currentTimeMillis()) {
@@ -159,13 +160,14 @@ public class NotificationActivity extends AppCompatActivity {
 
     private void startAlarm(Calendar calendar) {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(getApplicationContext(), AlertReceiver.class);
+        Intent intent = new Intent(this, AlertReceiver.class);
+        intent.putExtra("query", query);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
         Log.e("alarm", "start alarm");
         Log.e("filter", "fq: " + filterQuery);
-        Log.e("query", "query" + query);
+        Log.e("query", "query " + query);
     }
 
     private void cancelAlarm() {
@@ -265,8 +267,14 @@ public class NotificationActivity extends AppCompatActivity {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
+
+                    // save query text
                     query = notificationQuery.getText().toString();
                     Log.e("query ", query);
+
+                    // to hide keyboard when press enter
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
 
                     return true;
                 } else {
@@ -294,12 +302,8 @@ public class NotificationActivity extends AppCompatActivity {
     protected void onPostResume() {
         super.onPostResume();
         filterQuery = null;
+        //query=null;
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        query = null;
-    }
 }
 

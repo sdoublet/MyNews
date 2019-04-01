@@ -28,16 +28,15 @@ public class AlertReceiver extends BroadcastReceiver {
     private static final int NOTIFICATION_ID = 1;
     private static final String CHANNEL_ID = "CHANNEL_ID";
     private DisposableObserver<SearchApi> disposable;
-    private static int articleFound;
-
-
+    private int articleFound;
+    Context context;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onReceive(Context context, Intent intent) {
         executeHttpRequestWithRetrofit();
-        sendNotification(context);
+        this.context = context;
 
         Log.e("notification", "notification send");
     }
@@ -63,6 +62,7 @@ public class AlertReceiver extends BroadcastReceiver {
 
                 articleFound = searchApi.getResponse().getDocs().size();
 
+
                 Log.e("TAG", searchApi.getStatus());
                 Log.e("TAG", searchApi.getResponse().toString());
                 Log.e("TAG", "SearchApi size: " + Integer.toString(articleFound));
@@ -71,6 +71,7 @@ public class AlertReceiver extends BroadcastReceiver {
                 Log.e("TAG", "queryInput: " + NotificationActivity.query);
                 Log.e("TAG", "filter " + NotificationActivity.filterQuery);
 
+                sendNotification(context);
 
             }
 

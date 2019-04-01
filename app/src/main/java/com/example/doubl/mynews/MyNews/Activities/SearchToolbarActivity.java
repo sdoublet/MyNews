@@ -16,7 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.doubl.mynews.MyNews.Utils.HideKeyboard;
+
 import com.example.doubl.mynews.R;
 
 import java.util.Calendar;
@@ -91,7 +91,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
                 intent.putExtra("query", query);
                 intent.putExtra("filterQuery", filterQuery);
                 startActivity(intent);
-                Log.e("putExtra", beginDate);
+
 
             }
         });
@@ -219,52 +219,9 @@ public class SearchToolbarActivity extends AppCompatActivity {
 
     }
 
-    public void setKeyboard(View view) {
-        if (!(view instanceof EditText)) {
-            view.setOnTouchListener(new View.OnTouchListener() {
-                @Override
-                public boolean onTouch(View v, MotionEvent event) {
-                    HideKeyboard.hideSoftKeyboard(getParent());
-                    return false;
-                }
-            });
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        queryText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    HideKeyboard.hideSoftKeyboard(getParent());
-                }
-            }
-        });
-
-        return super.onTouchEvent(event);
-    }
-
-    private void nullifyEndDate() {
-        endDate = null;
-    }
-
-    private void nullifyBeginDate() {
-        beginDate = null;
-    }
-
-    private void nullifyFilter() {
-        filterQuery = null;
-    }
 
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        nullifyBeginDate();
-        nullifyEndDate();
-        nullifyFilter();
-    }
+
 }
 
 
