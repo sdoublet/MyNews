@@ -11,6 +11,7 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +44,8 @@ public class SearchToolbarActivity extends AppCompatActivity {
     CheckBox checkBoxBusiness;
     @BindView(R.id.checkbox_travel)
     CheckBox checkBoxTravel;
+    @BindView(R.id.switch_layout)
+    LinearLayout switchLayout;
     Calendar calendar;
     private DatePickerDialog datePickerDialog;
 
@@ -51,6 +54,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_toolbar);
         ButterKnife.bind(this);
+        switchLayout.setVisibility(View.INVISIBLE);
         this.configureToolbar();
         this.onButtonSearchArticleClicked();
         this.onBeginDateClicked();
