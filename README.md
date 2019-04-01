@@ -1,2 +1,2 @@
 # MyNews
-App with neyYorkTimes API
+App with newYorkTimes API
