@@ -9,6 +9,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -23,15 +24,14 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.doubl.mynews.MyNews.Models.SearchApi;
 import com.example.doubl.mynews.MyNews.Utils.AlertReceiver;
 import com.example.doubl.mynews.R;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.reactivex.observers.DisposableObserver;
 
 
 public class NotificationActivity extends AppCompatActivity {
@@ -66,9 +66,22 @@ public class NotificationActivity extends AppCompatActivity {
     TextView toTextView;
     public static String query;
     public static String filterQuery;
+    public ArrayList<String> filterListChecked = new ArrayList<>();
 
+    // TODO: 02/04/2019 resolve this
+    public static String resultFilterQuery;
+
+    public static String getResultFilterQuery() {
+        return resultFilterQuery;
+    }
+
+    public static void setResultFilterQuery(String resultFilterQuery) {
+        NotificationActivity.resultFilterQuery = resultFilterQuery;
+    }
 // Sharepref pour alertReceiver
 
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -145,8 +158,8 @@ public class NotificationActivity extends AppCompatActivity {
 
     public void setCalendarTime() {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 17);
-        calendar.set(Calendar.MINUTE, 15);
+        calendar.set(Calendar.HOUR_OF_DAY, 18);
+        calendar.set(Calendar.MINUTE, 5);
         calendar.set(Calendar.SECOND, 30);
 
         if (calendar.getTimeInMillis() < System.currentTimeMillis()) {
@@ -163,10 +176,14 @@ public class NotificationActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AlertReceiver.class);
         intent.putExtra("query", query);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
         Log.e("alarm", "start alarm");
-        Log.e("filter", "fq: " + filterQuery);
+        // TODO: 02/04/2019 resolve this
+       // resultFilterQuery = TextUtils.join(" ", filterListChecked);
+setResultFilterQuery(TextUtils.join(" ", filterListChecked));
+        Log.e("filter", "fq: " + getResultFilterQuery());
+
+
         Log.e("query", "query " + query);
     }
 
@@ -183,15 +200,19 @@ public class NotificationActivity extends AppCompatActivity {
     //    CHECKBOX AND REQUIRED FIELDS
     //-------------------------------------
 
+
     public void configureCheckBox() {
+
 
         notificatonCheckBoxArts.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     filterQuery = "arts";
+                    filterListChecked.add(filterQuery);
                     notificatonCheckBoxArts.setChecked(true);
                 } else {
+                    filterListChecked.remove(filterQuery);
                     notificationQuery = null;
                     notificatonCheckBoxArts.setChecked(false);
                 }
@@ -202,8 +223,10 @@ public class NotificationActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     filterQuery = "business";
+                    filterListChecked.add(filterQuery);
                     notificatonCheckBoxBusinesss.setChecked(true);
                 } else {
+                    filterListChecked.remove(filterQuery);
                     notificationQuery = null;
                     notificatonCheckBoxBusinesss.setChecked(false);
                 }
@@ -214,8 +237,10 @@ public class NotificationActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     filterQuery = "entrepreneurs";
+                    filterListChecked.add(filterQuery);
                     notificatonCheckEntrepreneurss.setChecked(true);
                 } else {
+                    filterListChecked.remove(filterQuery);
                     notificationQuery = null;
                     notificatonCheckEntrepreneurss.setChecked(false);
                 }
@@ -226,8 +251,10 @@ public class NotificationActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     filterQuery = "politics";
+                    filterListChecked.add(filterQuery);
                     notificatonCheckBoxPolitics.setChecked(true);
                 } else {
+                    filterListChecked.remove(filterQuery);
                     filterQuery = null;
                     notificatonCheckBoxPolitics.setChecked(false);
                 }
@@ -238,8 +265,10 @@ public class NotificationActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     filterQuery = "sports";
+                    filterListChecked.add(filterQuery);
                     notificatonCheckBoxSports.setChecked(true);
                 } else {
+                    filterListChecked.remove(filterQuery);
                     filterQuery = null;
                     notificatonCheckBoxSports.setChecked(false);
                 }
@@ -250,8 +279,10 @@ public class NotificationActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     filterQuery = "travel";
+                    filterListChecked.add(filterQuery);
                     notificatonCheckBoxTravel.setChecked(true);
                 } else {
+                    filterListChecked.remove(filterQuery);
                     filterQuery = null;
                     notificatonCheckBoxTravel.setChecked(false);
                 }
@@ -304,6 +335,7 @@ public class NotificationActivity extends AppCompatActivity {
         filterQuery = null;
         //query=null;
     }
+
 
 }
 

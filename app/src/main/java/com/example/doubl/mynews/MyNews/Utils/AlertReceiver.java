@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.icu.text.SimpleDateFormat;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -56,7 +57,7 @@ public class AlertReceiver extends BroadcastReceiver {
         final String mBeginDate = sdf.format(calBeginDate.getTime());
 
 
-        this.disposable = NewYorkTimesStream.streamFetchSearchArticle(mBeginDate, mEndDate, 30, NotificationActivity.filterQuery, NotificationActivity.query, "newest", ApiKey.API_KEY).subscribeWith(new DisposableObserver<SearchApi>() {
+        this.disposable = NewYorkTimesStream.streamFetchSearchArticle(mBeginDate, mEndDate, 30, NotificationActivity.getResultFilterQuery(), NotificationActivity.query, "newest", ApiKey.API_KEY).subscribeWith(new DisposableObserver<SearchApi>() {
             @Override
             public void onNext(SearchApi searchApi) {
 
@@ -92,6 +93,7 @@ public class AlertReceiver extends BroadcastReceiver {
     //  CONFIGURE NOTIFICATION
     //--------------------------------
     public void sendNotification(Context context) {
+
 
         //set notification's tap action
         Intent contentIntent = new Intent(context, MainActivity.class);
