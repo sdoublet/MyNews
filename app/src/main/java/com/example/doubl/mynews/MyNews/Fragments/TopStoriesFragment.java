@@ -18,6 +18,7 @@ import com.example.doubl.mynews.MyNews.Models.ResultTopStories;
 import com.example.doubl.mynews.MyNews.Models.TopStories;
 import com.example.doubl.mynews.MyNews.Utils.ItemClickSupport;
 import com.example.doubl.mynews.MyNews.Utils.NewYorkTimesStream;
+import com.example.doubl.mynews.MyNews.Views.RecyclerViews.Divider;
 import com.example.doubl.mynews.MyNews.Views.RecyclerViews.TopStoriesAdapter;
 import com.example.doubl.mynews.R;
 
@@ -70,6 +71,7 @@ public class TopStoriesFragment extends Fragment {
     public void configureRecyclerView() {
         resultTopStoriesList = new ArrayList<>();
         adapter = new TopStoriesAdapter(resultTopStoriesList, getContext(), Glide.with(this));
+        recyclerView.addItemDecoration(new Divider(getContext(), LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(this.adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }

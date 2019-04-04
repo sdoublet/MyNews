@@ -16,6 +16,7 @@ import com.example.doubl.mynews.MyNews.Models.SearchApi;
 import com.example.doubl.mynews.MyNews.Utils.ApiKey;
 import com.example.doubl.mynews.MyNews.Utils.ItemClickSupport;
 import com.example.doubl.mynews.MyNews.Utils.NewYorkTimesStream;
+import com.example.doubl.mynews.MyNews.Views.RecyclerViews.Divider;
 import com.example.doubl.mynews.MyNews.Views.RecyclerViews.SearchArticleAdapter;
 import com.example.doubl.mynews.R;
 
@@ -58,8 +59,10 @@ public class ResultSearchActivity extends AppCompatActivity {
     public void configureRecyclerView() {
         mResult = new ArrayList<>();
         adapter = new SearchArticleAdapter(mResult, this, Glide.with(this));
+        recyclerView.addItemDecoration(new Divider(this, LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(this.adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
 
     }
 

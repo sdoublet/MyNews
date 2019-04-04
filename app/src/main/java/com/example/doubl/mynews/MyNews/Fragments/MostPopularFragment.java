@@ -19,6 +19,7 @@ import com.example.doubl.mynews.MyNews.Models.MostPopular;
 import com.example.doubl.mynews.MyNews.Models.ResultMostPopular;
 import com.example.doubl.mynews.MyNews.Utils.ItemClickSupport;
 import com.example.doubl.mynews.MyNews.Utils.NewYorkTimesStream;
+import com.example.doubl.mynews.MyNews.Views.RecyclerViews.Divider;
 import com.example.doubl.mynews.MyNews.Views.RecyclerViews.MostPopularAdapter;
 import com.example.doubl.mynews.R;
 
@@ -72,6 +73,8 @@ public static final String BUNDLE_URL= "BUNDLE_URL";
     public void configureRecyclerView() {
         resultMostPopularList = new ArrayList<>();
         adapter = new MostPopularAdapter(resultMostPopularList, getContext(), Glide.with(this) );
+        recyclerView.addItemDecoration(new Divider(getContext(), LinearLayoutManager.VERTICAL));
+
         recyclerView.setAdapter(this.adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
