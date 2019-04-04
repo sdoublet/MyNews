@@ -60,7 +60,7 @@ public class RecyclerviewHolder extends RecyclerView.ViewHolder  {
     private void setImageMostPopular(ResultMostPopular article, RequestManager glide) {
         if (article.getMedia() != null) {
             String urlImage = article.getMedia().get(0).getMediaMetadata().get(0).getUrl();
-            glide.load(urlImage).apply(new RequestOptions().fallback(R.drawable.capitaine_flam)).into(imageView);
+            glide.load(urlImage).apply(new RequestOptions().fallback(R.drawable.logo)).into(imageView);
         } else
             imageView.setImageResource(R.drawable.logo);
     }
