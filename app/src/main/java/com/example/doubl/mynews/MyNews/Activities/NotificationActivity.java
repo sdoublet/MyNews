@@ -171,7 +171,7 @@ public class NotificationActivity extends AppCompatActivity {
         Log.e("alarm", "alarm set" + calendar.getTimeInMillis());
     }
 
-    private void startAlarm(Calendar calendar) {
+    public void startAlarm(Calendar calendar) {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlertReceiver.class);
         intent.putExtra("query", query);
@@ -187,7 +187,7 @@ setResultFilterQuery(TextUtils.join(" ", filterListChecked));
         Log.e("query", "query " + query);
     }
 
-    private void cancelAlarm() {
+    public void cancelAlarm() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(getApplicationContext(), AlertReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, 0);
@@ -292,7 +292,7 @@ setResultFilterQuery(TextUtils.join(" ", filterListChecked));
     }
 
 
-    private void saveNotificationQuery() {
+    public void saveNotificationQuery() {
 
         notificationQuery.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -318,7 +318,7 @@ setResultFilterQuery(TextUtils.join(" ", filterListChecked));
     }
 
     // Show a toast if query or filterQuery are null and disable switch
-    private void requiredFields() {
+    public void requiredFields() {
         if (query == null) {
             mySwitch.setChecked(false);
             Toast.makeText(this, "you must enter query term", Toast.LENGTH_SHORT).show();

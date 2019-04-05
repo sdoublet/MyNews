@@ -91,7 +91,7 @@ public class TopStoriesCategoriesActivity extends AppCompatActivity {
         //HTTP REQUEST WITH RETROFIT
         //----------------------------
 
-        private void executeHttpRequestWithRetrofit() {
+        public void executeHttpRequestWithRetrofit() {
             this.disposable = NewYorkTimesStream.streamFetchTopStories(MainActivity.categories).subscribeWith(new DisposableObserver<TopStories>() {
                 @Override
                 public void onNext(TopStories topStories) {

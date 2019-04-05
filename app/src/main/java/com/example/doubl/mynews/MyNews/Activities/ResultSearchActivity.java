@@ -92,7 +92,7 @@ public class ResultSearchActivity extends AppCompatActivity {
     //HTTP REQUEST WITH RETROFIT
     //----------------------------
 
-    private void executeHttpRequestWithRetrofit() {
+    public void executeHttpRequestWithRetrofit() {
 
         Intent intent = getIntent();
         final String beginDate = intent.getStringExtra("beginDate");

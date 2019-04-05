@@ -80,7 +80,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
     }
 
 
-    private void onButtonSearchArticleClicked() {
+    public void onButtonSearchArticleClicked() {
         searchArticleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -104,7 +104,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
     //----------------------------
     // Open calendar and set text
     //-----------------------------
-    private void onBeginDateClicked() {
+    public void onBeginDateClicked() {
         beginDatetext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -113,7 +113,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
         });
     }
 
-    private void onEndDateClicked() {
+    public void onEndDateClicked() {
         endDateText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,7 +124,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
         });
     }
 
-    private void configureDatePickerBeginDate() {
+    public void configureDatePickerBeginDate() {
         calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_WEEK);
         int month = calendar.get(Calendar.MONTH);
@@ -139,7 +139,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
 
 // set beginDate for httpRequest
                 //ResultSearchActivity.beginDate = year + "" + (month < 10 ? ("0" + (month + 1)) : (month + 1)) + "" + (dayOfMonth < 10 ? ("0" + dayOfMonth) : (dayOfMonth));
-                beginDate = year + "" + (month < 10 ? ("0" + (month + 1)) : (month + 1)) + "" + (dayOfMonth < 10 ? ("0" + dayOfMonth) : (dayOfMonth));
+                beginDate = year + "" + (month < 10 ? ("0" + (month + 1)) : (month )) + "" + (dayOfMonth < 10 ? ("0" + dayOfMonth) : (dayOfMonth));
 
             }
         }, year, month, day);
@@ -158,7 +158,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 String date = dayOfMonth + "/" + (month + 1) + "/" + year;
                 endDateText.setText(date);
-                endDate = year + "" + (month < 10 ? ("0" + (month + 1)) : (month + 1)) + "" + (dayOfMonth < 10 ? ("0" + dayOfMonth) : (dayOfMonth));
+                endDate = year + "" + (month < 10 ? ("0" + (month + 1)) : (month )) + "" + (dayOfMonth < 10 ? ("0" + dayOfMonth) : (dayOfMonth));
 
             }
         }, year, month, day);

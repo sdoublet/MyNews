@@ -101,7 +101,7 @@ public class TopStoriesFragment extends Fragment {
     //HTTP REQUEST WITH RETROFIT
     //----------------------------
 
-    private void executeHttpRequestWithRetrofit() {
+    public void executeHttpRequestWithRetrofit() {
         this.disposable = NewYorkTimesStream.streamFetchTopStories("home").subscribeWith(new DisposableObserver<TopStories>() {
             @Override
             public void onNext(TopStories topStories) {

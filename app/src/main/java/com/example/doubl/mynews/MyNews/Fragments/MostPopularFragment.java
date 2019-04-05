@@ -116,7 +116,7 @@ public static final String BUNDLE_URL= "BUNDLE_URL";
     //HTTP REQUEST WITH RETROFIT
     //----------------------------
 
-    private void executeHttpRequestWithRetrofit() {
+    public void executeHttpRequestWithRetrofit() {
         this.disposable = NewYorkTimesStream.streamFetchMostPopular(1).subscribeWith(new DisposableObserver<MostPopular>() {
             @Override
             public void onNext(MostPopular mostPopular) {

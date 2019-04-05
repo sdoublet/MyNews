@@ -31,7 +31,7 @@ public class WebViewActivity extends AppCompatActivity {
 
     }
 
-    private void configureToolbar() {
+    public void configureToolbar() {
         ResultMostPopular resultMostPopular = new ResultMostPopular();
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -39,13 +39,13 @@ public class WebViewActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
-    private void configureWebViewMostPopular() {
+    public void configureWebViewMostPopular() {
         String url = getIntent().getStringExtra(MostPopularFragment.BUNDLE_URL);
         webView.loadUrl(url);
         webView.setWebViewClient(new WebViewClient());
     }
 
-    private void configureWebViewTopStories() {
+    public void configureWebViewTopStories() {
         String url = getIntent().getStringExtra(TopStoriesFragment.BUNDLE_URL);
         webView.loadUrl(url);
         webView.setWebViewClient(new WebViewClient());
