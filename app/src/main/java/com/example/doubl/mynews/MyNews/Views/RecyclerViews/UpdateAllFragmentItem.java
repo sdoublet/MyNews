@@ -32,11 +32,6 @@ public class UpdateAllFragmentItem {
         return string;
     }
 
-    public String setSectionOpinion(ResultTopStories articleTopStories) {
-        string = articleTopStories.getSection();
-
-        return string;
-    }
 
     public String setSection(ResultSearchApi articleSearchApi) {
         string = articleSearchApi.getSectionName();
@@ -63,16 +58,7 @@ public class UpdateAllFragmentItem {
         return string;
     }
 
-    public String setNewsDesk(ResultSearchApi resultSearchApi){
-        string = resultSearchApi.getNewsDesk();
-        return string;
-    }
 
-
-    public String setPublisheddate(ResultSearchApi articleSearchApi) {
-        string = articleSearchApi.getPubDate();
-        return string;
-    }
 
     public String setParseDate(ResultMostPopular resultMostPopular) {
         String string = "";
