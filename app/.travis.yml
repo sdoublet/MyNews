@@ -41,7 +41,7 @@ android:
   - sys-img-armeabi-v7a-$EMULATOR_ANDROID_VERSION
 
 
-# Emulator Management: Create, Start and Wait
+# Emulator Management: Create, Start and Wait dd
 before_script:
 - echo no | android create avd --force -n test -t $EMULATOR_ANDROID_VERSION --abi armeabi-v7a
 - emulator -avd test -no-skin -no-audio -no-window -gpu off -no-boot-anim &
