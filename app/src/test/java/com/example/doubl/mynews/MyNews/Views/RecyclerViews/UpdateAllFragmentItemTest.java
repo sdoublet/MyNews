@@ -33,8 +33,8 @@ public class UpdateAllFragmentItemTest {
        // when(resultSearchApi.getHeadline().getMain()).thenReturn(bodyText);
         when(resultSearchApi.getPubDate()).thenReturn(date);
     }
-    private void mockResultTopStoies(){
-       // when(resultTopStories.getSection()).thenReturn(section);
+    private void mockResultTopStories(){
+         when(resultTopStories.getSection()).thenReturn(section);
         when(resultTopStories.getTitle()).thenReturn(bodyText);
         when(resultTopStories.getPublishedDate()).thenReturn(date);
     }
@@ -76,18 +76,19 @@ public class UpdateAllFragmentItemTest {
     }
 
 
-//    @Test
-//    public void setSectionTopStories() {
-//        expected = "my section";
-//        UpdateAllFragmentItem updateAllFragmentItem = new UpdateAllFragmentItem();
-//        this.mockResultTopStoies();
-//        if (resultTopStories.getSubsection().equals("")){
-//            String myString = ">"+resultTopStories.getSubsection();
-//            output = resultTopStories.getSection()+myString;
-//        }else
-//        output = updateAllFragmentItem.setSection(resultTopStories);
-//        assertEquals(expected, output);
-//    }
+//   @Test
+//   public void setSectionTopStories() {
+//       expected = "my section";
+//       UpdateAllFragmentItem updateAllFragmentItem = new UpdateAllFragmentItem();
+//       this.mockResultTopStories();
+//     if (!resultTopStories.getSubsection().equals("")){
+//         String myString = ">"+resultTopStories.getSubsection();
+//         output = resultTopStories.getSection()+myString;
+//     }else
+//      // output = updateAllFragmentItem.setSection(resultTopStories);
+//       output = updateAllFragmentItem.setSection(resultTopStories);
+//       assertEquals(expected, output);
+//   }
 
 //    @Test
 //    public void setBodyTextSearchApi() {
@@ -102,7 +103,7 @@ public class UpdateAllFragmentItemTest {
     public void setBodyTextTopStories() {
         expected = "my body text";
         UpdateAllFragmentItem updateAllFragmentItem = new UpdateAllFragmentItem();
-        this.mockResultTopStoies();
+        this.mockResultTopStories();
         output = updateAllFragmentItem.setBodyText(resultTopStories);
         assertEquals(expected, output);
     }
@@ -111,7 +112,7 @@ public class UpdateAllFragmentItemTest {
     @Test
     public void setParseDateTopStories() {
         expected = "25-12-2019";
-        this.mockResultTopStoies();
+        this.mockResultTopStories();
         UpdateAllFragmentItem updateAllFragmentItem = new UpdateAllFragmentItem();
         output = updateAllFragmentItem.setParseDateTopStories(resultTopStories);
         assertEquals(expected, output);
