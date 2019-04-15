@@ -18,7 +18,8 @@
 
         <activity
             android:name=".MyNews.Activities.MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -28,7 +29,8 @@
         <activity
             android:name=".MyNews.Activities.SearchToolbarActivity"
             android:label="Search"
-            android:parentActivityName=".MyNews.Activities.MainActivity">
+            android:parentActivityName=".MyNews.Activities.MainActivity"
+            tools:ignore="InnerclassSeparator">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MyNews.Activities.MainActivity" />
@@ -36,7 +38,8 @@
         <activity
             android:name=".MyNews.Activities.NotificationActivity"
             android:label="Notification"
-            android:parentActivityName=".MyNews.Activities.MainActivity">
+            android:parentActivityName=".MyNews.Activities.MainActivity"
+            tools:ignore="InnerclassSeparator">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MyNews.Activities.MainActivity" />
@@ -44,24 +47,29 @@
         <activity
             android:name=".MyNews.Activities.AboutActivity"
             android:label="About"
-            android:parentActivityName=".MyNews.Activities.MainActivity">
+            android:parentActivityName=".MyNews.Activities.MainActivity"
+            tools:ignore="InnerclassSeparator">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MyNews.Activities.MainActivity" />
         </activity>
         <activity
             android:name=".MyNews.Activities.WebViewActivity"
-            android:parentActivityName=".MyNews.Activities.WebViewActivity" />
+            android:parentActivityName=".MyNews.Activities.WebViewActivity"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name=".MyNews.Activities.TopStoriesCategoriesActivity"
-            android:parentActivityName=".MyNews.Activities.MainActivity" />
+            android:parentActivityName=".MyNews.Activities.MainActivity"
+            tools:ignore="InnerclassSeparator" />
         <activity
             android:name=".MyNews.Activities.ResultSearchActivity"
-            android:parentActivityName=".MyNews.Activities.SearchToolbarActivity" />
+            android:parentActivityName=".MyNews.Activities.SearchToolbarActivity"
+            tools:ignore="InnerclassSeparator" />
 
 
         <receiver android:name=".MyNews.Utils.AlertReceiver"
-            android:enabled="true"/>
+            android:enabled="true"
+            tools:ignore="InnerclassSeparator" />
 
 
     </application>

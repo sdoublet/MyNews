@@ -19,6 +19,7 @@ import com.example.doubl.mynews.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,7 +38,7 @@ public class TopStoriesCategoriesActivity extends AppCompatActivity {
         RecyclerView recyclerView;
 
 
-        public String sectionOtherFragment = "technology";
+
         //-------------------
         //FOR DATA
         //-------------------
@@ -113,10 +114,10 @@ public class TopStoriesCategoriesActivity extends AppCompatActivity {
         //------------------
         // UPDATE UI
         //------------------
-        public void updateUI(List<ResultTopStories> articleTopStrories) {
+        public void updateUI(List<ResultTopStories> articleTopStories) {
 
             resultTopStoriesList.clear();
-            resultTopStoriesList.addAll(articleTopStrories);
+            resultTopStoriesList.addAll(articleTopStories);
             adapter.notifyDataSetChanged();
         }
 
@@ -127,7 +128,7 @@ public class TopStoriesCategoriesActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
             String capitalizedCategories = MainActivity.categories;
             capitalizedCategories = capitalizedCategories.substring(0,1).toUpperCase()+capitalizedCategories.substring(1).toLowerCase();
-            getSupportActionBar().setTitle(capitalizedCategories);
+            Objects.requireNonNull(getSupportActionBar()).setTitle(capitalizedCategories);
             android.support.v7.app.ActionBar actionBar = getSupportActionBar();
             actionBar.setDisplayHomeAsUpEnabled(true);
 

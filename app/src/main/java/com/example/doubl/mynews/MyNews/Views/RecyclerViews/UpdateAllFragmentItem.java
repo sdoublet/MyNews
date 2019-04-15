@@ -1,5 +1,7 @@
 package com.example.doubl.mynews.MyNews.Views.RecyclerViews;
 
+import android.annotation.SuppressLint;
+
 import com.example.doubl.mynews.MyNews.Models.ResultMostPopular;
 import com.example.doubl.mynews.MyNews.Models.ResultSearchApi;
 import com.example.doubl.mynews.MyNews.Models.ResultTopStories;
@@ -9,21 +11,21 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class UpdateAllFragmentItem {
+class UpdateAllFragmentItem {
 
     private String string;
 
-    public UpdateAllFragmentItem() {
+    UpdateAllFragmentItem() {
     }
 
 
-    public String setSection(ResultMostPopular article) {
+    String setSection(ResultMostPopular article) {
         string = article.getSection();
 
         return string;
     }
 
-    public String setSection(ResultTopStories articleTopStories) {
+    String setSection(ResultTopStories articleTopStories) {
 
         if (!articleTopStories.getSubsection().equals("")) {
             String myString = " > " + articleTopStories.getSubsection();
@@ -33,13 +35,13 @@ public class UpdateAllFragmentItem {
     }
 
 
-    public String setSection(ResultSearchApi articleSearchApi) {
+    String setSection(ResultSearchApi articleSearchApi) {
         string = articleSearchApi.getSectionName();
 
         return string;
     }
 
-    public String setBodyText(ResultMostPopular article) {
+    String setBodyText(ResultMostPopular article) {
 
         string = article.getTitle();
 
@@ -47,26 +49,26 @@ public class UpdateAllFragmentItem {
 
     }
 
-    public String setBodyText(ResultTopStories articleTopStories) {
+    String setBodyText(ResultTopStories articleTopStories) {
         string = articleTopStories.getTitle();
 
         return string;
     }
 
-    public String setBodyText(ResultSearchApi artilcleSearchApi) {
+    String setBodyText(ResultSearchApi artilcleSearchApi) {
         string = artilcleSearchApi.getHeadline().getMain();
         return string;
     }
 
 
 
-    public String setParseDate(ResultMostPopular resultMostPopular) {
+     String setParseDate(ResultMostPopular resultMostPopular) {
         String string = "";
         try {
             String dateParse = resultMostPopular.getPublishedDate();
-            DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+            @SuppressLint("SimpleDateFormat") DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
             Date date1 = date.parse(dateParse);
-            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             dateParse = dateFormat.format(date1);
             string = dateParse;
         } catch (ParseException e) {
@@ -75,13 +77,13 @@ public class UpdateAllFragmentItem {
         return string;
     }
 
-    public String setParseDateTopStories(ResultTopStories resultMostTopStories) {
+    String setParseDateTopStories(ResultTopStories resultMostTopStories) {
         String string = "";
         try {
             String dateParse = resultMostTopStories.getPublishedDate();
-            DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+            @SuppressLint("SimpleDateFormat") DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
             Date date1 = date.parse(dateParse);
-            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             dateParse = dateFormat.format(date1);
             string = dateParse;
         } catch (ParseException e) {
@@ -90,13 +92,13 @@ public class UpdateAllFragmentItem {
         return string;
     }
 
-    public String setParseDateSearchArticle(ResultSearchApi resultSearchApi) {
+    String setParseDateSearchArticle(ResultSearchApi resultSearchApi) {
         String string = "";
         try {
             String dateParse = resultSearchApi.getPubDate();
-            DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+            @SuppressLint("SimpleDateFormat") DateFormat date = new SimpleDateFormat("yyyy-MM-dd");
             Date date1 = date.parse(dateParse);
-            DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
             dateParse = dateFormat.format(date1);
             string = dateParse;
         } catch (ParseException e) {

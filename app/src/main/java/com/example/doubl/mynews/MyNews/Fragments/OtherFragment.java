@@ -3,6 +3,7 @@ package com.example.doubl.mynews.MyNews.Fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -55,7 +56,7 @@ public String sectionOtherFragment = "opinion";
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view;
         view = inflater.inflate(R.layout.fragment_technology, container, false);
@@ -122,11 +123,11 @@ public String sectionOtherFragment = "opinion";
     //------------------
     // UPDATE UI
     //------------------
-    public void updateUI(List<ResultTopStories> articleTopStrories) {
+    public void updateUI(List<ResultTopStories> articleTopStories) {
        if (swipeRefreshLayout!=null){
         swipeRefreshLayout.setRefreshing(false);}
         resultTopStoriesList.clear();
-        resultTopStoriesList.addAll(articleTopStrories);
+        resultTopStoriesList.addAll(articleTopStories);
         adapter.notifyDataSetChanged();
     }
 

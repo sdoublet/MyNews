@@ -29,11 +29,11 @@ public class Divider extends RecyclerView.ItemDecoration {
     @Override
     public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         if (mOrientation == LinearLayoutManager.VERTICAL) {
-            drawHorizontalDivider(c, parent, state);
+            drawHorizontalDivider(c, parent);
         }
     }
 
-    private void drawHorizontalDivider(Canvas c, RecyclerView parent, RecyclerView.State state) {
+    private void drawHorizontalDivider(Canvas c, RecyclerView parent) {
         int left, right, top, bottom;
         left = convertDpToPx();
         right = parent.getWidth();

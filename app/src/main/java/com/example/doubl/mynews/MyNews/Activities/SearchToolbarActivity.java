@@ -4,8 +4,8 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -16,10 +16,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.example.doubl.mynews.R;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,7 +31,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
     @BindView(R.id.search_articles_button)
     Button searchArticleButton;
     @BindView(R.id.begin_date)
-    TextView beginDatetext;
+    TextView beginDateText;
     @BindView(R.id.end_date)
     EditText endDateText;
     @BindView(R.id.checkbox_arts)
@@ -53,6 +54,16 @@ public class SearchToolbarActivity extends AppCompatActivity {
     private String endDate;
     private String query;
     private String filterQuery;
+    private List<String> filterListChecked = new ArrayList<>();
+    private String resultFilterQuery;
+
+    public String getResultFilterQuery() {
+        return resultFilterQuery;
+    }
+
+    public void setResultFilterQuery(String resultFilterQuery) {
+        this.resultFilterQuery = resultFilterQuery;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,11 +96,12 @@ public class SearchToolbarActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 query = queryText.getText().toString();
+                setResultFilterQuery(TextUtils.join(" ", filterListChecked));
                 Intent intent = new Intent(getApplicationContext(), ResultSearchActivity.class);
                 intent.putExtra("beginDate", beginDate);
                 intent.putExtra("endDate", endDate);
                 intent.putExtra("query", query);
-                intent.putExtra("filterQuery", filterQuery);
+                intent.putExtra("resultFilterQuery", getResultFilterQuery());
                 startActivity(intent);
 
 
@@ -105,7 +117,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
     // Open calendar and set text
     //-----------------------------
     public void onBeginDateClicked() {
-        beginDatetext.setOnClickListener(new View.OnClickListener() {
+        beginDateText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 configureDatePickerBeginDate();
@@ -126,7 +138,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
 
     public void configureDatePickerBeginDate() {
         calendar = Calendar.getInstance();
-        int day = calendar.get(Calendar.DAY_OF_WEEK);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
         int month = calendar.get(Calendar.MONTH);
         int year = calendar.get(Calendar.YEAR);
 
@@ -134,11 +146,11 @@ public class SearchToolbarActivity extends AppCompatActivity {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                 String date = dayOfMonth + "/" + (month + 1) + "/" + year;
-                beginDatetext.setText(date);
+                beginDateText.setText(date);
 
 
 // set beginDate for httpRequest
-                //ResultSearchActivity.beginDate = year + "" + (month < 10 ? ("0" + (month + 1)) : (month + 1)) + "" + (dayOfMonth < 10 ? ("0" + dayOfMonth) : (dayOfMonth));
+
                 beginDate = year + "" + (month < 10 ? ("0" + (month + 1)) : (month )) + "" + (dayOfMonth < 10 ? ("0" + dayOfMonth) : (dayOfMonth));
 
             }
@@ -148,7 +160,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
 
     public void configureDatePickerEndDate() {
         calendar = Calendar.getInstance();
-        int day = calendar.get(Calendar.DAY_OF_WEEK);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
         int month = calendar.get(Calendar.MONTH);
         int year = calendar.get(Calendar.YEAR);
 
@@ -156,70 +168,106 @@ public class SearchToolbarActivity extends AppCompatActivity {
         datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                String date = dayOfMonth + "/" + (month + 1) + "/" + year;
+                String date = dayOfMonth + "/" + (month +1) + "/" + year;
                 endDateText.setText(date);
                 endDate = year + "" + (month < 10 ? ("0" + (month + 1)) : (month )) + "" + (dayOfMonth < 10 ? ("0" + dayOfMonth) : (dayOfMonth));
 
             }
         }, year, month, day);
         datePickerDialog.show();
+        Log.e("date", ""+year+month+day);
 
     }
 
     public void configureCheckBox() {
-
+        filterListChecked.clear();
         checkBoxArts.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                filterQuery = "arts";
-                searchArticleButton.setVisibility(View.VISIBLE);
-
+                if (isChecked) {
+                    filterQuery = "arts";
+                    filterListChecked.add(filterQuery);
+                    searchArticleButton.setVisibility(View.VISIBLE);
+                    checkBoxArts.setChecked(true);
+                } else {
+                    filterListChecked.remove(filterQuery);
+                    checkBoxArts.setChecked(false);
+                }
             }
         });
         checkBoxBusiness.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                filterQuery = "business";
-                searchArticleButton.setVisibility(View.VISIBLE);
-
+                if (isChecked) {
+                    filterQuery = "business";
+                    filterListChecked.add(filterQuery);
+                    searchArticleButton.setVisibility(View.VISIBLE);
+                    checkBoxBusiness.setChecked(true);
+                } else {
+                    filterListChecked.remove(filterQuery);
+                    checkBoxBusiness.setChecked(false);
+                }
             }
         });
         checkBoxEntrepreneurs.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                filterQuery = "entrepreneurs";
-                searchArticleButton.setVisibility(View.VISIBLE);
-
+                if (isChecked) {
+                    filterQuery = "entrepreneurs";
+                    filterListChecked.add(filterQuery);
+                    searchArticleButton.setVisibility(View.VISIBLE);
+                    checkBoxEntrepreneurs.setChecked(true);
+                } else {
+                    filterListChecked.remove(filterQuery);
+                    checkBoxEntrepreneurs.setChecked(false);
+                }
             }
         });
         checkBoxPolitics.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                filterQuery = "politics";
-                searchArticleButton.setVisibility(View.VISIBLE);
-
+                if (isChecked) {
+                    filterQuery = "politics";
+                    filterListChecked.add(filterQuery);
+                    searchArticleButton.setVisibility(View.VISIBLE);
+                    checkBoxPolitics.setChecked(true);
+                } else {
+                    filterListChecked.remove(filterQuery);
+                    checkBoxPolitics.setChecked(false);
+                }
             }
         });
         checkBoxSports.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-               filterQuery = "sports";
-                searchArticleButton.setVisibility(View.VISIBLE);
-
+                if (isChecked) {
+                    filterQuery = "sports";
+                    filterListChecked.add(filterQuery);
+                    searchArticleButton.setVisibility(View.VISIBLE);
+                    checkBoxSports.setChecked(true);
+                } else {
+                    filterListChecked.remove(filterQuery);
+                    checkBoxSports.setChecked(false);
+                }
             }
         });
         checkBoxTravel.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                filterQuery = "travel";
-                searchArticleButton.setVisibility(View.VISIBLE);
+                if (isChecked) {
+                    filterQuery = "travel";
+                    filterListChecked.add(filterQuery);
+                    searchArticleButton.setVisibility(View.VISIBLE);
+                    checkBoxTravel.setChecked(true);
+                } else {
+                    filterListChecked.remove(filterQuery);
+                    checkBoxTravel.setChecked(false);
+                }
 
             }
         });
 
     }
-
-
 
 
 }

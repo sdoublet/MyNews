@@ -7,7 +7,6 @@ import android.webkit.WebViewClient;
 
 import com.example.doubl.mynews.MyNews.Fragments.MostPopularFragment;
 import com.example.doubl.mynews.MyNews.Fragments.TopStoriesFragment;
-import com.example.doubl.mynews.MyNews.Models.ResultMostPopular;
 import com.example.doubl.mynews.R;
 
 import butterknife.BindView;
@@ -32,10 +31,10 @@ public class WebViewActivity extends AppCompatActivity {
     }
 
     public void configureToolbar() {
-        ResultMostPopular resultMostPopular = new ResultMostPopular();
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 

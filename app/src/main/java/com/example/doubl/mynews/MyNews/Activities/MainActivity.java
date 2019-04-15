@@ -2,7 +2,6 @@ package com.example.doubl.mynews.MyNews.Activities;
 
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -15,8 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
+
 
 import com.example.doubl.mynews.MyNews.Views.ViewPager.PageAdapter;
 import com.example.doubl.mynews.R;
@@ -30,7 +28,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static String categories;
     @BindView(R.id.nav_view)
     NavigationView navigationView;
-    private ViewPager viewPager;
     private Toolbar toolbar;
     private DrawerLayout drawerLayout;
 
@@ -81,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void configureViewPager() {
-        viewPager = findViewById(R.id.view_pager);
+        ViewPager viewPager = findViewById(R.id.view_pager);
         viewPager.setAdapter(new PageAdapter(getSupportFragmentManager()));
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.setupWithViewPager(viewPager);

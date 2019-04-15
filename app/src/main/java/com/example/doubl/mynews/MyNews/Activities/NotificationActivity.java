@@ -42,21 +42,21 @@ public class NotificationActivity extends AppCompatActivity {
     @BindView(R.id.query_text)
     EditText notificationQuery;
     @BindView(R.id.checkbox_arts)
-    CheckBox notificatonCheckBoxArts;
+    CheckBox notificationCheckBoxArts;
     @BindView(R.id.checkbox_business)
-    CheckBox notificatonCheckBoxBusinesss;
+    CheckBox notificationCheckBoxBusiness;
     @BindView(R.id.checkbox_entrepreneurs)
-    CheckBox notificatonCheckEntrepreneurss;
+    CheckBox notificationCheckEntrepreneurs;
     @BindView(R.id.checkbox_politics)
-    CheckBox notificatonCheckBoxPolitics;
+    CheckBox notificationCheckBoxPolitics;
     @BindView(R.id.checkbox_sports)
-    CheckBox notificatonCheckBoxSports;
+    CheckBox notificationCheckBoxSports;
     @BindView(R.id.checkbox_travel)
-    CheckBox notificatonCheckBoxTravel;
+    CheckBox notificationCheckBoxTravel;
     @BindView(R.id.search_articles_button)
     Button searchButton;
     @BindView(R.id.begin_date)
-    TextView beginDatetext;
+    TextView beginDateText;
     @BindView(R.id.end_date)
     EditText endDateText;
     @BindView(R.id.checkbox_sum)
@@ -80,7 +80,7 @@ public class NotificationActivity extends AppCompatActivity {
     public static void setResultFilterQuery(String resultFilterQuery) {
         NotificationActivity.resultFilterQuery = resultFilterQuery;
     }
-// Sharepref pour alertReceiver
+// SharePreferences pour alertReceiver
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -118,7 +118,7 @@ public class NotificationActivity extends AppCompatActivity {
         toTextView.setVisibility(View.GONE);
         sinceTextView.setVisibility(View.GONE);
         endDateText.setVisibility(View.GONE);
-        beginDatetext.setVisibility(View.GONE);
+        beginDateText.setVisibility(View.GONE);
         searchButton.setVisibility(View.GONE);
     }
 
@@ -128,8 +128,8 @@ public class NotificationActivity extends AppCompatActivity {
     private void setSwitchNotification() {
 
         final SharedPreferences sharedPreferences = getSharedPreferences("isChecked", 0);
-        boolean value = false;
-        value = sharedPreferences.getBoolean("isChecked", value);
+        boolean value ;
+        value = sharedPreferences.getBoolean("isChecked", false);
         mySwitch.setChecked(value);
         mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -207,87 +207,87 @@ public class NotificationActivity extends AppCompatActivity {
     public void configureCheckBox() {
 
         filterListChecked.clear();
-        notificatonCheckBoxArts.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        notificationCheckBoxArts.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     filterQuery = "arts";
                     filterListChecked.add(filterQuery);
-                    notificatonCheckBoxArts.setChecked(true);
+                    notificationCheckBoxArts.setChecked(true);
                 } else {
                     filterListChecked.remove(filterQuery);
                     notificationQuery = null;
-                    notificatonCheckBoxArts.setChecked(false);
+                    notificationCheckBoxArts.setChecked(false);
                 }
             }
         });
-        notificatonCheckBoxBusinesss.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        notificationCheckBoxBusiness.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     filterQuery = "business";
                     filterListChecked.add(filterQuery);
-                    notificatonCheckBoxBusinesss.setChecked(true);
+                    notificationCheckBoxBusiness.setChecked(true);
                 } else {
                     filterListChecked.remove(filterQuery);
                     notificationQuery = null;
-                    notificatonCheckBoxBusinesss.setChecked(false);
+                    notificationCheckBoxBusiness.setChecked(false);
                 }
             }
         });
-        notificatonCheckEntrepreneurss.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        notificationCheckEntrepreneurs.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     filterQuery = "entrepreneurs";
                     filterListChecked.add(filterQuery);
-                    notificatonCheckEntrepreneurss.setChecked(true);
+                    notificationCheckEntrepreneurs.setChecked(true);
                 } else {
                     filterListChecked.remove(filterQuery);
                     notificationQuery = null;
-                    notificatonCheckEntrepreneurss.setChecked(false);
+                    notificationCheckEntrepreneurs.setChecked(false);
                 }
             }
         });
-        notificatonCheckBoxPolitics.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        notificationCheckBoxPolitics.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     filterQuery = "politics";
                     filterListChecked.add(filterQuery);
-                    notificatonCheckBoxPolitics.setChecked(true);
+                    notificationCheckBoxPolitics.setChecked(true);
                 } else {
                     filterListChecked.remove(filterQuery);
                     filterQuery = null;
-                    notificatonCheckBoxPolitics.setChecked(false);
+                    notificationCheckBoxPolitics.setChecked(false);
                 }
             }
         });
-        notificatonCheckBoxSports.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        notificationCheckBoxSports.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     filterQuery = "sports";
                     filterListChecked.add(filterQuery);
-                    notificatonCheckBoxSports.setChecked(true);
+                    notificationCheckBoxSports.setChecked(true);
                 } else {
                     filterListChecked.remove(filterQuery);
                     filterQuery = null;
-                    notificatonCheckBoxSports.setChecked(false);
+                    notificationCheckBoxSports.setChecked(false);
                 }
             }
         });
-        notificatonCheckBoxTravel.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        notificationCheckBoxTravel.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     filterQuery = "travel";
                     filterListChecked.add(filterQuery);
-                    notificatonCheckBoxTravel.setChecked(true);
+                    notificationCheckBoxTravel.setChecked(true);
                 } else {
                     filterListChecked.remove(filterQuery);
                     filterQuery = null;
-                    notificatonCheckBoxTravel.setChecked(false);
+                    notificationCheckBoxTravel.setChecked(false);
                 }
             }
         });

@@ -48,9 +48,7 @@ recyclerviewHolder.updateRecyclerViewWithMostPopularArticle(this.resultMostPopul
         return resultMostPopularList.size();
     }
 
-    public ResultMostPopular resultMostPopular (int position){
-        return resultMostPopularList.get(position);
-    }
+
     public String getUrl (int position){
         return resultMostPopularList.get(position).getUrl();
     }

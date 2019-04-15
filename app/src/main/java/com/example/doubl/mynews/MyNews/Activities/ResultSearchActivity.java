@@ -22,6 +22,7 @@ import com.example.doubl.mynews.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,7 +38,7 @@ public class ResultSearchActivity extends AppCompatActivity {
 
 
     Disposable disposable;
-    //List<ResultSearchApi> resultSearchApiList;
+
     private List<ResultSearchApi> mResult;
     private SearchArticleAdapter adapter;
 
@@ -98,10 +99,10 @@ public class ResultSearchActivity extends AppCompatActivity {
         final String beginDate = intent.getStringExtra("beginDate");
         final String endDate = intent.getStringExtra("endDate");
         final String query = intent.getStringExtra("query");
-        final String filterQuery = intent.getStringExtra("filterQuery");
+        final String filterQuery = intent.getStringExtra("resultFilterQuery");
 
 
-        this.disposable = NewYorkTimesStream.streamFetchSearchArticle(beginDate, endDate, 30, filterQuery, query, "newest", ApiKey.API_KEY).subscribeWith(new DisposableObserver<SearchApi>() {
+        this.disposable = NewYorkTimesStream.streamFetchSearchArticle(beginDate, endDate, 0, filterQuery, query, "newest", ApiKey.API_KEY).subscribeWith(new DisposableObserver<SearchApi>() {
             @Override
             public void onNext(SearchApi searchApi) {
                 updateUI(searchApi.getResponse().getDocs());
@@ -148,7 +149,7 @@ public class ResultSearchActivity extends AppCompatActivity {
     private void configureToolbar() {
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Search Result");
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Search Result");
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 

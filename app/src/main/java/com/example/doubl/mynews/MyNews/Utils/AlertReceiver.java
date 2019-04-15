@@ -7,7 +7,6 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.icu.text.SimpleDateFormat;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -28,9 +27,8 @@ public class AlertReceiver extends BroadcastReceiver {
 
     private static final int NOTIFICATION_ID = 1;
     private static final String CHANNEL_ID = "CHANNEL_ID";
-    private DisposableObserver<SearchApi> disposable;
     private int articleFound;
-    Context context;
+    private Context context;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -57,7 +55,7 @@ public class AlertReceiver extends BroadcastReceiver {
         final String mBeginDate = sdf.format(calBeginDate.getTime());
 
 
-        this.disposable = NewYorkTimesStream.streamFetchSearchArticle(mBeginDate, mEndDate, 30, NotificationActivity.getResultFilterQuery(), NotificationActivity.query, "newest", ApiKey.API_KEY).subscribeWith(new DisposableObserver<SearchApi>() {
+        DisposableObserver<SearchApi> disposable = NewYorkTimesStream.streamFetchSearchArticle(mBeginDate, mEndDate, 0, NotificationActivity.getResultFilterQuery(), NotificationActivity.query, "newest", ApiKey.API_KEY).subscribeWith(new DisposableObserver<SearchApi>() {
             @Override
             public void onNext(SearchApi searchApi) {
 
