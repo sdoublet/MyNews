@@ -70,7 +70,7 @@ public class AlertReceiver extends BroadcastReceiver {
                 Log.e("TAG", "endDate " + mEndDate);
                 Log.e("TAG", "beginDate: " + mBeginDate);
                 Log.e("TAG", "queryInput: " + NotificationActivity.query);
-                Log.e("TAG", "filter " + NotificationActivity.filterQuery);
+                Log.e("TAG", "filter " + NotificationActivity.getResultFilterQuery());
 
                 sendNotification(context);
 

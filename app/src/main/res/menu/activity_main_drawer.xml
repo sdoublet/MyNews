@@ -5,7 +5,7 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/categories"
-            android:title="Categories">
+            android:title="@string/categories">
 
         </item>
     </group>
@@ -13,57 +13,57 @@
 
        <item
            android:id="@+id/Technology"
-           android:icon="@drawable/ic_laptop_chromebook_black_24dp"
+           android:icon="@drawable/ic_laptop"
            android:title="@string/technology">
 
        </item>
             <item
                 android:id="@+id/sports"
-                android:title="Sports"
-                android:icon="@drawable/ic_fitness_center_black_24dp">
+                android:title="@string/sports"
+                android:icon="@drawable/ic_fitness_center">
 
             </item>
 
             <item
                 android:id="@+id/travel"
-                android:title="Travel"
-                android:icon="@drawable/ic_flight_black_24dp">
+                android:title="@string/travel"
+                android:icon="@drawable/ic_flight">
 
             </item>
             <item
                 android:id="@+id/health"
-                android:title="Health"
-                android:icon="@drawable/ic_local_pharmacy_black_24dp">
+                android:title="@string/health"
+                android:icon="@drawable/ic_pharmacy">
 
             </item>
             <item
                 android:id="@+id/politics"
-                android:title="Politics"
-                android:icon="@drawable/ic_group_black_24dp">
+                android:title="@string/politics"
+                android:icon="@drawable/ic_group">
 
             </item>
             <item
                 android:id="@+id/science"
-                android:title="Science"
-                android:icon="@drawable/ic_lightbulb_outline_black_24dp">
+                android:title="@string/science"
+                android:icon="@drawable/ic_lightbulb">
 
             </item>
             <item
                 android:id="@+id/movies"
-                android:title="Movies"
-                android:icon="@drawable/ic_local_movies_black_24dp">
+                android:title="@string/movies"
+                android:icon="@drawable/ic_movies">
 
             </item>
             <item
                 android:id="@+id/auto"
-                android:title="Auto"
+                android:title="@string/auto"
                 android:icon="@drawable/ic_action_car">
 
             </item>
             <item
                 android:id="@+id/fashion"
                 android:icon="@drawable/ic_action_name"
-                android:title="Fashion">
+                android:title="@string/fashion">
 
             </item>
 

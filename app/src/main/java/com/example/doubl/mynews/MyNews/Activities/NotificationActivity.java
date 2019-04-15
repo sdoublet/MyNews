@@ -29,6 +29,7 @@ import com.example.doubl.mynews.R;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -66,7 +67,7 @@ public class NotificationActivity extends AppCompatActivity {
     TextView toTextView;
     public static String query;
     public static String filterQuery;
-    public ArrayList<String> filterListChecked = new ArrayList<>();
+    public static List<String> filterListChecked = new ArrayList<>();
 
     // TODO: 02/04/2019 resolve this
     public static String resultFilterQuery;
@@ -74,6 +75,7 @@ public class NotificationActivity extends AppCompatActivity {
     public static String getResultFilterQuery() {
         return resultFilterQuery;
     }
+
 
     public static void setResultFilterQuery(String resultFilterQuery) {
         NotificationActivity.resultFilterQuery = resultFilterQuery;
@@ -107,6 +109,7 @@ public class NotificationActivity extends AppCompatActivity {
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         android.support.v7.app.ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
@@ -158,8 +161,8 @@ public class NotificationActivity extends AppCompatActivity {
 
     public void setCalendarTime() {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 18);
-        calendar.set(Calendar.MINUTE, 5);
+        calendar.set(Calendar.HOUR_OF_DAY, 12);
+        calendar.set(Calendar.MINUTE, 38);
         calendar.set(Calendar.SECOND, 30);
 
         if (calendar.getTimeInMillis() < System.currentTimeMillis()) {
@@ -179,8 +182,8 @@ public class NotificationActivity extends AppCompatActivity {
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
         Log.e("alarm", "start alarm");
         // TODO: 02/04/2019 resolve this
-       // resultFilterQuery = TextUtils.join(" ", filterListChecked);
-setResultFilterQuery(TextUtils.join(" ", filterListChecked));
+        // resultFilterQuery = TextUtils.join(" ", filterListChecked);
+        setResultFilterQuery(TextUtils.join(" ", filterListChecked));
         Log.e("filter", "fq: " + getResultFilterQuery());
 
 
@@ -203,7 +206,7 @@ setResultFilterQuery(TextUtils.join(" ", filterListChecked));
 
     public void configureCheckBox() {
 
-
+        filterListChecked.clear();
         notificatonCheckBoxArts.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
