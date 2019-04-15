@@ -76,12 +76,12 @@ public class UpdateAllFragmentItemTest {
     }
 
 
-//   @Test
+  // @Test
 //   public void setSectionTopStories() {
 //       expected = "my section";
 //       UpdateAllFragmentItem updateAllFragmentItem = new UpdateAllFragmentItem();
 //       this.mockResultTopStories();
-//     if (!resultTopStories.getSubsection().equals("")){
+//     if (!resultTopStories.getSubsection().equals("")){//ajouter si sous section !null
 //         String myString = ">"+resultTopStories.getSubsection();
 //         output = resultTopStories.getSection()+myString;
 //     }else
@@ -95,7 +95,7 @@ public class UpdateAllFragmentItemTest {
 //        expected=  "my body text";
 //        UpdateAllFragmentItem updateAllFragmentItem = new UpdateAllFragmentItem();
 //        this.mockResultSearchApi();
-//        output = updateAllFragmentItem.setBodyText(resultSearchApi);
+//        output = updateAllFragmentItem.setBodyText(resultSearchApi);//if updateAllFragmentItem notNull()
 //        assertEquals(expected, output);
 //    }
 
