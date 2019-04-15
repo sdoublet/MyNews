@@ -41,10 +41,11 @@
     <string name="erwan_combo">Erwan COMBO</string>
     <string name="mentor">Mentor</string>
     <string name="licenses">Licenses</string>
-    <string name="about_context_text">MyNews est une application réalisée dans le cadre de la formation développeur Android dispensée par OpenClassroom. Il représente le 4ème projet et permet d\'acquérir les compétences en matière d\'éxécution de taches en arrière plan, d\'écriture de test unitaire, de production de rapport de tests, de mise en place de test unitaires et d\'intégrations.</string>
+    <string name="about_context_text">MyNews est une application réalisée dans le cadre de la formation développeur Android dispensée par OpenClassroom. Il représente le 5ème projet et permet d\'acquérir les compétences en matière d\'éxécution de taches en arrière plan, d\'écriture de test unitaire, de production de rapport de tests, de mise en place de test unitaires et d\'intégrations.</string>
     <string name="politics">Politics</string>
     <string name="sports">Sports</string>
     <string name="travel">Travel</string>
+    <string name="licence_nyt_text">L\'ensemble des articles contenus dans cette application proviennent du New York Times.Pour plus d\'informations, vous pouvez vous rendre sur le site du New York Times Developers en cliquant sur le lien ci-dessous.</string>
 
 
 </resources>

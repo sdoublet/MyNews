@@ -27,7 +27,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/about_context_text"/>
+        android:text="@string/about_context_text"
+        android:layout_marginTop="10dp"
+        android:layout_margin="5dp"/>
 
     <android.support.v4.widget.Space
         android:layout_width="match_parent"
@@ -54,22 +56,27 @@
         android:text="@string/s_bastien_doublet"
         android:textColor="@color/colorAccent"
         android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:layout_margin="5dp"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/student"/>
+        android:text="@string/student"
+        android:layout_margin="5dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:text="@string/erwan_combo"
         android:textColor="@color/colorAccent"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:layout_margin="5dp"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/mentor"/>
+        android:text="@string/mentor"
+        android:layout_margin="5dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -87,6 +94,21 @@
             android:textSize="25sp"
             android:textColor="#ffffff"
             android:background="@color/colorAccent"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
+        <TextView
+            android:layout_margin="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/licence_nyt_text"/>
+
+        <ImageView
+            android:id="@+id/link_NYT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/poweredby_nytimes_150c"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"/>
+
     </LinearLayout>
 </LinearLayout>
