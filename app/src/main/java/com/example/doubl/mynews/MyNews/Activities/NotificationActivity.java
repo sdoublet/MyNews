@@ -113,6 +113,9 @@ public class NotificationActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
+    /**
+     * Hide elements we don't need for this activity in the layout
+     */
     // Set visibility to hide elements we don't need in the layout
     private void setVisibility() {
         toTextView.setVisibility(View.GONE);
@@ -125,6 +128,10 @@ public class NotificationActivity extends AppCompatActivity {
     //------------------------
     // SWITCH NOTIFICATION
     //------------------------
+
+    /**
+     * Change notification's behavior according to switch checked or not
+     */
     private void setSwitchNotification() {
 
         final SharedPreferences sharedPreferences = getSharedPreferences("isChecked", 0);
@@ -159,6 +166,9 @@ public class NotificationActivity extends AppCompatActivity {
     // --------------------------
 
 
+    /**
+     * Set the hour of alarm set
+     */
     public void setCalendarTime() {
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.HOUR_OF_DAY, 12);
@@ -174,6 +184,11 @@ public class NotificationActivity extends AppCompatActivity {
         Log.e("alarm", "alarm set" + calendar.getTimeInMillis());
     }
 
+    /**
+     * Create pending intent and set type of repeating notification send
+     * Call AlertReceiver
+     * @param calendar
+     */
     public void startAlarm(Calendar calendar) {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlertReceiver.class);
@@ -190,6 +205,9 @@ public class NotificationActivity extends AppCompatActivity {
         Log.e("query", "query " + query);
     }
 
+    /**
+     * Cancel notification send by cancel alarm
+     */
     public void cancelAlarm() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(getApplicationContext(), AlertReceiver.class);
@@ -203,7 +221,10 @@ public class NotificationActivity extends AppCompatActivity {
     //    CHECKBOX AND REQUIRED FIELDS
     //-------------------------------------
 
-
+    /**
+     * Set behavior of checkbox according to checked status
+     * Add or remove filterQuery in the filterListChecked
+     */
     public void configureCheckBox() {
 
         filterListChecked.clear();
@@ -294,7 +315,10 @@ public class NotificationActivity extends AppCompatActivity {
 
     }
 
-
+    /**
+     * Get text in query's edit text when enter button is pressed on keyboard
+     * Hide keyboard
+     */
     public void saveNotificationQuery() {
 
         notificationQuery.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -320,6 +344,10 @@ public class NotificationActivity extends AppCompatActivity {
         Log.e("notification", notificationQuery.toString());
     }
 
+    /**
+     * Display a message when user doesn't put a query term or doesn't check a box
+     * Switch can't be checked
+     */
     // Show a toast if query or filterQuery are null and disable switch
     public void requiredFields() {
         if (query == null) {

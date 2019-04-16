@@ -70,6 +70,9 @@ public class TopStoriesCategoriesActivity extends AppCompatActivity {
         // ACTION
         //-----------------
 
+    /**
+     * Display article selected in the webView
+     */
         // Configure item click on RecyclerView
         private void configureOnClickRecyclerView() {
             ItemClickSupport.addTo(recyclerView, R.layout.all_fragment_item)
@@ -92,6 +95,10 @@ public class TopStoriesCategoriesActivity extends AppCompatActivity {
         //HTTP REQUEST WITH RETROFIT
         //----------------------------
 
+    /**
+     * Execute http request
+     * Use Retrofit to convert json format and execute asyncTask in main thread
+     */
         public void executeHttpRequestWithRetrofit() {
             this.disposable = NewYorkTimesStream.streamFetchTopStories(MainActivity.categories).subscribeWith(new DisposableObserver<TopStories>() {
                 @Override

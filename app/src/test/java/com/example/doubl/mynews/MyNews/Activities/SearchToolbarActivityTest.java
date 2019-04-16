@@ -13,14 +13,13 @@ public class SearchToolbarActivityTest {
 
     @Test
     public void configureDatePickerBeginDate() {
-        //Calendar calendar = Calendar.getInstance();
-        //calendar.get(Calendar.YEAR);
+
 
         int year = 2019;
-        // calendar.get(Calendar.MONTH);
+
         for (int month = 1; month < 12; month++) {
 
-            //calendar.get(Calendar.DAY_OF_WEEK);
+
             for (int day = 1; day < 31; day++) {
 
                 String date = year + "" + (month < 10 ? ("0" + (month)) : (month)) + "" + (day < 10 ? ("0" + day) : (day));

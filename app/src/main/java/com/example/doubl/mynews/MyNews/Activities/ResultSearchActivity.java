@@ -71,6 +71,9 @@ public class ResultSearchActivity extends AppCompatActivity {
     // ACTION
     //-----------------
 
+    /**
+     * Display article selected in the webView
+     */
     //Configure itemClickOnRecyclerView
     private void configureOnClickRecyclerView() {
         ItemClickSupport.addTo(recyclerView, R.layout.all_fragment_item)
@@ -93,6 +96,10 @@ public class ResultSearchActivity extends AppCompatActivity {
     //HTTP REQUEST WITH RETROFIT
     //----------------------------
 
+    /**
+     * Execute http request
+     * Use Retrofit to convert json format and execute asyncTask in main thread
+     */
     public void executeHttpRequestWithRetrofit() {
 
         Intent intent = getIntent();

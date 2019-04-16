@@ -49,6 +49,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    /**
+     * Set option item selected on tool bar
+     * @param item according to item id
+     * @return launch activity selected
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -102,6 +107,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
     }
 
+    /**
+     * Set item selected in navigation drawer
+     * @param menuItem according to menuItem id
+     * @return launch activity selected
+     */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();

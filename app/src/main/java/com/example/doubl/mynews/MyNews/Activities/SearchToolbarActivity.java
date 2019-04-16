@@ -90,7 +90,12 @@ public class SearchToolbarActivity extends AppCompatActivity {
 
     }
 
-
+    /**
+     * Save beginDate, endDate, query and resultFilterQuery when user press button
+     * Put these values on ResultSearchActivity
+     * Launch ResultSearchActivity to show the result of the search in a recyclerView
+     * At least one filterQuery's checkbox must be checked to display button
+     */
     public void onButtonSearchArticleClicked() {
         searchArticleButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,6 +121,8 @@ public class SearchToolbarActivity extends AppCompatActivity {
     //----------------------------
     // Open calendar and set text
     //-----------------------------
+
+
     public void onBeginDateClicked() {
         beginDateText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,6 +143,11 @@ public class SearchToolbarActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Set DatePicker for beginDate
+     * beginDateText is for display the date on the screen
+     * beginDate is in another format for the request
+     */
     public void configureDatePickerBeginDate() {
         calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -157,7 +169,11 @@ public class SearchToolbarActivity extends AppCompatActivity {
         }, year, month, day);
         datePickerDialog.show();
     }
-
+    /**
+     * Set DatePicker for endDate
+     * endDateText is for display the date on the screen
+     * endDate is in another format for the request
+     */
     public void configureDatePickerEndDate() {
         calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -179,6 +195,11 @@ public class SearchToolbarActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Set behavior according to checkboxes checked or not
+     * Add or remove filterQuery in filterListChecked
+     * Set visibility of searchArticleButton
+     */
     public void configureCheckBox() {
         filterListChecked.clear();
         checkBoxArts.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

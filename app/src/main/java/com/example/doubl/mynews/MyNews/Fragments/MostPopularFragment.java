@@ -83,6 +83,9 @@ public static final String BUNDLE_URL= "BUNDLE_URL";
     // ACTION
     //-----------------
 
+    /**
+     * Display article selected in the webView
+     */
     // Configure item click on RecyclerView
     private void configureOnClickRecyclerView() {
         ItemClickSupport.addTo(recyclerView, R.layout.all_fragment_item)
@@ -116,6 +119,10 @@ public static final String BUNDLE_URL= "BUNDLE_URL";
     //HTTP REQUEST WITH RETROFIT
     //----------------------------
 
+    /**
+     * Execute http request
+     * Use Retrofit to convert json format and execute asyncTask in the main thread
+     */
     public void executeHttpRequestWithRetrofit() {
         this.disposable = NewYorkTimesStream.streamFetchMostPopular(1).subscribeWith(new DisposableObserver<MostPopular>() {
             @Override
@@ -136,6 +143,9 @@ public static final String BUNDLE_URL= "BUNDLE_URL";
         });
     }
 
+    /**
+     * Refresh current page
+     */
     private void configureSwipeRefreshLayout() {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

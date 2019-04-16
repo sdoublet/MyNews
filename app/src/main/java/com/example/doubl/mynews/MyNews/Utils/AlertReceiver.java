@@ -44,6 +44,11 @@ public class AlertReceiver extends BroadcastReceiver {
     //---------------------------
     //  CALL API / HTTP REQUEST
     //---------------------------
+
+    /**
+     * Execute http request
+     * Use Retrofit to convert json format and execute asyncTask in the main thread
+     */
     @RequiresApi(api = Build.VERSION_CODES.N)
     public void executeHttpRequestWithRetrofit() {
 
@@ -90,8 +95,13 @@ public class AlertReceiver extends BroadcastReceiver {
     //--------------------------------
     //  CONFIGURE NOTIFICATION
     //--------------------------------
-    public void sendNotification(Context context) {
 
+    /**
+     * Set content notification
+     * Set notification's tap action to launch MainActivity
+     * @param context current
+     */
+    public void sendNotification(Context context) {
 
         //set notification's tap action
         Intent contentIntent = new Intent(context, MainActivity.class);
@@ -112,6 +122,10 @@ public class AlertReceiver extends BroadcastReceiver {
 
     }
 
+    /**
+     * Create a specific channel for Android 8.0 and over version
+     * @param context current
+     */
     public void createNotificationChannel(Context context) {
         //only for Oreo version and sup
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

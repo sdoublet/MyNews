@@ -33,6 +33,9 @@ public class AboutActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
+    /**
+     * Launch developer.nytimes.com like Branding Guide API ask.
+     */
     private void clickOnLogoNYT(){
         linkLogoNYT.setOnClickListener(new View.OnClickListener() {
             @Override

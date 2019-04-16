@@ -9,7 +9,10 @@ import com.example.doubl.mynews.R;
 public class ItemClickSupport {
 
     // HUGO VISSER SOLUTION TO GET CLICK ON RECYCLER VIEW
-
+    /**
+     * This is a solution to manage the click in the recyclerView
+     * This code has been written by Hugo Visser and available on gitHub
+     */
     private final RecyclerView mRecyclerView;
     private OnItemClickListener mOnItemClickListener;
     private OnItemLongClickListener mOnItemLongClickListener;

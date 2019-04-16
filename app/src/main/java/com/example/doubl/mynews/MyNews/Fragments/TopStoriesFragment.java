@@ -80,6 +80,9 @@ public class TopStoriesFragment extends Fragment {
     // ACTION
     //-----------------
 
+    /**
+     * display article selected in the webView
+     */
     // Configure item click on RecyclerView
     private void configureOnClickRecyclerView() {
         ItemClickSupport.addTo(recyclerView, R.layout.all_fragment_item)
@@ -102,6 +105,10 @@ public class TopStoriesFragment extends Fragment {
     //HTTP REQUEST WITH RETROFIT
     //----------------------------
 
+    /**
+     * Execute http request
+     * Use Retrofit to convert json format and execute asyncTask in the main thread
+     */
     public void executeHttpRequestWithRetrofit() {
         this.disposable = NewYorkTimesStream.streamFetchTopStories("home").subscribeWith(new DisposableObserver<TopStories>() {
             @Override
@@ -131,6 +138,9 @@ public class TopStoriesFragment extends Fragment {
         adapter.notifyDataSetChanged();
     }
 
+    /**
+     * Refresh current page
+     */
     private void configureSwipeRefreshLayout(){
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override

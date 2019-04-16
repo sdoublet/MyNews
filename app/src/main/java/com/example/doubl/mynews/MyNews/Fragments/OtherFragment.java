@@ -79,6 +79,9 @@ public String sectionOtherFragment = "opinion";
     // ACTION
     //-----------------
 
+    /**
+     * Display article selected in the webView
+     */
     // Configure item click on RecyclerView
     private void configureOnClickRecyclerView() {
         ItemClickSupport.addTo(recyclerView, R.layout.all_fragment_item)
@@ -101,6 +104,10 @@ public String sectionOtherFragment = "opinion";
     //HTTP REQUEST WITH RETROFIT
     //----------------------------
 
+    /**
+     * Execute http request
+     * Use Retrofit to convert json format and execute asyncTask in the main thread
+     */
     public void executeHttpRequestWithRetrofit() {
         this.disposable = NewYorkTimesStream.streamFetchTopStories(sectionOtherFragment).subscribeWith(new DisposableObserver<TopStories>() {
             @Override
@@ -131,6 +138,9 @@ public String sectionOtherFragment = "opinion";
         adapter.notifyDataSetChanged();
     }
 
+    /**
+     * Refresh current page
+     */
     private void configureSwipeRefreshLayout() {
 
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

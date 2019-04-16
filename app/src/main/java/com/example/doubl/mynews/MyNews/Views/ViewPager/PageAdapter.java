@@ -37,6 +37,11 @@ public class PageAdapter extends FragmentPagerAdapter {
         return (3);
     }
 
+    /**
+     * Set the fragments's page title
+     * @param position current
+     * @return the page title
+     */
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {

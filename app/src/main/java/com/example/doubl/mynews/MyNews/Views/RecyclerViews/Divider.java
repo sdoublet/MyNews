@@ -18,6 +18,11 @@ public class Divider extends RecyclerView.ItemDecoration {
     private Drawable mDivider;
     private int mOrientation;
 
+    /**
+     * Method to add a divider between two articles in recyclerView
+     * @param context current
+     * @param orientation must be vertical
+     */
     public Divider(Context context, int orientation) {
         this.mDivider = ContextCompat.getDrawable(context, R.drawable.divider);
         if (orientation != LinearLayoutManager.VERTICAL) {
