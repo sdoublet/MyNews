@@ -6,8 +6,7 @@ import com.example.doubl.mynews.MyNews.Models.ResultTopStories;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-import static org.mockito.ArgumentMatchers.notNull;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -17,30 +16,36 @@ public class UpdateAllFragmentItemTest {
     private ResultMostPopular resultMostPopular = mock(ResultMostPopular.class);
     private ResultSearchApi resultSearchApi = mock(ResultSearchApi.class);
     private ResultTopStories resultTopStories = mock(ResultTopStories.class);
-    private String section=  "my section";
+    private String section = "my section";
     private String bodyText = "my body text";
     private String date = "2019-12-25";
-    private  String expected;
+    private String expected;
     private String output;
+
     // when - then
-    private void mockResultMostPopular(){
+    private void mockResultMostPopular() {
         when(resultMostPopular.getSection()).thenReturn(section);
         when(resultMostPopular.getTitle()).thenReturn(bodyText);
         when(resultMostPopular.getPublishedDate()).thenReturn(date);
     }
-    private void mockResultSearchApi(){
+
+    private void mockResultSearchApi() {
         when(resultSearchApi.getSectionName()).thenReturn(section);
        // when(resultSearchApi.getHeadline().getMain()).thenReturn(bodyText);
         when(resultSearchApi.getPubDate()).thenReturn(date);
     }
-    private void mockResultTopStories(){
-         when(resultTopStories.getSection()).thenReturn(section);
+
+    private void mockResultTopStories() {
+        when(resultTopStories.getSection()).thenReturn(section);
+        String subSection = "my subSection";
+        when(resultTopStories.getSubsection()).thenReturn(subSection);
         when(resultTopStories.getTitle()).thenReturn(bodyText);
         when(resultTopStories.getPublishedDate()).thenReturn(date);
     }
+
     @Test
     public void setSection() {
-        expected= "my section";
+        expected = "my section";
         UpdateAllFragmentItem updateAllFragmentItem = new UpdateAllFragmentItem();
         this.mockResultMostPopular();
         output = updateAllFragmentItem.setSection(resultMostPopular);
@@ -49,7 +54,7 @@ public class UpdateAllFragmentItemTest {
 
     @Test
     public void setBodyText() {
-        expected=  "my body text";
+        expected = "my body text";
         UpdateAllFragmentItem updateAllFragmentItem = new UpdateAllFragmentItem();
         this.mockResultMostPopular();
         output = updateAllFragmentItem.setBodyText(resultMostPopular);
@@ -75,24 +80,22 @@ public class UpdateAllFragmentItemTest {
 
     }
 
-
-  // @Test
-//   public void setSectionTopStories() {
-//       expected = "my section";
-//       UpdateAllFragmentItem updateAllFragmentItem = new UpdateAllFragmentItem();
-//       this.mockResultTopStories();
-//     if (!resultTopStories.getSubsection().equals("")){//ajouter si sous section !null
-//         String myString = ">"+resultTopStories.getSubsection();
-//         output = resultTopStories.getSection()+myString;
-//     }else
-//      // output = updateAllFragmentItem.setSection(resultTopStories);
-//       output = updateAllFragmentItem.setSection(resultTopStories);
-//       assertEquals(expected, output);
-//   }
+    @Test
+    public void setSectionTopStories() {
+        expected = "my section > my subSection";
+        UpdateAllFragmentItem updateAllFragmentItem = new UpdateAllFragmentItem();
+        this.mockResultTopStories();
+        if (!resultTopStories.getSubsection().equals("")) {//ajouter si sous section !null
+            String myString = " > " + resultTopStories.getSubsection();
+            output = resultTopStories.getSection() + myString;
+        } else
+            output = updateAllFragmentItem.setSection(resultTopStories);
+        assertEquals(expected, output);
+    }
 
 //    @Test
 //    public void setBodyTextSearchApi() {
-//        expected=  "my body text";
+//        expected = "my body text";
 //        UpdateAllFragmentItem updateAllFragmentItem = new UpdateAllFragmentItem();
 //        this.mockResultSearchApi();
 //        output = updateAllFragmentItem.setBodyText(resultSearchApi);//if updateAllFragmentItem notNull()
