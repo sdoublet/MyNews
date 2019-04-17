@@ -11,7 +11,7 @@ public class ItemClickSupport {
     // HUGO VISSER SOLUTION TO GET CLICK ON RECYCLER VIEW
     /**
      * This is a solution to manage the click in the recyclerView
-     * This code has been written by Hugo Visser and available on gitHub
+     * This code has been written by Hugo Visser and is available on gitHub
      */
     private final RecyclerView mRecyclerView;
     private OnItemClickListener mOnItemClickListener;

@@ -98,7 +98,7 @@ public class AlertReceiver extends BroadcastReceiver {
 
     /**
      * Set content notification
-     * Set notification's tap action to launch MainActivity
+     * Set notification tap action to launch MainActivity
      * @param context current
      */
     public void sendNotification(Context context) {
@@ -123,7 +123,7 @@ public class AlertReceiver extends BroadcastReceiver {
     }
 
     /**
-     * Create a specific channel for Android 8.0 and over version
+     * Create a specific channel for Android 8.0 and over versions
      * @param context current
      */
     public void createNotificationChannel(Context context) {

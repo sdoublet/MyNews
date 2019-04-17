@@ -72,6 +72,8 @@ public class NotificationActivity extends AppCompatActivity {
     // TODO: 02/04/2019 resolve this
     public static String resultFilterQuery;
 
+
+
     public static String getResultFilterQuery() {
         return resultFilterQuery;
     }
@@ -130,7 +132,7 @@ public class NotificationActivity extends AppCompatActivity {
     //------------------------
 
     /**
-     * Change notification's behavior according to switch checked or not
+     * Change notification behavior depending on switch is checked or not
      */
     private void setSwitchNotification() {
 
@@ -185,7 +187,7 @@ public class NotificationActivity extends AppCompatActivity {
     }
 
     /**
-     * Create pending intent and set type of repeating notification send
+     * Create pending intent and set type of repeating notification sent
      * Call AlertReceiver
      * @param calendar
      */
@@ -206,7 +208,7 @@ public class NotificationActivity extends AppCompatActivity {
     }
 
     /**
-     * Cancel notification send by cancel alarm
+     * Cancel notification sent by cancelling alarm
      */
     public void cancelAlarm() {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
@@ -222,7 +224,7 @@ public class NotificationActivity extends AppCompatActivity {
     //-------------------------------------
 
     /**
-     * Set behavior of checkbox according to checked status
+     * Set behavior of checkbox depending on checked status
      * Add or remove filterQuery in the filterListChecked
      */
     public void configureCheckBox() {
@@ -316,7 +318,7 @@ public class NotificationActivity extends AppCompatActivity {
     }
 
     /**
-     * Get text in query's edit text when enter button is pressed on keyboard
+     * Retrieve text in query's edit text when enter button is pressed on keyboard
      * Hide keyboard
      */
     public void saveNotificationQuery() {
@@ -345,7 +347,7 @@ public class NotificationActivity extends AppCompatActivity {
     }
 
     /**
-     * Display a message when user doesn't put a query term or doesn't check a box
+     * Display a message when user doesn't write a query term or doesn't check a box
      * Switch can't be checked
      */
     // Show a toast if query or filterQuery are null and disable switch

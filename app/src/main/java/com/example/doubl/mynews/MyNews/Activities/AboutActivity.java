@@ -34,7 +34,7 @@ public class AboutActivity extends AppCompatActivity {
     }
 
     /**
-     * Launch developer.nytimes.com like Branding Guide API ask.
+     * Launch developer.nytimes.com as asking by API Branding Guide .
      */
     private void clickOnLogoNYT(){
         linkLogoNYT.setOnClickListener(new View.OnClickListener() {

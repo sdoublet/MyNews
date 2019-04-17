@@ -38,7 +38,7 @@ public class PageAdapter extends FragmentPagerAdapter {
     }
 
     /**
-     * Set the fragments's page title
+     * Set the fragments page title
      * @param position current
      * @return the page title
      */

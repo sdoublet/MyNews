@@ -196,7 +196,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
     }
 
     /**
-     * Set behavior according to checkboxes checked or not
+     * Set behavior depending on checkboxes are checked or not
      * Add or remove filterQuery in filterListChecked
      * Set visibility of searchArticleButton
      */
