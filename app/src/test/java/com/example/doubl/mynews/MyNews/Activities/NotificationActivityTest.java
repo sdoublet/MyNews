@@ -26,14 +26,14 @@ public class NotificationActivityTest  {
 
 
 
-    @Test
-    public void configureCheckBox() {
-        String s = "arts";
-        CheckBox arts = mock(CheckBox.class);
-        when(arts.isChecked()).thenReturn(Boolean.valueOf(s));
-        assertEquals(arts.isChecked(),"arts" );
+//    @Test
+//    public void configureCheckBox() {
+//        String s = "arts";
+//        CheckBox arts = mock(CheckBox.class);
+//        when(arts.isChecked()).thenReturn(Boolean.valueOf(s));
+//        assertEquals(arts.isChecked(),"arts" );
 
-    }
+//    }
 
 
 
