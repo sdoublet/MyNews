@@ -9,7 +9,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -97,7 +99,8 @@ public class NotificationActivity extends AppCompatActivity {
         this.setSwitchNotification();
         this.configureCheckBox();
         this.requiredFields();
-        this.saveNotificationQuery();
+        this.saveNotificationQueryWithKeyboard();
+        this.saveQueryWithoutKeyboard();
 
     }
 
@@ -189,7 +192,7 @@ public class NotificationActivity extends AppCompatActivity {
     /**
      * Create pending intent and set type of repeating notification sent
      * Call AlertReceiver
-     * @param calendar
+     * @param calendar this
      */
     public void startAlarm(Calendar calendar) {
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
@@ -261,7 +264,7 @@ public class NotificationActivity extends AppCompatActivity {
      * Retrieve text in query's edit text when enter button is pressed on keyboard
      * Hide keyboard
      */
-    public void saveNotificationQuery() {
+    public void saveNotificationQueryWithKeyboard() {
 
         notificationQuery.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -284,6 +287,24 @@ public class NotificationActivity extends AppCompatActivity {
         });
 
         Log.e("notification", notificationQuery.toString());
+    }
+    public void saveQueryWithoutKeyboard(){
+        notificationQuery.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            query=  notificationQuery.getText().toString();
+            }
+        });
     }
 
     /**
