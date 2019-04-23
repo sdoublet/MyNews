@@ -173,8 +173,8 @@ public class NotificationActivity extends AppCompatActivity {
      */
     public void setCalendarTime() {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 12);
-        calendar.set(Calendar.MINUTE, 38);
+        calendar.set(Calendar.HOUR_OF_DAY, 16);
+        calendar.set(Calendar.MINUTE, 23);
         calendar.set(Calendar.SECOND, 30);
 
         if (calendar.getTimeInMillis() < System.currentTimeMillis()) {
@@ -230,87 +230,27 @@ public class NotificationActivity extends AppCompatActivity {
     public void configureCheckBox() {
 
         filterListChecked.clear();
-        notificationCheckBoxArts.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+       setupCheckbox(notificationCheckBoxArts, "arts");
+       setupCheckbox(notificationCheckBoxBusiness, "business");
+       setupCheckbox(notificationCheckEntrepreneurs, "entrepreneurs");
+       setupCheckbox(notificationCheckBoxPolitics, "politics");
+       setupCheckbox(notificationCheckBoxSports, "sports");
+       setupCheckbox(notificationCheckBoxTravel, "travel");
+
+    }
+
+    public void setupCheckbox(final CheckBox notificationCheckBox, final String category){
+        notificationCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    filterQuery = "arts";
+                    filterQuery = category;
                     filterListChecked.add(filterQuery);
-                    notificationCheckBoxArts.setChecked(true);
-                } else {
-                    filterListChecked.remove(filterQuery);
-                    notificationQuery = null;
-                    notificationCheckBoxArts.setChecked(false);
-                }
-            }
-        });
-        notificationCheckBoxBusiness.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    filterQuery = "business";
-                    filterListChecked.add(filterQuery);
-                    notificationCheckBoxBusiness.setChecked(true);
-                } else {
-                    filterListChecked.remove(filterQuery);
-                    notificationQuery = null;
-                    notificationCheckBoxBusiness.setChecked(false);
-                }
-            }
-        });
-        notificationCheckEntrepreneurs.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    filterQuery = "entrepreneurs";
-                    filterListChecked.add(filterQuery);
-                    notificationCheckEntrepreneurs.setChecked(true);
-                } else {
-                    filterListChecked.remove(filterQuery);
-                    notificationQuery = null;
-                    notificationCheckEntrepreneurs.setChecked(false);
-                }
-            }
-        });
-        notificationCheckBoxPolitics.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    filterQuery = "politics";
-                    filterListChecked.add(filterQuery);
-                    notificationCheckBoxPolitics.setChecked(true);
+                    notificationCheckBox.setChecked(true);
                 } else {
                     filterListChecked.remove(filterQuery);
                     filterQuery = null;
-                    notificationCheckBoxPolitics.setChecked(false);
-                }
-            }
-        });
-        notificationCheckBoxSports.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    filterQuery = "sports";
-                    filterListChecked.add(filterQuery);
-                    notificationCheckBoxSports.setChecked(true);
-                } else {
-                    filterListChecked.remove(filterQuery);
-                    filterQuery = null;
-                    notificationCheckBoxSports.setChecked(false);
-                }
-            }
-        });
-        notificationCheckBoxTravel.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    filterQuery = "travel";
-                    filterListChecked.add(filterQuery);
-                    notificationCheckBoxTravel.setChecked(true);
-                } else {
-                    filterListChecked.remove(filterQuery);
-                    filterQuery = null;
-                    notificationCheckBoxTravel.setChecked(false);
+                    notificationCheckBox.setChecked(false);
                 }
             }
         });

@@ -163,12 +163,13 @@ public class SearchToolbarActivity extends AppCompatActivity {
 
 // set beginDate for httpRequest
 
-                beginDate = year + "" + (month < 10 ? ("0" + (month + 1)) : (month )) + "" + (dayOfMonth < 10 ? ("0" + dayOfMonth) : (dayOfMonth));
+                beginDate = year + "" + (month < 10 ? ("0" + (month + 1)) : (month)) + "" + (dayOfMonth < 10 ? ("0" + dayOfMonth) : (dayOfMonth));
 
             }
         }, year, month, day);
         datePickerDialog.show();
     }
+
     /**
      * Set DatePicker for endDate
      * endDateText is for display the date on the screen
@@ -184,14 +185,14 @@ public class SearchToolbarActivity extends AppCompatActivity {
         datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                String date = dayOfMonth + "/" + (month +1) + "/" + year;
+                String date = dayOfMonth + "/" + (month + 1) + "/" + year;
                 endDateText.setText(date);
-                endDate = year + "" + (month < 10 ? ("0" + (month + 1)) : (month )) + "" + (dayOfMonth < 10 ? ("0" + dayOfMonth) : (dayOfMonth));
+                endDate = year + "" + (month < 10 ? ("0" + (month + 1)) : (month)) + "" + (dayOfMonth < 10 ? ("0" + dayOfMonth) : (dayOfMonth));
 
             }
         }, year, month, day);
         datePickerDialog.show();
-        Log.e("date", ""+year+month+day);
+        Log.e("date", "" + year + month + day);
 
     }
 
@@ -202,92 +203,33 @@ public class SearchToolbarActivity extends AppCompatActivity {
      */
     public void configureCheckBox() {
         filterListChecked.clear();
-        checkBoxArts.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    filterQuery = "arts";
-                    filterListChecked.add(filterQuery);
-                    searchArticleButton.setVisibility(View.VISIBLE);
-                    checkBoxArts.setChecked(true);
-                } else {
-                    filterListChecked.remove(filterQuery);
-                    checkBoxArts.setChecked(false);
-                }
-            }
-        });
-        checkBoxBusiness.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    filterQuery = "business";
-                    filterListChecked.add(filterQuery);
-                    searchArticleButton.setVisibility(View.VISIBLE);
-                    checkBoxBusiness.setChecked(true);
-                } else {
-                    filterListChecked.remove(filterQuery);
-                    checkBoxBusiness.setChecked(false);
-                }
-            }
-        });
-        checkBoxEntrepreneurs.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    filterQuery = "entrepreneurs";
-                    filterListChecked.add(filterQuery);
-                    searchArticleButton.setVisibility(View.VISIBLE);
-                    checkBoxEntrepreneurs.setChecked(true);
-                } else {
-                    filterListChecked.remove(filterQuery);
-                    checkBoxEntrepreneurs.setChecked(false);
-                }
-            }
-        });
-        checkBoxPolitics.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    filterQuery = "politics";
-                    filterListChecked.add(filterQuery);
-                    searchArticleButton.setVisibility(View.VISIBLE);
-                    checkBoxPolitics.setChecked(true);
-                } else {
-                    filterListChecked.remove(filterQuery);
-                    checkBoxPolitics.setChecked(false);
-                }
-            }
-        });
-        checkBoxSports.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    filterQuery = "sports";
-                    filterListChecked.add(filterQuery);
-                    searchArticleButton.setVisibility(View.VISIBLE);
-                    checkBoxSports.setChecked(true);
-                } else {
-                    filterListChecked.remove(filterQuery);
-                    checkBoxSports.setChecked(false);
-                }
-            }
-        });
-        checkBoxTravel.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    filterQuery = "travel";
-                    filterListChecked.add(filterQuery);
-                    searchArticleButton.setVisibility(View.VISIBLE);
-                    checkBoxTravel.setChecked(true);
-                } else {
-                    filterListChecked.remove(filterQuery);
-                    checkBoxTravel.setChecked(false);
-                }
+        setupCheckbox(checkBoxArts, "arts");
+        setupCheckbox(checkBoxBusiness, "business");
+        setupCheckbox(checkBoxEntrepreneurs, "entrepreneurs");
+        setupCheckbox(checkBoxPolitics, "politics");
+        setupCheckbox(checkBoxSports, "sports");
+        setupCheckbox(checkBoxTravel, "travel");
 
-            }
-        });
+    }
 
+    public void setupCheckbox(final CheckBox checkBox, final String category) {
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    filterQuery = category;
+                    filterListChecked.add(filterQuery);
+                    searchArticleButton.setVisibility(View.VISIBLE);
+                    checkBox.setChecked(true);
+                } else {
+                    filterListChecked.remove(filterQuery);
+                    checkBox.setChecked(false);
+                    // searchArticleButton.setVisibility(View.GONE);
+
+                }
+            }
+
+        });
     }
 
 

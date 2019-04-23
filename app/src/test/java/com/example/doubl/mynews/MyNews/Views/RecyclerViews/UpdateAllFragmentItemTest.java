@@ -31,7 +31,7 @@ public class UpdateAllFragmentItemTest {
 
     private void mockResultSearchApi() {
         when(resultSearchApi.getSectionName()).thenReturn(section);
-       // when(resultSearchApi.getHeadline().getMain()).thenReturn(bodyText);
+        //when(resultSearchApi.getHeadline().getMain()).thenReturn(bodyText);
         when(resultSearchApi.getPubDate()).thenReturn(date);
     }
 

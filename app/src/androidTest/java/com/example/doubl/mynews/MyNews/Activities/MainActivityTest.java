@@ -141,4 +141,5 @@ public class MainActivityTest {
         onView(withId(R.id.drawer_layout_activity_main)).perform(swipeRight());
     }
 
+
 }

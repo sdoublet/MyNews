@@ -16,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
+import com.example.doubl.mynews.MyNews.Models.TopStories;
 import com.example.doubl.mynews.MyNews.Views.ViewPager.PageAdapter;
 import com.example.doubl.mynews.R;
 
@@ -116,59 +117,46 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int id = menuItem.getItemId();
 
-
         switch (id) {
+
             case R.id.Technology:
                 categories = "technology";
-                Intent intentTechnology = new Intent(this, TopStoriesCategoriesActivity.class);
-                startActivity(intentTechnology);
                 break;
             case R.id.sports:
                 categories = "sports";
-                Intent intentSports = new Intent(this, TopStoriesCategoriesActivity.class);
-                startActivity(intentSports);
                 break;
             case R.id.travel:
                 categories = "travel";
-                Intent intentTravel = new Intent(this, TopStoriesCategoriesActivity.class);
-                startActivity(intentTravel);
                 break;
             case R.id.health:
                 categories = "health";
-                Intent intentHealth = new Intent(this, TopStoriesCategoriesActivity.class);
-                startActivity(intentHealth);
                 break;
             case R.id.politics:
                 categories = "politics";
-                Intent intentPolitics = new Intent(this, TopStoriesCategoriesActivity.class);
-                startActivity(intentPolitics);
                 break;
             case R.id.science:
                 categories = "science";
-                Intent intentScience = new Intent(this, TopStoriesCategoriesActivity.class);
-                startActivity(intentScience);
                 break;
             case R.id.movies:
                 categories = "movies";
-                Intent intentMovies = new Intent(this, TopStoriesCategoriesActivity.class);
-                startActivity(intentMovies);
                 break;
             case R.id.auto:
                 categories = "automobiles";
-                Intent intentAuto = new Intent(this, TopStoriesCategoriesActivity.class);
-                startActivity(intentAuto);
                 break;
             case R.id.fashion:
                 categories = "fashion";
-                Intent intentFashion = new Intent(this, TopStoriesCategoriesActivity.class);
-                startActivity(intentFashion);
                 break;
 
         }
+        goalActivity();
         this.drawerLayout.closeDrawer(GravityCompat.START);
         return true;
     }
 
+    public void goalActivity( ) {
+        Intent intent = new Intent(this, TopStoriesCategoriesActivity.class);
+        startActivity(intent);
+    }
 
 
 }
