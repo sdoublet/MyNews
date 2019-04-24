@@ -83,7 +83,7 @@ public class NotificationActivity extends AppCompatActivity {
     public static void setResultFilterQuery(String resultFilterQuery) {
         NotificationActivity.resultFilterQuery = resultFilterQuery;
     }
-// SharePreferences pour alertReceiver
+
 
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -152,11 +152,14 @@ public class NotificationActivity extends AppCompatActivity {
                     setCalendarTime();
 
 
-                    if (query != null && filterQuery != null)
-                        Toast.makeText(getApplicationContext(), "You will receive one notification by day with " + query + " as filter", Toast.LENGTH_LONG).show();
+                    if ((query != null && !query.equals("")) && filterListChecked.size() != 0) {
+                        Toast.makeText(getApplicationContext(), "You will receive one notification by day with " + query + " as query", Toast.LENGTH_LONG).show();
+
+                    }
                 } else {
                     Toast.makeText(getApplicationContext(), "Notification disable", Toast.LENGTH_SHORT).show();
                     cancelAlarm();
+
 
                     Log.e("alarm", "alarm cancelled");
                 }
@@ -201,8 +204,6 @@ public class NotificationActivity extends AppCompatActivity {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
         Log.e("alarm", "start alarm");
-        // TODO: 02/04/2019 resolve this
-        // resultFilterQuery = TextUtils.join(" ", filterListChecked);
         setResultFilterQuery(TextUtils.join(" ", filterListChecked));
         Log.e("filter", "fq: " + getResultFilterQuery());
 
@@ -249,18 +250,10 @@ public class NotificationActivity extends AppCompatActivity {
                 filterQuery = category;
                 if (isChecked) {
                     filterListChecked.add(filterQuery);
-                    notificationCheckBox.setChecked(true);
-                    mySwitch.setEnabled(true);
 
                 } else {
                     filterListChecked.remove(filterQuery);
-                    if (filterListChecked.size() == 0) {
-                        notificationCheckBox.setChecked(false);
-                        mySwitch.setChecked(false);
-                        mySwitch.setEnabled(false);
 
-
-                    }
                 }
             }
         });
@@ -279,7 +272,6 @@ public class NotificationActivity extends AppCompatActivity {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
 
                     // save query text
-
                     query = notificationQuery.getText().toString();
                     Log.e("query ", query);
 
@@ -328,7 +320,7 @@ public class NotificationActivity extends AppCompatActivity {
         if (query == null || query.equals("")) {
             mySwitch.setChecked(false);
             Toast.makeText(this, "you must enter query term", Toast.LENGTH_SHORT).show();
-        } else if (filterQuery == null) {
+        } else if (filterListChecked.size() == 0) {
             mySwitch.setChecked(false);
             Toast.makeText(this, "Check at least one box ", Toast.LENGTH_SHORT).show();
         }
