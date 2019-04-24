@@ -63,6 +63,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.help:
+                Intent intentHelp = new Intent(this, HelpActivity.class);
+                startActivity(intentHelp);
                 return true;
             case R.id.about:
                 Intent intentAbout = new Intent(this, AboutActivity.class);

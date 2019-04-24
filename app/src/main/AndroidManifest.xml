@@ -16,6 +16,12 @@
         tools:ignore="GoogleAppIndexingWarning">
 
 
+        <activity android:name=".MyNews.Activities.HelpActivity"
+            android:parentActivityName=".MyNews.Activities.MainActivity"
+            android:label="Help"
+            tools:ignore="InnerclassSeparator">
+
+        </activity>
         <activity
             android:name=".MyNews.Activities.MainActivity"
             android:screenOrientation="portrait"
@@ -66,12 +72,10 @@
             android:parentActivityName=".MyNews.Activities.SearchToolbarActivity"
             tools:ignore="InnerclassSeparator" />
 
-
-        <receiver android:name=".MyNews.Utils.AlertReceiver"
+        <receiver
+            android:name=".MyNews.Utils.AlertReceiver"
             android:enabled="true"
             tools:ignore="InnerclassSeparator" />
-
-
     </application>
 
 </manifest>
