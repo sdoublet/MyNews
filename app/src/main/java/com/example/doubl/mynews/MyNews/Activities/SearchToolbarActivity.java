@@ -216,15 +216,20 @@ public class SearchToolbarActivity extends AppCompatActivity {
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                filterQuery = category;
                 if (isChecked) {
-                    filterQuery = category;
                     filterListChecked.add(filterQuery);
                     searchArticleButton.setVisibility(View.VISIBLE);
                     checkBox.setChecked(true);
+
+
                 } else {
-                    filterListChecked.remove(filterQuery);
                     checkBox.setChecked(false);
-                    // searchArticleButton.setVisibility(View.GONE);
+                    filterListChecked.remove(filterQuery);
+                    if (filterListChecked.size() == 0) {
+                        searchArticleButton.setVisibility(View.GONE);
+                    }
+
 
                 }
             }

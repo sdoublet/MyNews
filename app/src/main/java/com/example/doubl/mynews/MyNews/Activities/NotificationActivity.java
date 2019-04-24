@@ -75,7 +75,6 @@ public class NotificationActivity extends AppCompatActivity {
     public static String resultFilterQuery;
 
 
-
     public static String getResultFilterQuery() {
         return resultFilterQuery;
     }
@@ -140,7 +139,7 @@ public class NotificationActivity extends AppCompatActivity {
     private void setSwitchNotification() {
 
         final SharedPreferences sharedPreferences = getSharedPreferences("isChecked", 0);
-        boolean value ;
+        boolean value;
         value = sharedPreferences.getBoolean("isChecked", false);
         mySwitch.setChecked(value);
         mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -192,6 +191,7 @@ public class NotificationActivity extends AppCompatActivity {
     /**
      * Create pending intent and set type of repeating notification sent
      * Call AlertReceiver
+     *
      * @param calendar this
      */
     public void startAlarm(Calendar calendar) {
@@ -233,27 +233,34 @@ public class NotificationActivity extends AppCompatActivity {
     public void configureCheckBox() {
 
         filterListChecked.clear();
-       setupCheckbox(notificationCheckBoxArts, "arts");
-       setupCheckbox(notificationCheckBoxBusiness, "business");
-       setupCheckbox(notificationCheckEntrepreneurs, "entrepreneurs");
-       setupCheckbox(notificationCheckBoxPolitics, "politics");
-       setupCheckbox(notificationCheckBoxSports, "sports");
-       setupCheckbox(notificationCheckBoxTravel, "travel");
+        setupCheckbox(notificationCheckBoxArts, "arts");
+        setupCheckbox(notificationCheckBoxBusiness, "business");
+        setupCheckbox(notificationCheckEntrepreneurs, "entrepreneurs");
+        setupCheckbox(notificationCheckBoxPolitics, "politics");
+        setupCheckbox(notificationCheckBoxSports, "sports");
+        setupCheckbox(notificationCheckBoxTravel, "travel");
 
     }
 
-    public void setupCheckbox(final CheckBox notificationCheckBox, final String category){
+    public void setupCheckbox(final CheckBox notificationCheckBox, final String category) {
         notificationCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                filterQuery = category;
                 if (isChecked) {
-                    filterQuery = category;
                     filterListChecked.add(filterQuery);
                     notificationCheckBox.setChecked(true);
+                    mySwitch.setEnabled(true);
+
                 } else {
                     filterListChecked.remove(filterQuery);
-                    filterQuery = null;
-                    notificationCheckBox.setChecked(false);
+                    if (filterListChecked.size() == 0) {
+                        notificationCheckBox.setChecked(false);
+                        mySwitch.setChecked(false);
+                        mySwitch.setEnabled(false);
+
+
+                    }
                 }
             }
         });
@@ -272,6 +279,7 @@ public class NotificationActivity extends AppCompatActivity {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
 
                     // save query text
+
                     query = notificationQuery.getText().toString();
                     Log.e("query ", query);
 
@@ -288,7 +296,11 @@ public class NotificationActivity extends AppCompatActivity {
 
         Log.e("notification", notificationQuery.toString());
     }
-    public void saveQueryWithoutKeyboard(){
+
+    /**
+     * Save query in edit text even if user doesn't press on enter button on keyboard
+     */
+    public void saveQueryWithoutKeyboard() {
         notificationQuery.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -302,7 +314,7 @@ public class NotificationActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-            query=  notificationQuery.getText().toString();
+                query = notificationQuery.getText().toString();
             }
         });
     }
@@ -313,7 +325,7 @@ public class NotificationActivity extends AppCompatActivity {
      */
     // Show a toast if query or filterQuery are null and disable switch
     public void requiredFields() {
-        if (query == null) {
+        if (query == null || query.equals("")) {
             mySwitch.setChecked(false);
             Toast.makeText(this, "you must enter query term", Toast.LENGTH_SHORT).show();
         } else if (filterQuery == null) {
@@ -327,7 +339,7 @@ public class NotificationActivity extends AppCompatActivity {
     protected void onPostResume() {
         super.onPostResume();
         filterQuery = null;
-        //query=null;
+        query = null;
     }
 
 
