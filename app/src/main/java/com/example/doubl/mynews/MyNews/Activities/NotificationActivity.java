@@ -70,6 +70,8 @@ public class NotificationActivity extends AppCompatActivity {
     public static String query;
     public static String filterQuery;
     public static List<String> filterListChecked = new ArrayList<>();
+    SharedPreferences mSharePreferences;
+    String MY_PREF = "my_preference";
 
     // TODO: 02/04/2019 resolve this
     public static String resultFilterQuery;
@@ -85,7 +87,6 @@ public class NotificationActivity extends AppCompatActivity {
     }
 
 
-
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +94,7 @@ public class NotificationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search_toolbar);
         ButterKnife.bind(this);
         mySwitch = findViewById(R.id.switch_notification);
+        mSharePreferences = getSharedPreferences(MY_PREF, 0);
         this.setVisibility();
         this.configureToolbar();
         this.setSwitchNotification();
@@ -100,6 +102,8 @@ public class NotificationActivity extends AppCompatActivity {
         this.requiredFields();
         this.saveNotificationQueryWithKeyboard();
         this.saveQueryWithoutKeyboard();
+        notificationQuery.setText(mSharePreferences.getString("queryPref", ""));
+        mySwitch.setChecked(mSharePreferences.getBoolean("switchChecked", false));
 
     }
 
@@ -138,10 +142,7 @@ public class NotificationActivity extends AppCompatActivity {
      */
     private void setSwitchNotification() {
 
-        final SharedPreferences sharedPreferences = getSharedPreferences("isChecked", 0);
-        boolean value;
-        value = sharedPreferences.getBoolean("isChecked", false);
-        mySwitch.setChecked(value);
+
         mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -150,7 +151,9 @@ public class NotificationActivity extends AppCompatActivity {
                 if (isChecked) {
                     requiredFields();
                     setCalendarTime();
-
+                    SharedPreferences.Editor editor = mSharePreferences.edit();
+                    editor.putBoolean("switchChecked", true);
+                    editor.apply();
 
                     if ((query != null && !query.equals("")) && filterListChecked.size() != 0) {
                         Toast.makeText(getApplicationContext(), "You will receive one notification by day with " + query + " as query", Toast.LENGTH_LONG).show();
@@ -159,7 +162,9 @@ public class NotificationActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(getApplicationContext(), "Notification disable", Toast.LENGTH_SHORT).show();
                     cancelAlarm();
-
+                    SharedPreferences.Editor editor = mSharePreferences.edit();
+                    editor.putBoolean("switchChecked", false);
+                    editor.apply();
 
                     Log.e("alarm", "alarm cancelled");
                 }
@@ -232,14 +237,19 @@ public class NotificationActivity extends AppCompatActivity {
      * Add or remove filterQuery in the filterListChecked
      */
     public void configureCheckBox() {
-
         filterListChecked.clear();
         setupCheckbox(notificationCheckBoxArts, "arts");
+        notificationCheckBoxArts.setChecked(mSharePreferences.getBoolean("arts", false));
         setupCheckbox(notificationCheckBoxBusiness, "business");
+        notificationCheckBoxBusiness.setChecked(mSharePreferences.getBoolean("business", false));
         setupCheckbox(notificationCheckEntrepreneurs, "entrepreneurs");
+        notificationCheckEntrepreneurs.setChecked(mSharePreferences.getBoolean("entrepreneurs", false));
         setupCheckbox(notificationCheckBoxPolitics, "politics");
+        notificationCheckBoxPolitics.setChecked(mSharePreferences.getBoolean("politics", false));
         setupCheckbox(notificationCheckBoxSports, "sports");
+        notificationCheckBoxSports.setChecked(mSharePreferences.getBoolean("sports", false));
         setupCheckbox(notificationCheckBoxTravel, "travel");
+        notificationCheckBoxTravel.setChecked(mSharePreferences.getBoolean("travel", false));
 
     }
 
@@ -247,14 +257,17 @@ public class NotificationActivity extends AppCompatActivity {
         notificationCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                SharedPreferences.Editor editor = mSharePreferences.edit();
                 filterQuery = category;
+
                 if (isChecked) {
                     filterListChecked.add(filterQuery);
-
+                    editor.putBoolean(category, true);
                 } else {
                     filterListChecked.remove(filterQuery);
-
+                    editor.putBoolean(category, false);
                 }
+                editor.apply();
             }
         });
 
@@ -273,6 +286,7 @@ public class NotificationActivity extends AppCompatActivity {
 
                     // save query text
                     query = notificationQuery.getText().toString();
+
                     Log.e("query ", query);
 
                     // to hide keyboard when press enter
@@ -307,6 +321,9 @@ public class NotificationActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 query = notificationQuery.getText().toString();
+                SharedPreferences.Editor editor = mSharePreferences.edit();
+                editor.putString("queryPref", notificationQuery.getText().toString());
+                editor.apply();
             }
         });
     }
@@ -324,14 +341,6 @@ public class NotificationActivity extends AppCompatActivity {
             mySwitch.setChecked(false);
             Toast.makeText(this, "Check at least one box ", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    // TODO: 01/04/2019 change this
-    @Override
-    protected void onPostResume() {
-        super.onPostResume();
-        filterQuery = null;
-        query = null;
     }
 
 

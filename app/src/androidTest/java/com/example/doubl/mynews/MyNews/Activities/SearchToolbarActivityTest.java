@@ -1,7 +1,7 @@
 package com.example.doubl.mynews.MyNews.Activities;
 
 import android.support.test.rule.ActivityTestRule;
-import android.support.test.runner.AndroidJUnit4;
+
 
 import com.example.doubl.mynews.R;
 

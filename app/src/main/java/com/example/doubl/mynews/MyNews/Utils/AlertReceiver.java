@@ -115,7 +115,8 @@ public class AlertReceiver extends BroadcastReceiver {
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
 
-        createNotificationChannel(context);
+        // TODO: 24/04/2019 mettre dans lle oncreate main
+       // createNotificationChannel(context);
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
         notificationManagerCompat.notify(NOTIFICATION_ID, notificationBuilder.build());
