@@ -124,7 +124,7 @@ public static final String BUNDLE_URL= "BUNDLE_URL";
      * Use Retrofit to convert json format and execute asyncTask in the main thread
      */
     public void executeHttpRequestWithRetrofit() {
-        this.disposable = NewYorkTimesStream.streamFetchMostPopular(1).subscribeWith(new DisposableObserver<MostPopular>() {
+        this.disposable = NewYorkTimesStream.streamFetchMostPopular(7).subscribeWith(new DisposableObserver<MostPopular>() {
             @Override
             public void onNext(MostPopular mostPopular) {
                 updateUI(mostPopular.getResults());

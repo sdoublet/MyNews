@@ -93,14 +93,7 @@ public class UpdateAllFragmentItemTest {
         assertEquals(expected, output);
     }
 
-//    @Test
-//    public void setBodyTextSearchApi() {
-//        expected = "my body text";
-//        UpdateAllFragmentItem updateAllFragmentItem = new UpdateAllFragmentItem();
-//        this.mockResultSearchApi();
-//        output = updateAllFragmentItem.setBodyText(resultSearchApi);//if updateAllFragmentItem notNull()
-//        assertEquals(expected, output);
-//    }
+
 
     @Test
     public void setBodyTextTopStories() {

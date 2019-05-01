@@ -116,27 +116,12 @@ public class ResultSearchActivity extends AppCompatActivity {
                 int size = searchApi.getResponse().getDocs().size();
                 if (size == 0) {
                     Toast.makeText(getApplicationContext(), "no result", Toast.LENGTH_SHORT).show();
-
-
                 }
-
-                Log.e("TAG", searchApi.getStatus());
-                Log.e("TAG", searchApi.getResponse().toString());
-                Log.e("TAG", "SearchApi size: " + Integer.toString(size));
-                Log.e("TAG", "beginDate: " + beginDate);
-                Log.e("TAG", "endDate: " + endDate);
-                Log.e("TAG", "queryInput: " + query);
-                Log.e("TAG", "filter " + filterQuery);
-
-
             }
-
             @Override
             public void onError(Throwable e) {
                 Log.e("TAG", "On Error..." + Log.getStackTraceString(e));
-
             }
-
             @Override
             public void onComplete() {
                 Log.e("TAG", "On complete!");

@@ -90,8 +90,4 @@ public class RecyclerviewHolder extends RecyclerView.ViewHolder  {
         }
     }
 
-
-   //todo set multimedium method
-
-
 }

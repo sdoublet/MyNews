@@ -16,7 +16,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-import com.example.doubl.mynews.MyNews.Models.TopStories;
 import com.example.doubl.mynews.MyNews.Utils.AlertReceiver;
 import com.example.doubl.mynews.MyNews.Views.ViewPager.PageAdapter;
 import com.example.doubl.mynews.R;
@@ -48,7 +47,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_activity_main, menu);
-
         return true;
     }
 

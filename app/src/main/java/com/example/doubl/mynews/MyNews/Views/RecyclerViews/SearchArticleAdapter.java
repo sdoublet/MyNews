@@ -49,7 +49,6 @@ public class SearchArticleAdapter extends RecyclerView.Adapter<RecyclerviewHolde
 
     }
 
-    //ti configure itemClick
     public String getUrl(int position) {
         return resultSearchApiList.get(position).getWebUrl();
     }

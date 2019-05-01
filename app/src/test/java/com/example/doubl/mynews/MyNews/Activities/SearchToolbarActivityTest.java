@@ -8,9 +8,6 @@ import org.junit.Test;
 
 public class SearchToolbarActivityTest {
 
-
-
-
     @Test
     public void configureDatePickerBeginDate() {
 
@@ -27,8 +24,6 @@ public class SearchToolbarActivityTest {
                 String expected = "8";
                 Assert.assertEquals(expected, output);
             }
-
-
         }
     }
 

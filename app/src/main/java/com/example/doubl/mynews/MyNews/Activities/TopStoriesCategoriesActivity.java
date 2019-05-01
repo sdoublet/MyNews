@@ -86,7 +86,6 @@ public class TopStoriesCategoriesActivity extends AppCompatActivity {
                             intent.putExtra(BUNDLE_URL, articleTopStories);
                             startActivity(intent);
 
-
                         }
                     });
         }

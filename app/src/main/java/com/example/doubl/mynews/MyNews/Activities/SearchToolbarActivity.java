@@ -136,9 +136,7 @@ public class SearchToolbarActivity extends AppCompatActivity {
         endDateText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 configureDatePickerEndDate();
-
             }
         });
     }
@@ -229,8 +227,6 @@ public class SearchToolbarActivity extends AppCompatActivity {
                     if (filterListChecked.size() == 0) {
                         searchArticleButton.setVisibility(View.GONE);
                     }
-
-
                 }
             }
 

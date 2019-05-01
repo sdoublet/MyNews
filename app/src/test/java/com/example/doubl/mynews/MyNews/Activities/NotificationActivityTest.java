@@ -16,18 +16,11 @@ import static org.mockito.Mockito.when;
 
 public class NotificationActivityTest  {
 
-    // given
-
 
     private String query = "my query";
     private String toast = "my toast";
     private String expected;
     private String output;
-
-
-
-
-
 
     @Test
     public void requiredFields() {

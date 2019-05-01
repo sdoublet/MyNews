@@ -22,7 +22,7 @@ public class AboutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about);
         ButterKnife.bind(this);
         this.configureToolbar();
-        clickOnLogoNYT();
+        this.clickOnLogoNYT();
     }
 
     private void configureToolbar() {
@@ -41,7 +41,6 @@ public class AboutActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://developer.nytimes.com.") );
-
                 startActivity(intent);
             }
         });

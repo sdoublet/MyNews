@@ -183,8 +183,8 @@ public class NotificationActivity extends AppCompatActivity {
      */
     public void setCalendarTime() {
         Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.HOUR_OF_DAY, 16);
-        calendar.set(Calendar.MINUTE, 23);
+        calendar.set(Calendar.HOUR_OF_DAY, 12);
+        calendar.set(Calendar.MINUTE, 30);
         calendar.set(Calendar.SECOND, 30);
 
         if (calendar.getTimeInMillis() < System.currentTimeMillis()) {

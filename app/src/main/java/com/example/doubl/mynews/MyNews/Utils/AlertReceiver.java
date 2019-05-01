@@ -54,7 +54,7 @@ public class AlertReceiver extends BroadcastReceiver {
 
         Calendar c = Calendar.getInstance();
         Calendar calBeginDate = Calendar.getInstance();
-        calBeginDate.add(Calendar.DATE, -100);
+        calBeginDate.add(Calendar.DATE, -1);
         final SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
         final String mEndDate = sdf.format(c.getTime());
         final String mBeginDate = sdf.format(calBeginDate.getTime());
@@ -63,18 +63,7 @@ public class AlertReceiver extends BroadcastReceiver {
         DisposableObserver<SearchApi> disposable = NewYorkTimesStream.streamFetchSearchArticle(mBeginDate, mEndDate, 0, NotificationActivity.getResultFilterQuery(), NotificationActivity.query, "newest", ApiKey.API_KEY).subscribeWith(new DisposableObserver<SearchApi>() {
             @Override
             public void onNext(SearchApi searchApi) {
-
                 articleFound = searchApi.getResponse().getDocs().size();
-
-
-                Log.e("TAG", searchApi.getStatus());
-                Log.e("TAG", searchApi.getResponse().toString());
-                Log.e("TAG", "SearchApi size: " + Integer.toString(articleFound));
-                Log.e("TAG", "endDate " + mEndDate);
-                Log.e("TAG", "beginDate: " + mBeginDate);
-                Log.e("TAG", "queryInput: " + NotificationActivity.query);
-                Log.e("TAG", "filter " + NotificationActivity.getResultFilterQuery());
-
                 sendNotification(context);
 
             }
@@ -115,7 +104,7 @@ public class AlertReceiver extends BroadcastReceiver {
                 .setContentIntent(pendingIntent)
                 .setAutoCancel(true);
 
-        // TODO: 24/04/2019 mettre dans lle oncreate main
+
        // createNotificationChannel(context);
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
