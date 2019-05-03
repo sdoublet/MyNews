@@ -53,6 +53,7 @@ public class PageAdapter extends FragmentPagerAdapter {
                 return "Top Stories";
             case 2:
                 return otherFragment.sectionOtherFragment;
+
             default:
                 return null;
         }

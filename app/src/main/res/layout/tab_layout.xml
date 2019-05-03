@@ -7,6 +7,7 @@
     android:background="@color/colorPrimary"
     app:tabSelectedTextColor="@color/textColorTabLayout"
     app:tabTextColor="@color/colorTitle"
+    app:tabIndicatorColor="@color/textColorTabLayout"
     app:tabPaddingStart="-1dp"
     app:tabPaddingEnd="-1dp"
     >

@@ -15,7 +15,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-
 import com.example.doubl.mynews.MyNews.Utils.AlertReceiver;
 import com.example.doubl.mynews.MyNews.Views.ViewPager.PageAdapter;
 import com.example.doubl.mynews.R;
@@ -52,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     /**
      * Set option item selected on tool bar
+     *
      * @param item according to item id
      * @return launch activity selected
      */
@@ -112,6 +112,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     /**
      * Set item selected in navigation drawer
+     *
      * @param menuItem according to menuItem id
      * @return launch activity selected
      */
@@ -155,7 +156,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    public void goalActivity( ) {
+    public void goalActivity() {
         Intent intent = new Intent(this, TopStoriesCategoriesActivity.class);
         startActivity(intent);
     }

@@ -207,7 +207,7 @@ public class NotificationActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AlertReceiver.class);
         intent.putExtra("query", query);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 100, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_FIFTEEN_MINUTES, pendingIntent);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
         Log.e("alarm", "start alarm");
         setResultFilterQuery(TextUtils.join(" ", filterListChecked));
         Log.e("filter", "fq: " + getResultFilterQuery());
